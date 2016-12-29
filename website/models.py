@@ -189,6 +189,21 @@ class Profile(models.Model):
 
     position = models.ForeignKey('Postion', null=True, blank=True)
 
+    profile_page_markdown = models.TextField(null=True, blank=True)
+    profile_page_html = models.TextField(null=True, blank=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        html_content = markdown.markdown(self.profile_page_markdown,
+                                         extensions=['codehilite'])
+        # bleach is used to filter html tags like <script> for security
+        self.profile_page_html = bleach.clean(html_content, allowed_html_tags,
+                                              allowed_attrs)
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(Profile, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.full_name
 
