@@ -11,7 +11,7 @@ urlpatterns = [
         name='section_page'),
 
     # Cite Page for publications
-    url(r'^cite/$', views.cite, name='cite'),
+    url(r'^publications/$', views.cite, name='cite'),
 
     # News Post display page
     url(r'^news/(?P<news_id>.*?)/$', views.news_page, name='news_page'),

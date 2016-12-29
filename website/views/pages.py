@@ -10,10 +10,11 @@ from website.models import *
 
 # Definition of views:
 
-@cache_page(60 * 30)  # cache the view for 30 minutes
 def index(request):
     context = {}
-
+    all_carousel = CarouselImage.objects.filter()
+ 
+    context['all_carousel'] = all_carousel
     context['meta'] = get_meta_tags_dict()
     return render(request, 'website/index.html', context)
 
@@ -38,7 +39,6 @@ def cite(request):
     return render(request, 'website/cite.html', context)
 
 
-@cache_page(60 * 30)  # cache the view for 30 minutes
 def honeycomb(request):
     context = {}
     context['all_youtube_videos'] = get_youtube_videos(
@@ -49,7 +49,6 @@ def honeycomb(request):
     return render(request, 'website/honeycomb.html', context)
 
 
-@cache_page(60 * 30)  # cache the view for 30 minutes
 def tutorials(request):
     context = {}
     context['all_documentation_examples'] = get_doc_examples()
@@ -64,7 +63,6 @@ def support(request):
     return render(request, 'website/support.html', context)
 
 
-@cache_page(60 * 5)  # cache the view for 5 minutes
 def follow_us(request):
     context = {}
     context['latest_news'] = get_latest_news_posts(5)
@@ -91,7 +89,6 @@ def news_page(request, news_id):
     return render(request, 'website/news.html', context)
 
 
-@cache_page(60 * 30)  # cache the view for 30 minutes
 def contributors(request):
     context = {}
     return render(request, 'website/contributors.html', context)

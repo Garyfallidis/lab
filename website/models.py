@@ -3,6 +3,8 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.cache import cache
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils import timezone
 import markdown
 import bleach
@@ -20,16 +22,6 @@ allowed_html_tags = bleach.ALLOWED_TAGS + ['p', 'pre', 'table', 'img',
 allowed_attrs = ['href', 'class', 'rel', 'alt', 'class', 'src']
 
 # Create your models here.
-
-
-class Profile(models.Model):
-    "Stores additional information about the user"
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.user
-
 
 class WebsiteSection(models.Model):
     title = models.CharField(max_length=200)
@@ -168,3 +160,40 @@ class CarouselImage(models.Model):
 
     def __str__(self):
         return self.image_url
+
+
+class Postion(models.Model):
+    """
+    Model for defining the position of a lab member
+    """
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class Profile(models.Model):
+    """
+    Model for storing more information about user
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100)
+    avatar_img = models.ImageField(upload_to='avatar_images/',
+                                   blank=True, null=True)
+    contactNumber = models.CharField(max_length=15, blank=True, null=True)
+
+    emailId = models.EmailField(blank=True, null=True)
+
+    contactURL = models.URLField(blank=True, null=True)
+    description = models.TextField(null=True, blank=True)
+
+    position = models.ForeignKey('Postion', null=True, blank=True)
+
+    def __str__(self):
+        return self.full_name
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance, full_name=instance.username)
+        instance.profile.save()

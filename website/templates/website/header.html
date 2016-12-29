@@ -13,7 +13,8 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-      	<img id="websiteHeaderLogo" src="{% static "images/dipy-logo.png" %}"/>
+      	<img id="websiteHeaderLogo" class="img-responsive" src="{% static "images/lab-logo.png" %}"/>
+        <span id="websiteHeaderTitle">Garyfallidis Lab</span>
       </a>
     </div>
 
@@ -21,30 +22,12 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">Home</a></li>
+        <li><a href="/people">People</a></li>
         {% for page in pages_in_nav %}
         <li><a href="/page/{{page.website_position_id}}">{{page.title}}</a></li>
         {% endfor %}
         <li><a href="/gallery">Gallery</a></li>
-        <li><a href="/tutorials">Tutorials</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            {% for doc in all_doc_displayed %}
-            <li><a href="/documentation/{{ doc.version }}/documentation">{{ doc.version }}</a></li>
-            {% endfor %}
-          </ul>
-        </li>
-        <li><a href="/cite">Cite</a></li>
-        <li><a href="/support">Support</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/follow">Follow Us</a></li>
-            <li><a href="/contributors">Developers</a></li>
-            <li><a href="http://nipy.org/">Nipy Projects</a></li>
-            <li><a href="/dashboard">Admin Panel</a></li>
-          </ul>
-        </li>
+        <li><a href="/publications">Publications</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
     </div>
