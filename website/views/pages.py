@@ -13,22 +13,6 @@ from website.models import *
 @cache_page(60 * 30)  # cache the view for 30 minutes
 def index(request):
     context = {}
-    home_header = get_website_section('home_header')
-    getting_started = get_website_section('getting_started')
-    latest_news = get_latest_news_posts(5)
-    highlighted_publications = Publication.objects.filter(is_highlighted=True)
-    all_carousel = CarouselImage.objects.filter()
-
-    context['home_header'] = home_header
-    context['getting_started'] = getting_started
-    context['latest_news'] = latest_news
-    context['highlighted_publications'] = highlighted_publications
-    context['all_carousel'] = all_carousel
-
-    context['gplus_feed'] = get_google_plus_activity("107763702707848478173",
-                                                     4)
-    context['fb_posts'] = get_facebook_page_feed("diffusionimaginginpython", 5)
-    context['tweets'] = get_twitter_feed('dipymri', 5)
 
     context['meta'] = get_meta_tags_dict()
     return render(request, 'website/index.html', context)
