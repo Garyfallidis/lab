@@ -10,6 +10,14 @@ urlpatterns = [
     url(r'^page/(?P<position_id>.*?)/$', views.page,
         name='section_page'),
 
+    # Blog Page
+    url(r'^blog/$', views.blog,
+        name='blog'),
+
+    url(r'^blog/(?P<identifier>.*?)/$', views.blog_post,
+        name='blog_post'),
+
+
     # Cite Page for publications
     url(r'^publications/$', views.cite, name='cite'),
 

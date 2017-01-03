@@ -36,6 +36,21 @@ def page(request, position_id):
     return render(request, 'website/section_page.html', context)
 
 
+def blog(request):
+    context = {}
+
+    context['all_blog_posts'] = BlogPost.objects.all()
+    context['meta'] = get_meta_tags_dict()
+    return render(request, 'website/blog.html', context)
+
+
+def blog_post(request, identifier):
+    context = {}
+
+    context['meta'] = get_meta_tags_dict()
+    return render(request, 'website/blog_post.html', context)
+
+
 def cite(request):
     context = {}
     all_publications = Publication.objects.all()
