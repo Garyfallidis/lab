@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render
-from django.utils.html import strip_tags
 from django.views.decorators.cache import cache_page
 
 from .tools import *
@@ -13,8 +12,14 @@ from website.models import *
 def index(request):
     context = {}
     all_carousel = CarouselImage.objects.filter()
- 
+    latest_blog_posts = get_latest_blog_posts(5)
+    latest_news_posts = get_latest_news_posts(5)
+    highlighted_publications = Publication.objects.filter(is_highlighted=True)
+
     context['all_carousel'] = all_carousel
+    context['latest_blog_posts'] = latest_blog_posts
+    context['latest_news_posts'] = latest_news_posts
+    context['highlighted_publications'] = highlighted_publications
     context['meta'] = get_meta_tags_dict()
     return render(request, 'website/index.html', context)
 

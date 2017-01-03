@@ -5,33 +5,113 @@
 
 {% block content_body %}
 <!-- Content -->
-<div class="container">
-<div id="homeCarousel" class="carousel slide">
-	<!-- Carousel indicators -->
-	<ol class="carousel-indicators">
-		{% for image in all_carousel %}
-		<li data-target="#homeCarousel" data-slide-to="{{forloop.counter|add:"-1"}}" class="{% if forloop.first %}active{% endif %}"></li>
-		{% endfor %}
-	</ol>
-	<!-- Carousel items -->
-	<div class="carousel-inner">
-		{% for image in all_carousel %}
-		<div class="item {% if forloop.first %}active{% endif %}">
-			<img src="{{ image.image_url }}" alt="{{ image.image_caption }}">
-			{% if image.display_description %}
-			<a target="_blank" href="{% if image.target_url %}{{ image.target_url }}{% else %}#{% endif %}">
-				<div class="carousel-caption">
-					<h2>{{ image.image_caption }}</h2>
-					{% if image.image_description %}<p>{{ image.image_description }}</p>{% endif %}
-				</div>
-			</a>
-			{% endif %}
+<div class="container lab_style_container">
+	<div id="homeCarousel" class="carousel slide">
+		<!-- Carousel indicators -->
+		<ol class="carousel-indicators">
+			{% for image in all_carousel %}
+			<li data-target="#homeCarousel" data-slide-to="{{forloop.counter|add:"-1"}}" class="{% if forloop.first %}active{% endif %}"></li>
+			{% endfor %}
+		</ol>
+		<!-- Carousel items -->
+		<div class="carousel-inner">
+			{% for image in all_carousel %}
+			<div class="item {% if forloop.first %}active{% endif %}">
+				<img src="{{ image.image_url }}" alt="{{ image.image_caption }}">
+				{% if image.display_description %}
+				<a target="_blank" href="{% if image.target_url %}{{ image.target_url }}{% else %}#{% endif %}">
+					<div class="carousel-caption">
+						<h2>{{ image.image_caption }}</h2>
+						{% if image.image_description %}<p>{{ image.image_description }}</p>{% endif %}
+					</div>
+				</a>
+				{% endif %}
+			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
+		<!-- Carousel nav -->
+		<a class="carousel-control left" href="#homeCarousel" data-slide="prev">&lsaquo;</a>
+		<a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
 	</div>
-	<!-- Carousel nav -->
-	<a class="carousel-control left" href="#homeCarousel" data-slide="prev">&lsaquo;</a>
-	<a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
+	<div class="row">
+		<div class="col-md-4 col-lg-4 col-md-push-8 col-lg-push-8 lab_col col_border_left">
+			<h1 class="lab_column_title">News and Updates</h1>
+			<div class="lab-col-inner">
+				<div id="news_posts_container">
+					{% for news_post in latest_news_posts %}
+					<div class="news_post_item">
+						<h1>{{ news_post.title }}</h1>
+						<div>{{ news_post.body_html|safe }}</div>
+						<div>{{ news_post.post_date }}</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-lg-4 lab_col col_border_left">
+			<h1 class="lab_column_title">Publications</h1>
+			<div class="lab-col-inner">
+				<div class="publications_container">
+					{% for publication in highlighted_publications %}
+					<div class="publication_item">
+						<a href="{{ publication.url }}" target="_blank">
+							<span class="pub_title">{{ publication.title }}</span>
+						</a>
+						<div class="publication_author">
+							{{ publication.author }}
+						</div>
+						<button class="show_pub_details_button btn btn-default">Cite</button>
+						<div class="publication_details_container">
+							<span class="glyphicon glyphicon-remove close_pub_details" aria-hidden="true"></span>
+							<h1>{{ publication.title }}</h1>
+
+							<h3>Authors:</h3>
+							<p>{{ publication.author }}</p>
+							{% if publication.bibtex %}
+							<div class="publication_bibtex">
+								<h3>Bibtex:</h3>
+								<p>{{ publication.bibtex }}</p>
+							</div>
+							{% endif %}
+							<a href="{{ publication.url }}" target="_blank">
+								<button type="button" class="btn btn-default" aria-label="Left Align">
+									<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+									More details
+								</button>
+							</a>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-lg-4 col-md-pull-8 col-lg-pull-8 lab_col">
+			<h1 class="lab_column_title">Blog Posts</h1>
+			<div class="lab-col-inner">
+				{% for blog_post in latest_blog_posts %}
+				<h1>{{ blog_post.title }}</h1>
+				<div>{{ blog_post.body_html | safe }}</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 </div>
-</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script src="{% static "js/jquery.matchHeight-min.js" %}" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		// match column heights
+		$('.lab_col').matchHeight({});
+		// display details of publications
+		$('.show_pub_details_button').click(function(){
+			$(this).siblings('.publication_details_container').fadeIn();
+		});
+		// close publication details box
+		$('.close_pub_details').click(function(){
+			$(this).parent().fadeOut();
+		});
+	});
+</script>
 {% endblock %}

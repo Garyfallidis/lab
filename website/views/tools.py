@@ -47,6 +47,21 @@ def get_latest_news_posts(limit):
     return NewsPost.objects.order_by('-post_date')[0:limit]
 
 
+def get_latest_blog_posts(limit):
+    """
+    Fetch Latest BLogPosts according to post_date
+
+    Parameters
+    ----------
+    limit : string
+
+    Output
+    ------
+    returns a list of BlogPost objects
+    """
+    return BlogPost.objects.order_by('-posted')[0:limit]
+
+
 def has_commit_permission(access_token, repository_name):
     """
     Determine if user has commit access to the repository in nipy organisation.

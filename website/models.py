@@ -23,6 +23,7 @@ allowed_attrs = ['href', 'class', 'rel', 'alt', 'class', 'src']
 
 # Create your models here.
 
+
 class WebsiteSection(models.Model):
     title = models.CharField(max_length=200)
     body_markdown = models.TextField()
@@ -32,7 +33,7 @@ class WebsiteSection(models.Model):
 
     # determines for what purpose the article is used. Eg: index-header, body,
     # installation-page, getting-started-page etc
-    website_position_id = models.CharField(max_length=100,
+    website_position_id = models.SlugField(max_length=100,
                                            unique=True,
                                            db_index=True)
 
@@ -207,8 +208,39 @@ class Profile(models.Model):
     def __str__(self):
         return self.full_name
 
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance, full_name=instance.username)
         instance.profile.save()
+
+
+class BlogPost(models.Model):
+    """
+    Model to store blog posts
+    """
+    title = models.CharField(max_length=100, unique=True)
+    identifier = models.SlugField(max_length=100, unique=True)
+    body = models.TextField()
+    posted = models.DateTimeField(db_index=True, auto_now_add=True)
+    author = models.ForeignKey(User)
+    body_html = models.TextField(null=True, blank=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        html_content = markdown.markdown(self.body,
+                                         extensions=['codehilite'])
+        # bleach is used to filter html tags like <script> for security
+        self.body_html = bleach.clean(html_content, allowed_html_tags,
+                                      allowed_attrs)
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(BlogPost, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return "/blog/%i/" % self.identifier

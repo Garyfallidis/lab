@@ -1,3 +1,7 @@
+body {
+	margin-top: 5em;
+}
+
 // Navbar styles
 #websiteNavbar {
 	background: #7A1705;
@@ -53,8 +57,145 @@
 // Footer styles
 #footerContainer {
 	border-top: 5px solid #990000;
+    background: #4A3C31;
+    color: #fff;
 
 	#footerContentContainer {
 		margin: 1em 0em;
+	}
+}
+
+
+// General Styles
+
+h1, h2, h3, h4 {
+	font-weight: 200;
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	.col_border_left {
+		border-left: 1px solid #d2d2d2;
+	}
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+	.col_border_left {
+		border-left: 1px solid #d2d2d2;
+	}
+}
+
+.lab_col {
+	margin: 2em 0;
+}
+
+.lab-col-inner {
+}
+
+.lab_column_title {
+	margin-top: 0;
+	font-family: sans;
+	color: #721616;
+	font-weight: 200;
+	border-bottom: 2px solid #A18989;
+	padding-bottom: 0.1em;
+}
+
+
+
+// HOME PAGE STYLES
+
+// News post style
+#news_posts_container {
+	.news_post_item {
+
+		box-shadow: 0 5px 2px -5px #1a1a1a;
+
+		img {
+			max-width: 100%;
+		}
+
+		h1 {
+			font-size: 2.2em;
+		}
+		h2 {
+			font-size: 1.8em;
+		}
+		h3 {
+			font-size: 1.2em;
+		}
+		h4 {
+			font-size: 1.4em;
+		}
+	}
+}
+
+// Publication styles
+.publications_container {
+	.publication_item {
+		display: block;
+		clear: both;
+		overflow: auto;
+		box-shadow: 0 5px 2px -5px #1a1a1a;
+		padding-bottom: 0.6em;
+		margin-top: 0.6em;
+
+		a {
+			text-decoration: none;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		.pub_title {
+			font-size: 1.2em;
+			font-family: sans;
+			font-weight: 400;
+			margin-bottom: 0.2em;
+			display: block;
+		}
+
+
+		.publication_details_container {
+			display: none;
+			background: #fff;
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			padding: 56px 8%;
+			z-index: 1000;
+			overflow: auto;
+			.close_pub_details{
+				float: right;
+				display: block;
+				clear: both;
+				border-radius: 50%;
+				border:	1px solid #e1e1e1;
+				padding: 0.6em;
+				font-size: 1.2em;
+				transition: all 0.6s;
+				&:hover {
+					border: 1px solid #a1a1a1;
+					cursor: pointer;
+					transition: all 0.6s;
+				}
+			}
+			.publication_bibtex {
+				p {
+					border: 2px solid #A18989;
+					padding: 2em;
+				}
+			}
+		}
+
+		.show_pub_details_button {
+			float: right;
+			margin-top: -0.2em;
+			padding: 0.2em 1.2em;
+		}
+
 	}
 }
