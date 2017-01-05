@@ -12,7 +12,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="{{ request.scheme }}://{{ request.get_host }}">
       	<img id="websiteHeaderLogo" class="img-responsive" src="{% static "images/lab-logo.png" %}"/>
         <span id="websiteHeaderTitle">Garyfallidis Lab</span>
       </a>
