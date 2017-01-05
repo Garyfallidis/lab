@@ -16,7 +16,7 @@
 
         <div class="blog_post_time">{{ blog_post.posted }}</div>
 
-        <div class="blog_post_body">{{ blog_post.body_html | safe }}</div>
+        <div class="blog_post_body">{{ blog_post.body_html | truncatechars_html:600 | safe }}</div>
 
         <div class="blog_post_author">{{ blog_post.author }}</div>
 

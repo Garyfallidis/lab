@@ -47,6 +47,7 @@ def blog(request):
 def blog_post(request, identifier):
     context = {}
 
+    context['blog_post'] = BlogPost.objects.get(identifier=identifier)
     context['meta'] = get_meta_tags_dict()
     return render(request, 'website/blog_post.html', context)
 
