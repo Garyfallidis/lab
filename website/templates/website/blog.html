@@ -10,7 +10,7 @@
       {% for blog_post in all_blog_posts %}
       <div class="blog_post_container">
 
-        <a class="blog_title_link" href="/blog/{{ blog_post.identifier }}">
+        <a class="blog_title_link" href="{% url "blog_post" identifier=blog_post.identifier %}">
           <h1 class="blog_post_title">{{ blog_post.title }}</h1>
         </a>
 
