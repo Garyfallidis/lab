@@ -1,0 +1,25 @@
+{% extends "website/base_template.html" %}
+
+{% block content_body %}
+
+<!-- Content -->
+<div class="container lab_style_container">
+  <div class="row">
+    {% for profile in all_profile %}
+    <div class="col-md-4 col-lg-4">
+      <a  class="container_link" href="/people/{{ profile.user.username }}">
+      <div class="people_container">
+        <h1 class="full_name">{{ profile.full_name }}</h1>
+        <img class="avatar_img img-responsive img-circle" src="{{ MEDIA_URL }}{{ profile.avatar_img }}">
+        <div class="description">{{ profile.description }}</div>
+      </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js_bottom %}
+{% endblock %}

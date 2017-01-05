@@ -17,6 +17,10 @@ urlpatterns = [
     url(r'^blog/(?P<identifier>.*?)/$', views.blog_post,
         name='blog_post'),
 
+    # People page
+    url(r'^people/$', views.people, name='people'),
+    url(r'^people/(?P<username>.*?)/$', views.people_profile,
+        name='people_profile'),
 
     # Cite Page for publications
     url(r'^publications/$', views.publications, name='publications'),

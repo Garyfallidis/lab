@@ -1,0 +1,21 @@
+{% extends "website/base_template.html" %}
+
+{% block content_body %}
+
+<!-- Content -->
+<div class="container lab_style_container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <div class="full_profile_container">
+        <h1 class="full_name">{{ profile.full_name }}</h1>
+        <img class="avatar_img" src="{{ MEDIA_URL }}{{ profile.avatar_img }}">
+        <div class="profile_body">{{ profile.profile_page_html | safe }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js_bottom %}
+{% endblock %}

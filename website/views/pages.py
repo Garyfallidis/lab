@@ -60,6 +60,23 @@ def publications(request):
     return render(request, 'website/publications.html', context)
 
 
+def people(request):
+    context = {}
+
+    context['all_profile'] = Profile.objects.all()
+    context['meta'] = get_meta_tags_dict()
+    return render(request, 'website/people.html', context)
+
+
+def people_profile(request, username):
+    context = {}
+
+    user = User.objects.get(username=username)
+    context['profile'] = Profile.objects.get(user=user)
+    context['meta'] = get_meta_tags_dict()
+    return render(request, 'website/people_profile.html', context)
+
+
 def honeycomb(request):
     context = {}
     context['all_youtube_videos'] = get_youtube_videos(
