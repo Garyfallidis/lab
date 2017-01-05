@@ -20,7 +20,7 @@
 
         <div class="blog_post_author">{{ blog_post.author }}</div>
 
-        <a href="/blog/{{ blog_post.identifier }}">
+        <a href="{% url "blog_post" identifier=blog_post.identifier %}">
           <span class="blog_readmore">continue reading..</span>
         </a>
 

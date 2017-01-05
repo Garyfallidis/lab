@@ -90,7 +90,10 @@
 			<div class="lab-col-inner">
 				{% for blog_post in latest_blog_posts %}
 				<h1>{{ blog_post.title }}</h1>
-				<div>{{ blog_post.body_html | safe }}</div>
+				<div>{{ blog_post.body_html | truncatechars_html:400 | safe }}</div>
+				<a href="{% url "blog_post" identifier=blog_post.identifier %}">
+					<span class="blog_readmore">continue reading..</span>
+				</a>
 				{% endfor %}
 			</div>
 		</div>
