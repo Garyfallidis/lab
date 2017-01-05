@@ -52,12 +52,12 @@ def blog_post(request, identifier):
     return render(request, 'website/blog_post.html', context)
 
 
-def cite(request):
+def publications(request):
     context = {}
     all_publications = Publication.objects.all()
     context['all_publications'] = all_publications
     context['meta'] = get_meta_tags_dict(title="DIPY - Publications")
-    return render(request, 'website/cite.html', context)
+    return render(request, 'website/publications.html', context)
 
 
 def honeycomb(request):
@@ -68,20 +68,6 @@ def honeycomb(request):
 
     context['meta'] = get_meta_tags_dict(title="DIPY - Gallery")
     return render(request, 'website/honeycomb.html', context)
-
-
-def tutorials(request):
-    context = {}
-    context['all_documentation_examples'] = get_doc_examples()
-
-    context['meta'] = get_meta_tags_dict(title="DIPY - Tutorials")
-    return render(request, 'website/tutorials.html', context)
-
-
-def support(request):
-    context = {}
-    context['meta'] = get_meta_tags_dict(title="DIPY - Support")
-    return render(request, 'website/support.html', context)
 
 
 def follow_us(request):
@@ -108,11 +94,6 @@ def news_page(request, news_id):
     context['meta'] = get_meta_tags_dict(title=meta_title,
                                          description=news_post.description)
     return render(request, 'website/news.html', context)
-
-
-def contributors(request):
-    context = {}
-    return render(request, 'website/contributors.html', context)
 
 
 @login_required

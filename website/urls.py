@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib.auth.views import logout
 from . import views
 
@@ -19,7 +19,7 @@ urlpatterns = [
 
 
     # Cite Page for publications
-    url(r'^publications/$', views.cite, name='cite'),
+    url(r'^publications/$', views.publications, name='publications'),
 
     # News Post display page
     url(r'^news/(?P<news_id>.*?)/$', views.news_page, name='news_page'),
