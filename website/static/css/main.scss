@@ -267,7 +267,26 @@ body {
 	}
 }
 
-// BLOG STYLES
+// Blog styles
+
+.blog_post_item {
+	box-shadow: 0 5px 2px -5px #1a1a1a;
+	padding-bottom: 1em;
+
+	.blog_readmore {
+		font-size: 1.1em;
+	}
+
+	.blog_title_link {
+		text-decoration: none;
+		color: inherit;
+		&:hover {
+			color: #214360;
+		}
+	}
+}
+
+// BLOG PAGE STYLES
 .blog_post_container {
 	margin: 2em 0;
 	padding-bottom: 2em;
@@ -288,7 +307,7 @@ body {
 		transition: all 0.5s;
 		&:hover {
 			text-decoration: none;
-			color: #2F1B1B;
+			color: #214360;
 		}
 	}
 
@@ -296,4 +315,38 @@ body {
 		font-weight: 400;
 	}
 
+}
+
+//PEOPLE PAGE
+.profile_container {
+	font-family: Roboto;
+	padding: 1em;
+	margin: 0.2em;
+	box-shadow: 0 5px 2px -5px #1a1a1a;
+	transition: all 0.5s;
+	&:hover {
+		box-shadow: 0 2px 6px -2px #214360;
+		transform: scale(1.01);
+	}
+
+	.profile-row {
+		.full_name {
+			margin-top: 0.2em;
+		}
+
+		.description {
+			font-family: Roboto;
+			font-size: 1.1em;
+		}
+
+		.profile_container_link {
+			text-decoration: none;
+			color: inherit;
+			&:hover {
+				h1 {
+					color: #214360;
+				}
+			}
+		}
+	}
 }

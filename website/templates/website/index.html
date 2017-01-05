@@ -89,11 +89,15 @@
 			<h1 class="lab_column_title">Blog Posts</h1>
 			<div class="lab-col-inner">
 				{% for blog_post in latest_blog_posts %}
-				<h1>{{ blog_post.title }}</h1>
+				<div class="blog_post_item">
+				<a class="blog_title_link" href="{% url "blog_post" identifier=blog_post.identifier %}">
+					<h1>{{ blog_post.title }}</h1>
+				</a>
 				<div>{{ blog_post.body_html | truncatechars_html:400 | safe }}</div>
 				<a href="{% url "blog_post" identifier=blog_post.identifier %}">
 					<span class="blog_readmore">continue reading..</span>
 				</a>
+				</div>
 				{% endfor %}
 			</div>
 		</div>
