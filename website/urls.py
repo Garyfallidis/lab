@@ -27,17 +27,8 @@ urlpatterns = [
     # Honeycomb gallery
     url(r'^gallery/$', views.honeycomb, name='gallery'),
 
-    # Tutorials page
-    url(r'^tutorials/$', views.tutorials, name='tutorials'),
-
-    # Support Page
-    url(r'^support/$', views.support, name='support'),
-
     # Follow us page for social feeds
     url(r'^follow/$', views.follow_us, name='follow_us'),
-
-    # Contributors page for github stats
-    url(r'^contributors/$', views.contributors, name='contributors'),
 
     # Admin Panel Dash Board
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
