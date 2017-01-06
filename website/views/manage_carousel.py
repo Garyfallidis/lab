@@ -4,44 +4,22 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 
 from .tools import has_commit_permission
+from .tools import github_permission_required
 from website.forms import AddEditCarouselImageForm
 from website.models import CarouselImage
 
 
 @login_required
+@github_permission_required
 def dashboard_carousel(request):
-    try:
-        social = request.user.social_auth.get(provider='github')
-        access_token = social.extra_data['access_token']
-    except:
-        access_token = ''
-    has_permission = has_commit_permission(access_token, 'dipy_web')
-    if has_permission:
-        all_carousel_images = CarouselImage.objects.all()
-        context = {'all_carousel_images': all_carousel_images}
-        return render(request, 'website/dashboard_carousel.html', context)
-    else:
-        raise PermissionDenied
+    all_carousel_images = CarouselImage.objects.all()
+    context = {'all_carousel_images': all_carousel_images}
+    return render(request, 'website/dashboard_carousel.html', context)
 
 
 @login_required
+@github_permission_required
 def add_carousel_image(request):
-    # check if user has edit permissions
-    try:
-        social = request.user.social_auth.get(provider='github')
-        access_token = social.extra_data['access_token']
-    except:
-        access_token = ''
-    if access_token:
-        has_permission = has_commit_permission(access_token, 'dipy_web')
-    else:
-        has_permission = False
-
-    # if user does not have edit permission:
-    if not has_permission:
-        raise PermissionDenied
-
-    # if user has edit permission:
     context = {}
     if request.method == 'POST':
         submitted_form = AddEditCarouselImageForm(request.POST)
@@ -58,23 +36,8 @@ def add_carousel_image(request):
 
 
 @login_required
+@github_permission_required
 def edit_carousel_image(request, carousel_image_id):
-    # check if user has edit permissions
-    try:
-        social = request.user.social_auth.get(provider='github')
-        access_token = social.extra_data['access_token']
-    except:
-        access_token = ''
-    if access_token:
-        has_permission = has_commit_permission(access_token, 'dipy_web')
-    else:
-        has_permission = False
-
-    # if user does not have edit permission:
-    if not has_permission:
-        raise PermissionDenied
-
-    # if user has edit permission:
     try:
         carousel_image = CarouselImage.objects.get(
             id=carousel_image_id)
@@ -98,21 +61,8 @@ def edit_carousel_image(request, carousel_image_id):
 
 
 @login_required
+@github_permission_required
 def delete_carousel_image(request, carousel_image_id):
-    # check if user has edit permissions
-    try:
-        social = request.user.social_auth.get(provider='github')
-        access_token = social.extra_data['access_token']
-    except:
-        access_token = ''
-    if access_token:
-        has_permission = has_commit_permission(access_token, 'dipy_web')
-    else:
-        has_permission = False
-
-    # if user does not have edit permission:
-    if not has_permission:
-        raise PermissionDenied
     try:
         n = CarouselImage.objects.get(id=carousel_image_id)
     except:

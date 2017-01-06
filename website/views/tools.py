@@ -4,7 +4,8 @@ import requests
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.utils.html import strip_tags
+from django.core.exceptions import PermissionDenied
+
 from meta.views import Meta
 
 from website.models import *
@@ -86,6 +87,24 @@ def has_commit_permission(access_token, repository_name):
                permissions["pull"]):
                 return True
     return False
+
+
+def github_permission_required(view_function):
+    """
+    Decorator for checking github commit permission of users
+    """
+    def wrapper(request, *args, **kwargs):
+        try:
+            social = request.user.social_auth.get(provider='github')
+            access_token = social.extra_data['access_token']
+        except:
+            access_token = ''
+        has_permission = has_commit_permission(access_token, 'dipy_web')
+        if has_permission:
+            return view_function(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+    return wrapper
 
 
 def get_google_plus_activity(user_id, count):
@@ -199,6 +218,7 @@ def get_twitter_feed(screen_name, count):
         return {}
     response_json = response.json()
     return response_json
+
 
 def get_meta_tags_dict(title=settings.DEFAULT_TITLE,
                        description=settings.DEFAULT_DESCRIPTION,

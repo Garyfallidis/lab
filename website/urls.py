@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse_lazy
 from django.conf.urls import url
 from django.contrib.auth.views import logout
 from . import views
@@ -83,6 +84,6 @@ urlpatterns = [
 
     # logout url
     url(r'^dashboard/logout/$', logout,
-        {'next_page': '/'})
+        {'next_page': reverse_lazy('index')}, name='dashboard_logout')
 
 ]

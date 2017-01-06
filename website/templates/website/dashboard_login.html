@@ -11,7 +11,7 @@
       {% if next %}
       <a href="/login/{{backend}}/?next={{next}}"><div class="login-button {{backend}}" style="background-image: url('{% static "images/social-buttons.png" %}');">{{backend}}</div></a><br>
       {% else %}
-      <a href="/login/{{backend}}/?next=/dashboard/"><div class="login-button {{backend}}" style="background-image: url('{% static "images/social-buttons.png" %}');">{{backend}}</div></a><br>
+      <a href="/login/{{backend}}/?next={% url "dashboard" %}"><div class="login-button {{backend}}" style="background-image: url('{% static "images/social-buttons.png" %}');">{{backend}}</div></a><br>
       {% endif %}
       {% endfor %}
     </div>
