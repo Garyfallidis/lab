@@ -24,6 +24,7 @@
 <!-- Include and call simplemde markdown editor js-->
 <script type="text/javascript" src="{% static "js/simplemde.min.js" %}"></script>
 <script>
-var simplemde = new SimpleMDE({ element: $("#id_body_markdown")[0] });
+var simplemde = new SimpleMDE({ element: $("#id_body_markdown")[0], forceSync:true });
+
 </script>
 {% endblock %}

@@ -25,7 +25,7 @@
         <li><a href="{% url "people" %}">People</a></li>
         <li><a href="{% url "blog" %}">Blog</a></li>
         {% for page in pages_in_nav %}
-        <li><a href="/page/{{page.website_position_id}}">{{page.title}}</a></li>
+        <li><a href="{% url "section_page" position_id=page.website_position_id %}">{{page.title}}</a></li>
         {% endfor %}
         <li><a href="{% url "index" %}">Gallery</a></li>
         <li><a href="{% url "publications" %}">Publications</a></li>
