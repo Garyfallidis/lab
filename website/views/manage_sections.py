@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
@@ -44,7 +45,8 @@ def edit_website_section(request, section_type_requested, position_id):
 
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect('/dashboard/sections/' + section_type_requested)
+            return redirect(reverse('dashboard_sections', kwargs={
+                'section_type_requested': section_type_requested}))
         else:
             context['section'] = section
             context['form'] = submitted_form
@@ -72,7 +74,8 @@ def add_website_page(request):
             page_section = submitted_form.save(commit=False)
             page_section.section_type = "page"
             page_section.save()
-            return redirect('/dashboard/sections/page')
+            return redirect(reverse('dashboard_sections', kwargs={
+                'section_type_requested': 'page'}))
         else:
             context['form'] = submitted_form
             return render(request, 'website/addpagesection.html', context)
@@ -94,4 +97,5 @@ def delete_website_page(request, position_id):
         page_section.delete()
     else:
         raise Http404
-    return redirect('/dashboard/sections/page')
+    return redirect(reverse('dashboard_sections', kwargs={
+        'section_type_requested': 'page'}))
