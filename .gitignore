@@ -1,0 +1,5 @@
+*.pyc
+venv
+*.sqlite3
+garyfallidis_lab/media
+settings.py

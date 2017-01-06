@@ -1,0 +1,37 @@
+{% load staticfiles %}
+
+<nav class="navbar navbar-default navbar-fixed-top" id="websiteNavbar">
+  <div class="container-fluid">
+  	<div class="container">
+    <div class="inner-wrapper">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url "index" %}">
+      	<img id="websiteHeaderLogo" class="img-responsive" src="{% static "images/lab-logo.png" %}"/>
+        <span id="websiteHeaderTitle">Garyfallidis Lab</span>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url "index" %}">Home</a></li>
+        <li><a href="{% url "people" %}">People</a></li>
+        <li><a href="{% url "blog" %}">Blog</a></li>
+        {% for page in pages_in_nav %}
+        <li><a href="/page/{{page.website_position_id}}">{{page.title}}</a></li>
+        {% endfor %}
+        <li><a href="{% url "index" %}">Gallery</a></li>
+        <li><a href="{% url "publications" %}">Publications</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>

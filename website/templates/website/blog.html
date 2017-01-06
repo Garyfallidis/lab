@@ -1,0 +1,36 @@
+{% extends "website/base_template.html" %}
+
+{% block content_body %}
+
+<!-- Content -->
+<div class="container lab_style_container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <h1 class="lab_column_title_big">BLOGS</h1>
+      {% for blog_post in all_blog_posts %}
+      <div class="blog_post_container">
+
+        <a class="blog_title_link" href="{% url "blog_post" identifier=blog_post.identifier %}">
+          <h1 class="blog_post_title">{{ blog_post.title }}</h1>
+        </a>
+
+        <div class="blog_post_time">{{ blog_post.posted }}</div>
+
+        <div class="blog_post_body">{{ blog_post.body_html | truncatechars_html:600 | safe }}</div>
+
+        <div class="blog_post_author">{{ blog_post.author }}</div>
+
+        <a href="{% url "blog_post" identifier=blog_post.identifier %}">
+          <span class="blog_readmore">continue reading..</span>
+        </a>
+
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js_bottom %}
+{% endblock %}
