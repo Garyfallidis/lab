@@ -26,7 +26,7 @@
 <script type="text/javascript" src="{% static "js/jquery.datetimepicker.min.js" %}"></script>
 
 <script>
-var simplemde = new SimpleMDE({ element: $("#id_body_markdown")[0] });
+var simplemde = new SimpleMDE({ element: $("#id_body_markdown")[0], forceSync:true });
 $('#id_post_date').datetimepicker({
 	format:'Y-m-d H:i:s'
 });

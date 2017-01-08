@@ -114,6 +114,7 @@ def news_page(request, news_id):
 
 
 @login_required
+@github_permission_required
 def dashboard(request):
     context = {}
     context['meta'] = get_meta_tags_dict()

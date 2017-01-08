@@ -1,13 +1,12 @@
 from django.conf import settings
 
-from .models import WebsiteSection, DocumentationLink
+from .models import WebsiteSection
 
 
 def nav_pages_processor(request):
     pages = WebsiteSection.objects.filter(section_type="page",
                                           show_in_nav=True)
-    all_doc_displayed = DocumentationLink.objects.filter(displayed=True)
-    return {'pages_in_nav': pages, 'all_doc_displayed': all_doc_displayed}
+    return {'pages_in_nav': pages}
 
 
 def google_analytics_processor(request):

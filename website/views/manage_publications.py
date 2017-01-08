@@ -1,55 +1,32 @@
 import bibtexparser
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.shortcuts import render, redirect
 
-from .tools import has_commit_permission
+from .tools import github_permission_required
 from website.forms import AddEditPublicationForm
 from website.models import Publication
 
 
 @login_required
+@github_permission_required
 def dashboard_publications(request):
-    try:
-        social = request.user.social_auth.get(provider='github')
-        access_token = social.extra_data['access_token']
-    except:
-        access_token = ''
-    has_permission = has_commit_permission(access_token, 'dipy_web')
-    if has_permission:
-        all_publications = Publication.objects.all()
-        context = {'all_publications': all_publications}
-        return render(request, 'website/dashboard_publications.html', context)
-    else:
-        raise PermissionDenied
+    all_publications = Publication.objects.all()
+    context = {'all_publications': all_publications}
+    return render(request, 'website/dashboard_publications.html', context)
 
 
 @login_required
+@github_permission_required
 def add_publication(request, method):
-    # check if user has edit permissions
-    try:
-        social = request.user.social_auth.get(provider='github')
-        access_token = social.extra_data['access_token']
-    except:
-        access_token = ''
-    if access_token:
-        has_permission = has_commit_permission(access_token, 'dipy_web')
-    else:
-        has_permission = False
-
-    # if user does not have edit permission:
-    if not has_permission:
-        raise PermissionDenied
-
-    # if user has edit permission:
     if(method == "manual"):
         context = {}
         if request.method == 'POST':
             submitted_form = AddEditPublicationForm(request.POST)
             if submitted_form.is_valid():
                 submitted_form.save()
-                return redirect('/dashboard/publications/')
+                return redirect(reverse('dashboard_publications'))
             else:
                 context['form'] = submitted_form
                 return render(request, 'website/addeditpublication.html',
@@ -106,7 +83,7 @@ def add_publication(request, method):
                         publicationObj.month_of_publication = bibInfo['month']
                     publicationObj.bibtex = bibtex_entered
                     publicationObj.save()
-                    return redirect('/dashboard/publications/')
+                    return redirect(reverse('dashboard_publications'))
 
                 else:
                     return render(request,
@@ -121,23 +98,8 @@ def add_publication(request, method):
 
 
 @login_required
+@github_permission_required
 def edit_publication(request, publication_id):
-    # check if user has edit permissions
-    try:
-        social = request.user.social_auth.get(provider='github')
-        access_token = social.extra_data['access_token']
-    except:
-        access_token = ''
-    if access_token:
-        has_permission = has_commit_permission(access_token, 'dipy_web')
-    else:
-        has_permission = False
-
-    # if user does not have edit permission:
-    if not has_permission:
-        raise PermissionDenied
-
-    # if user has edit permission:
     try:
         publication = Publication.objects.get(
             id=publication_id)
@@ -150,7 +112,7 @@ def edit_publication(request, publication_id):
                                                 instance=publication)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect('/dashboard/publications/')
+            return redirect(reverse('dashboard_publications'))
         else:
             context['form'] = submitted_form
             return render(request, 'website/addeditpublication.html', context)
@@ -161,59 +123,32 @@ def edit_publication(request, publication_id):
 
 
 @login_required
+@github_permission_required
 def delete_publication(request, publication_id):
-    # check if user has edit permissions
-    try:
-        social = request.user.social_auth.get(provider='github')
-        access_token = social.extra_data['access_token']
-    except:
-        access_token = ''
-    if access_token:
-        has_permission = has_commit_permission(access_token, 'dipy_web')
-    else:
-        has_permission = False
-
-    # if user does not have edit permission:
-    if not has_permission:
-        raise PermissionDenied
     try:
         p = Publication.objects.get(id=publication_id)
     except:
         raise Http404("Publication does not exist")
     p.delete()
-    return redirect('/dashboard/publications/')
+    return redirect(reverse('dashboard_publications'))
 
 
 @login_required
+@github_permission_required
 def highlight_publications(request):
-    # check if user has edit permissions
-    try:
-        social = request.user.social_auth.get(provider='github')
-        access_token = social.extra_data['access_token']
-    except:
-        access_token = ''
-    if access_token:
-        has_permission = has_commit_permission(access_token, 'dipy_web')
-    else:
-        has_permission = False
+    if request.method == 'POST':
+        highlighted_publications = request.POST.getlist('highlights[]')
+        all_publications = Publication.objects.all()
 
-    # if user does not have edit permission:
-    if not has_permission:
-        raise PermissionDenied
+        for p in all_publications:
+            if str(p.id) in highlighted_publications:
+                p.is_highlighted = True
+            else:
+                p.is_highlighted = False
+            p.save()
+        return redirect(reverse('dashboard_publications'))
     else:
-        if request.method == 'POST':
-            highlighted_publications = request.POST.getlist('highlights[]')
-            all_publications = Publication.objects.all()
-
-            for p in all_publications:
-                if str(p.id) in highlighted_publications:
-                    p.is_highlighted = True
-                else:
-                    p.is_highlighted = False
-                p.save()
-            return redirect('/dashboard/publications/')
-        else:
-            all_publications = Publication.objects.all()
-            context = {'all_publications': all_publications}
-            return render(request, 'website/highlightpublications.html',
-                          context)
+        all_publications = Publication.objects.all()
+        context = {'all_publications': all_publications}
+        return render(request, 'website/highlightpublications.html',
+                      context)
