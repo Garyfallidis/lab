@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
@@ -23,7 +24,7 @@ def add_carousel_image(request):
         submitted_form = AddEditCarouselImageForm(request.POST)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect('/dashboard/carousel/')
+            return redirect(reverse('dashboard_carousel'))
         else:
             context['form'] = submitted_form
             return render(request, 'website/addeditcarousel.html', context)
@@ -48,7 +49,7 @@ def edit_carousel_image(request, carousel_image_id):
                                                   instance=carousel_image)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect('/dashboard/carousel/')
+            return redirect(reverse('dashboard_carousel'))
         else:
             context['form'] = submitted_form
             return render(request, 'website/addeditcarousel.html', context)
@@ -66,4 +67,4 @@ def delete_carousel_image(request, carousel_image_id):
     except:
         raise Http404("Carousel Image does not exist")
     n.delete()
-    return redirect('/dashboard/carousel/')
+    return redirect(reverse('dashboard_carousel'))

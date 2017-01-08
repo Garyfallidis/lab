@@ -1,4 +1,5 @@
 import bibtexparser
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
@@ -25,7 +26,7 @@ def add_publication(request, method):
             submitted_form = AddEditPublicationForm(request.POST)
             if submitted_form.is_valid():
                 submitted_form.save()
-                return redirect('/dashboard/publications/')
+                return redirect(reverse('dashboard_publications'))
             else:
                 context['form'] = submitted_form
                 return render(request, 'website/addeditpublication.html',
@@ -82,7 +83,7 @@ def add_publication(request, method):
                         publicationObj.month_of_publication = bibInfo['month']
                     publicationObj.bibtex = bibtex_entered
                     publicationObj.save()
-                    return redirect('/dashboard/publications/')
+                    return redirect(reverse('dashboard_publications'))
 
                 else:
                     return render(request,
@@ -111,7 +112,7 @@ def edit_publication(request, publication_id):
                                                 instance=publication)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect('/dashboard/publications/')
+            return redirect(reverse('dashboard_publications'))
         else:
             context['form'] = submitted_form
             return render(request, 'website/addeditpublication.html', context)
@@ -129,7 +130,7 @@ def delete_publication(request, publication_id):
     except:
         raise Http404("Publication does not exist")
     p.delete()
-    return redirect('/dashboard/publications/')
+    return redirect(reverse('dashboard_publications'))
 
 
 @login_required
@@ -145,7 +146,7 @@ def highlight_publications(request):
             else:
                 p.is_highlighted = False
             p.save()
-        return redirect('/dashboard/publications/')
+        return redirect(reverse('dashboard_publications'))
     else:
         all_publications = Publication.objects.all()
         context = {'all_publications': all_publications}

@@ -82,6 +82,10 @@ urlpatterns = [
     url(r'^dashboard/carousel/delete/(?P<carousel_image_id>.*?)/$',
         views.delete_carousel_image, name='delete_carousel_image'),
 
+    # Profile Management
+    url(r'^dashboard/profile/$', views.edit_profile,
+        name='edit_profile'),
+
     # logout url
     url(r'^dashboard/logout/$', logout,
         {'next_page': reverse_lazy('index')}, name='dashboard_logout')

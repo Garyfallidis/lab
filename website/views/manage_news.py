@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
@@ -23,7 +24,7 @@ def add_news_post(request):
         submitted_form = AddEditNewsPostForm(request.POST)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect('/dashboard/news/')
+            return redirect(reverse('dashboard_news'))
         else:
             context['form'] = submitted_form
             return render(request, 'website/addeditnews.html', context)
@@ -48,7 +49,7 @@ def edit_news_post(request, news_id):
                                              instance=news_post)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect('/dashboard/news/')
+            return redirect(reverse('dashboard_news'))
         else:
             context['form'] = submitted_form
             return render(request, 'website/addeditnews.html', context)
@@ -66,4 +67,4 @@ def delete_news_post(request, news_id):
     except:
         raise Http404("Publication does not exist")
     n.delete()
-    return redirect('/dashboard/news/')
+    return redirect(reverse('dashboard_news'))
