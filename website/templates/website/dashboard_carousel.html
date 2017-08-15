@@ -5,13 +5,13 @@
 
 <h3>Add / Edit Carousel</h3>
 
-<div><a href="{% url "add_carousel_image" %}">Add New Image</a></div>
+<div><a href="{% url 'add_carousel_image' %}">Add New Image</a></div>
 <hr>
 
 {% for image in all_carousel_images %}
 <p>{{ image.image_caption }}</p>
 <img src="{{ image.image_url }}">
-<a href="{% url "edit_carousel_image" carousel_image_id=image.id %}">Edit</a> | <a class="carouselImageDeleteLink" href="{% url "delete_carousel_image" carousel_image_id=image.id %}">Delete</a>
+<a href="{% url 'edit_carousel_image' carousel_image_id=image.id %}">Edit</a> | <a class="carouselImageDeleteLink" href="{% url 'delete_carousel_image' carousel_image_id=image.id %}">Delete</a>
 <hr>
 {% endfor %}
 

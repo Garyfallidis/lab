@@ -10,7 +10,7 @@
 		<!-- Carousel indicators -->
 		<ol class="carousel-indicators">
 			{% for image in all_carousel %}
-			<li data-target="#homeCarousel" data-slide-to="{{forloop.counter|add:"-1"}}" class="{% if forloop.first %}active{% endif %}"></li>
+			<li data-target="#homeCarousel" data-slide-to="{{forloop.counter|add:'-1'}}" class="{% if forloop.first %}active{% endif %}"></li>
 			{% endfor %}
 		</ol>
 		<!-- Carousel items -->
@@ -90,11 +90,11 @@
 			<div class="lab-col-inner">
 				{% for blog_post in latest_blog_posts %}
 				<div class="blog_post_item">
-				<a class="blog_title_link" href="{% url "blog_post" identifier=blog_post.identifier %}">
+				<a class="blog_title_link" href="{% url 'blog_post' identifier=blog_post.identifier %}">
 					<h1>{{ blog_post.title }}</h1>
 				</a>
 				<div>{{ blog_post.body_html | truncatechars_html:400 | safe }}</div>
-				<a href="{% url "blog_post" identifier=blog_post.identifier %}">
+				<a href="{% url 'blog_post' identifier=blog_post.identifier %}">
 					<span class="blog_readmore">continue reading..</span>
 				</a>
 				</div>
@@ -106,7 +106,7 @@
 {% endblock %}
 
 {% block extra_js_bottom %}
-<script src="{% static "js/jquery.matchHeight-min.js" %}" type="text/javascript"></script>
+<script src="{% static 'js/jquery.matchHeight-min.js' %}" type="text/javascript"></script>
 <script type="text/javascript">
 	$(function() {
 		// match column heights

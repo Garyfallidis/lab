@@ -14,10 +14,10 @@ def dashboard_sections(request, section_type_requested):
     if not (section_type_requested == "page" or
             section_type_requested == "fixed"):
         raise Http404("Page Not Found")
-    website_sections = WebsiteSection.objects.filter(
-        section_type=section_type_requested)
-    context = {'sections': website_sections}
-    context["type"] = section_type_requested
+    website_sections = WebsiteSection.objects.filter(section_type=section_type_requested)
+    context = {'sections': website_sections,
+               "type": section_type_requested,
+               }
     return render(request, 'website/dashboard_sections.html', context)
 
 
@@ -29,15 +29,15 @@ def edit_website_section(request, section_type_requested, position_id):
             website_position_id=position_id)
     except:
         raise Http404("Section does not exist")
-    if(section.section_type != section_type_requested):
+    if section.section_type != section_type_requested:
         raise Http404("Section does not exist")
 
     context = {}
     if request.method == 'POST':
-        if(section_type_requested == "page"):
+        if section_type_requested == "page":
             submitted_form = AddEditPageSectionForm(request.POST,
                                                     instance=section)
-        elif(section_type_requested == "fixed"):
+        elif section_type_requested == "fixed":
             submitted_form = EditFixedSectionForm(request.POST,
                                                   instance=section)
         else:
@@ -52,9 +52,9 @@ def edit_website_section(request, section_type_requested, position_id):
             context['form'] = submitted_form
             return render(request, 'website/editsection.html', context)
 
-    if(section_type_requested == "page"):
+    if section_type_requested == "page":
         form = AddEditPageSectionForm(instance=section)
-    elif(section_type_requested == "fixed"):
+    elif section_type_requested == "fixed":
         form = EditFixedSectionForm(instance=section)
     else:
         raise Http404("Section does not exist")
@@ -93,7 +93,7 @@ def delete_website_page(request, position_id):
             website_position_id=position_id)
     except:
         raise Http404("Page does not exist")
-    if(page_section.section_type == 'page'):
+    if page_section.section_type == 'page':
         page_section.delete()
     else:
         raise Http404
