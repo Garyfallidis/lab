@@ -20,7 +20,7 @@ def dashboard_publications(request):
 @login_required
 @github_permission_required
 def add_publication(request, method):
-    if(method == "manual"):
+    if method == "manual":
         context = {}
         if request.method == 'POST':
             submitted_form = AddEditPublicationForm(request.POST)
@@ -35,54 +35,52 @@ def add_publication(request, method):
         form = AddEditPublicationForm()
         context['form'] = form
         return render(request, 'website/addeditpublication.html', context)
-    elif(method == "bibtex"):
+    elif method == "bibtex":
         if request.method == 'POST':
             bibtex_entered = request.POST.get('bibtex')
             try:
                 bib_parsed = bibtexparser.loads(bibtex_entered)
-                bibInfo = bib_parsed.entries[0]
+                bib_info = bib_parsed.entries[0]
 
-                if 'title' in bibInfo:
-                    title = bibInfo['title']
+                if 'title' in bib_info:
+                    title = bib_info['title']
                 else:
                     title = None
 
-                if 'author' in bibInfo:
-                    authors = bibInfo['author']
-                elif 'authors' in bibInfo:
-                    authors = bibInfo['aithors']
+                if 'author' in bib_info:
+                    authors = bib_info['author']
+                elif 'authors' in bib_info:
+                    authors = bib_info['aithors']
                 else:
                     authors = None
 
-                if 'url' in bibInfo:
-                    url = bibInfo['url']
-                elif 'link' in bibInfo:
-                    url = bibInfo['link']
-                elif 'doi' in bibInfo:
-                    url = "http://dx.doi.org/" + bibInfo['doi']
+                if 'url' in bib_info:
+                    url = bib_info['url']
+                elif 'link' in bib_info:
+                    url = bib_info['link']
+                elif 'doi' in bib_info:
+                    url = "http://dx.doi.org/" + bib_info['doi']
                 else:
                     url = None
 
-                if(title and authors and url):
-                    publicationObj = Publication(title=title,
-                                                 author=authors,
-                                                 url=url)
-                    if 'ENTRYTYPE' in bibInfo:
-                        publicationObj.entry_type = bibInfo['ENTRYTYPE']
-                    if 'doi' in bibInfo:
-                        publicationObj.doi = bibInfo['doi']
-                    if 'journal' in bibInfo:
-                        publicationObj.published_in = bibInfo['journal']
-                    if 'booktitle' in bibInfo:
-                        publicationObj.published_in = bibInfo['booktitle']
-                    if 'publisher' in bibInfo:
-                        publicationObj.publisher = bibInfo['publisher']
-                    if 'year' in bibInfo:
-                        publicationObj.year_of_publication = bibInfo['year']
-                    if 'month' in bibInfo:
-                        publicationObj.month_of_publication = bibInfo['month']
-                    publicationObj.bibtex = bibtex_entered
-                    publicationObj.save()
+                if title and authors and url:
+                    publication_obj = Publication(title=title, author=authors, url=url)
+                    if 'ENTRYTYPE' in bib_info:
+                        publication_obj.entry_type = bib_info['ENTRYTYPE']
+                    if 'doi' in bib_info:
+                        publication_obj.doi = bib_info['doi']
+                    if 'journal' in bib_info:
+                        publication_obj.published_in = bib_info['journal']
+                    if 'booktitle' in bib_info:
+                        publication_obj.published_in = bib_info['booktitle']
+                    if 'publisher' in bib_info:
+                        publication_obj.publisher = bib_info['publisher']
+                    if 'year' in bib_info:
+                        publication_obj.year_of_publication = bib_info['year']
+                    if 'month' in bib_info:
+                        publication_obj.month_of_publication = bib_info['month']
+                        publication_obj.bibtex = bibtex_entered
+                        publication_obj.save()
                     return redirect(reverse('dashboard_publications'))
 
                 else:

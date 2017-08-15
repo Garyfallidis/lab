@@ -19,9 +19,9 @@ def get_website_section(requested_website_position_id):
 
     Parameters
     ----------
-    website_position_id : string
+    requested_website_position_id : string
 
-    Output
+    Returns
     ------
     returns WebsiteSection object or None if not found
     """
@@ -39,9 +39,9 @@ def get_latest_news_posts(limit):
 
     Parameters
     ----------
-    limit : string
+    limit : int
 
-    Output
+    Returns
     ------
     returns a list of NewsPost objects
     """
@@ -54,9 +54,9 @@ def get_latest_blog_posts(limit):
 
     Parameters
     ----------
-    limit : string
+    limit : int
 
-    Output
+    Returns
     ------
     returns a list of BlogPost objects
     """
@@ -80,7 +80,7 @@ def has_commit_permission(access_token, repository_name):
                             params={'access_token': access_token})
     response_json = response.json()
     for repo in response_json:
-        if(repo["name"] == repository_name):
+        if repo["name"] == repository_name:
             permissions = repo["permissions"]
             if(permissions["admin"] and
                permissions["push"] and
@@ -120,7 +120,9 @@ def get_google_plus_activity(user_id, count):
         Maximum number of activities to fetch.
     """
     api_key = settings.GOOGLE_API_KEY
-    url = "https://www.googleapis.com/plus/v1/people/" + user_id + "/activities/public?maxResults=" + str(count) + "&fields=etag%2Cid%2Citems%2Ckind%2CnextLink%2CnextPageToken%2CselfLink%2Ctitle%2Cupdated&key=" + api_key
+    url = "https://www.googleapis.com/plus/v1/people/" + user_id +\
+          "/activities/public?maxResults=" + str(count) +\
+          "&fields=etag%2Cid%2Citems%2Ckind%2CnextLink%2CnextPageToken%2CselfLink%2Ctitle%2Cupdated&key=" + api_key
     try:
         r = requests.get(url)
     except requests.exceptions.ConnectionError:
@@ -210,7 +212,7 @@ def get_twitter_feed(screen_name, count):
     except KeyError:
         token = get_twitter_bearer_token()
     parms = (screen_name, str(count))
-    url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=%s&count=%s" % (parms)
+    url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=%s&count=%s" % parms
     headers = {'Authorization': 'Bearer %s' % (token,)}
     try:
         response = requests.get(url, headers=headers)
@@ -270,7 +272,7 @@ def get_youtube_videos(channel_id, count):
     """
 
     parms = (channel_id, settings.GOOGLE_API_KEY)
-    url = "https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=%s&maxResults=25&key=%s" % (parms)
+    url = "https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=%s&maxResults=25&key=%s" % parms
     try:
         response = requests.get(url)
     except requests.exceptions.ConnectionError:

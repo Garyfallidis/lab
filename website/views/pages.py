@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render
-from django.views.decorators.cache import cache_page
 
 from .tools import *
 from website.models import *
@@ -37,105 +36,94 @@ def page(request, position_id):
 
 
 def blog(request):
-    context = {}
-
-    context['all_blog_posts'] = BlogPost.objects.all()
-    context['meta'] = get_meta_tags_dict()
+    context = {'all_blog_posts': BlogPost.objects.all(),
+               'meta': get_meta_tags_dict(),
+               }
     return render(request, 'website/blog.html', context)
 
 
 def blog_post(request, identifier):
-    context = {}
-
-    context['blog_post'] = BlogPost.objects.get(identifier=identifier)
-    context['meta'] = get_meta_tags_dict()
+    context = {'blog_post': BlogPost.objects.get(identifier=identifier),
+               'meta': get_meta_tags_dict(),
+               }
     return render(request, 'website/blog_post.html', context)
 
 
 def publications(request):
-    context = {}
-    all_publications = Publication.objects.all()
-    context['all_publications'] = all_publications
-    context['meta'] = get_meta_tags_dict(title="DIPY - Publications")
+    context = {'all_publications': Publication.objects.all(),
+               'meta': get_meta_tags_dict(title="DIPY - Publications"),
+               }
     return render(request, 'website/publications.html', context)
 
 
 def people(request):
-    context = {}
-
-    context['all_profile'] = Profile.objects.all()
-    context['meta'] = get_meta_tags_dict()
+    context = {'all_profile': Profile.objects.all(),
+               'meta': get_meta_tags_dict(),
+               }
     return render(request, 'website/people.html', context)
 
 
 def people_profile(request, username):
-    context = {}
-
     user = User.objects.get(username=username)
-    context['profile'] = Profile.objects.get(user=user)
-    context['meta'] = get_meta_tags_dict()
+    context = {'profile': Profile.objects.get(user=user),
+               'meta': get_meta_tags_dict(),
+               }
     return render(request, 'website/people_profile.html', context)
 
 
 def honeycomb(request):
-    context = {}
-    context['all_youtube_videos'] = get_youtube_videos(
-        'UCHnEuCRDGFOR5cfEo0nD3pw', 100)
-    context['all_documentation_examples'] = get_doc_examples_images()
-
-    context['meta'] = get_meta_tags_dict(title="DIPY - Gallery")
+    context = {'all_youtube_videos': get_youtube_videos('UCHnEuCRDGFOR5cfEo0nD3pw', 100),
+               'meta': get_meta_tags_dict(title="DIPY - Gallery"),
+               }
     return render(request, 'website/honeycomb.html', context)
 
 
 def follow_us(request):
-    context = {}
-    context['latest_news'] = get_latest_news_posts(5)
-    context['gplus_feed'] = get_google_plus_activity("107763702707848478173",
-                                                     4)
-    context['fb_posts'] = get_facebook_page_feed("diffusionimaginginpython", 5)
-    context['tweets'] = get_twitter_feed('dipymri', 5)
-
-    context['meta'] = get_meta_tags_dict(title="DIPY - Follow Us")
+    context = {'latest_news': get_latest_news_posts(5),
+               'gplus_feed': get_google_plus_activity("107763702707848478173", 4),
+               'fb_posts': get_facebook_page_feed("diffusionimaginginpython", 5),
+               'tweets': get_twitter_feed('dipymri', 5),
+               'meta': get_meta_tags_dict(title="DIPY - Follow Us"),
+               }
     return render(request, 'website/follow_us.html', context)
 
 
 def news_page(request, news_id):
-    context = {}
     try:
         news_post = NewsPost.objects.get(id=news_id)
     except ObjectDoesNotExist:
         raise Http404("News Post does not exist")
-    context['news_post'] = news_post
-    news_title = news_post.title
-    meta_title = "DIPY - %s" % (news_title, )
-    context['meta'] = get_meta_tags_dict(title=meta_title,
-                                         description=news_post.description)
+    meta_title = "DIPY - %s" % (news_post.title,)
+    context = {'news_post': news_post,
+               'meta': get_meta_tags_dict(title=meta_title,
+                                          description=news_post.description),
+               }
     return render(request, 'website/news.html', context)
 
 
 @login_required
 @github_permission_required
 def dashboard(request):
-    context = {}
-    context['meta'] = get_meta_tags_dict()
+    context = {'meta': get_meta_tags_dict(),
+               }
     return render(request, 'website/dashboard.html', context)
 
 
 def dashboard_login(request):
-    context = {}
     next_url = request.GET.get('next')
-    context['next'] = next_url
-    context['meta'] = get_meta_tags_dict()
+    context = {'next': next_url,
+               'meta': get_meta_tags_dict(),
+               }
     return render(request, 'website/dashboard_login.html', context)
 
 
 def custom404(request):
-    context = {}
-    context['meta'] = get_meta_tags_dict(title="DIPY - 404 Page Not Found")
+    context = {'meta': get_meta_tags_dict(title="DIPY - 404 Page Not Found"),
+               }
     return render(request, 'website/error_pages/404.html', context, status=400)
 
 
 def custom500(request):
-    context = {}
-    context['meta'] = get_meta_tags_dict(title="DIPY - 500 Error Occured")
+    context = {'meta': get_meta_tags_dict(title="DIPY - 500 Error Occured"),
+               }
     return render(request, 'website/error_pages/404.html', context, status=400)
