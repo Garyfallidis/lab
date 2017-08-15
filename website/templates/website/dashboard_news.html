@@ -9,13 +9,13 @@
 
 			<h3>Add / Edit News</h3>
 
-			<a href="{% url "add_news_post" %}"><div class="btn btn-success">Add News</div></a>
+			<a href="{% url 'add_news_post' %}"><div class="btn btn-success">Add News</div></a>
 			<hr>
 
 			{% for post in all_news_posts %}
 			{{post}}<br>
 			{{post.body_html|safe}}
-			<a href="{% url "edit_news_post" news_id=post.id %}"><span class="btn btn-primary">Edit</span></a> | <a class="newsDeleteLink btn btn-primary" href="{% url "delete_news_post" news_id=post.id %}"><span>Delete</span></a>
+			<a href="{% url 'edit_news_post' news_id=post.id %}"><span class="btn btn-primary">Edit</span></a> | <a class="newsDeleteLink btn btn-primary" href="{% url 'delete_news_post' news_id=post.id %}"><span>Delete</span></a>
 			<hr class="post-separator">
 			{% endfor %}
 

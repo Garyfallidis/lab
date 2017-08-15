@@ -11,7 +11,7 @@
       {% if next %}
       <a href="{% url 'social:begin' backend %}?next={{next}}"><div class="login-button {{backend}}">{{backend}}</div></a><br>
       {% else %}
-      <a href="{% url 'social:begin' backend %}?next={% url "dashboard" %}"><div class="login-button {{backend}}">{{backend}}</div></a><br>
+      <a href="{% url 'social:begin' backend %}?next={% url 'dashboard' %}"><div class="login-button {{backend}}">{{backend}}</div></a><br>
       {% endif %}
       {% endfor %}
     </div>
