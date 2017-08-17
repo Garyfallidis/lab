@@ -1,0 +1,29 @@
+{% load staticfiles %}
+
+<nav class="mobile off-canvas-list" role="navigation" aria-label="Mobile navigation" itemscope="itemscope"
+     itemtype="http://schema.org/SiteNavigationElement">
+    <ul>
+        <li class="has-children">
+            <a href="#" itemprop="url"><span itemprop="name">Research</span></a>
+            <ul class="children">
+                <li><a href="#" itemprop="url"><span itemprop="name">Intelligent NeuroImaging</span></a></li>
+                <li><a href="#" itemprop="url"><span itemprop="name">Medical Analytics</span></a></li>
+                <li><a href="#" itemprop="url"><span itemprop="name">Scientific Visualization</span></a></li>
+                <li><a href="#" itemprop="url"><span itemprop="name">Machine Learning</span></a></li>
+            </ul>
+        </li>
+        <li class="has-children">
+            <a href="#" itemprop="url"><span itemprop="name">Teaching</span></a>
+            <ul class="children">
+                <li><a href="#" itemprop="url"><span itemprop="name">IP for Medical Imaging</span></a></li>
+                <li><a href="#" itemprop="url"><span itemprop="name">E221</span></a></li>
+                <li><a href="#" itemprop="url"><span itemprop="name">E699</span></a></li>
+            </ul>
+        </li>
+        <li><a href="" itemprop="url"><span itemprop="name">Software</span></a></li>
+        <li><a href="" itemprop="url"><span itemprop="name">Projects</span></a></li>
+        <li><a href="{% url 'publications' %}" itemprop="url"><span itemprop="name">Publications</span></a></li>
+        <li><a href="{% url 'people' %}" itemprop="url"><span itemprop="name">Team</span></a></li>
+        <li><a href="" itemprop="url"><span itemprop="name">News &amp; Events</span></a></li>
+    </ul>
+</nav>

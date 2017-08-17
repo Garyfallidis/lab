@@ -5,13 +5,20 @@
 	{% include "website/header.html" %}
 {% endblock %}
 
+{% block nav %}
+	{% include "website/navigation.html" %}
+{% endblock %}
 
 {% block content %}
-<div class="container-fluid" id="superContentContainer">
+<section id="content" class="section">
     {% block content_body %}{% endblock %}
-</div>
+</section>
 {% endblock %}
 
 {% block footer %}
 	{% include "website/footer.html" %}
+{% endblock %}
+
+{% block mobile %}
+	{% include "website/mobile.html" %}
 {% endblock %}

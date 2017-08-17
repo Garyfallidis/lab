@@ -1,39 +1,76 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- DJANGO META TEMPLATE TAGS START -->
 	{% include "meta.html" %}
 	<!-- DJANGO META TEMPLATE TAGS END -->
 
-	<!-- favicon -->
-	<link rel="icon" type="image/png" href="{% static 'images/lab-logo.png' %}">
-
 	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/syntax.css' %}">
+
 	{% block extra_css %}{% endblock %}
-	<!-- IU Main Design -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/iu_site.css' %}">
+
+	<!-- IU CSS Design-->
+	<link href="https://fonts.iu.edu/style.css?family=BentonSans:regular,bold%7CBentonSansCond:regular%7CGeorgiaPro:regular" rel="stylesheet">
+	<link href="https://assets.iu.edu/web/fonts/icon-font.css" rel="stylesheet">
+	<link href="https://assets.iu.edu/web/3.x/css/iu-framework.min.css" rel="stylesheet" type="text/css">
+	<link href="https://assets.iu.edu/brand/3.x/brand.css" rel="stylesheet" type="text/css">
+	<link href="https://assets.iu.edu/search/3.x/search.css" rel="stylesheet" type="text/css">
+
 	<!-- Custom Main Design -->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-	
-	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 
-	<!-- IU animation script -->
-	<script type="text/javascript" src="{% static 'js/iu_site.js' %}"></script>
-	<!-- Navbar shrink script -->
-	<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+	<!-- IU Global script + Custom Modernizr -->
+	<script src="http://assets.iu.edu/web/1.5/libs/modernizr.min.js"></script>
 	{% block extra_js_top %}{% endblock %}
 
 </head>
-<body>
-{% block header %}{% endblock %}
-{% block nav %}{% endblock %}
-{% block content %}{% endblock %}
-{% block footer %}{% endblock %}
+<body class="">
+	<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
+		{% block header %}
+        	<!-- skip nav -->
+        	<!-- global branding bar -->
+        	<!-- global search and toggles -->
+		{% endblock %}
+		<div class="inner-wrap">
+			{% block nav %}
+            	<!-- site-name -->
+            	<!-- main navigation -->
+            	<!-- optional: secondary navigation -->
+            	<!-- banner -->
+			{% endblock %}
+            <main class="">
+				<!-- section/sidebar navigation -->
+                <!-- breadcrumbs -->
+                <!-- optional: page-title -->
+				{% block content %}{% endblock %}
+				<!-- optional: footer-call-to-action -->
+                <!-- optional: belt -->
+                <!-- optional: skirt -->
+            </main>
+			{% block footer %}{% endblock %}
+		</div><!-- /.inner-wrap -->
+	</div><!-- /.off-canvas-wrapper -->
+	<div id="offCanvas" class="off-canvas position-right" data-off-canvas="" data-position="right">
+		<!-- offcanvas: includes menu for mobile -->
+		{% block mobile %}{% endblock %}
+	</div>
+
+
+
+	<!-- Include Javascript -->
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+
+	<!-- IU Global js -->
+	<script src="https://assets.iu.edu/web/3.x/js/iu-framework.min.js"></script>
+	<script src="https://assets.iu.edu/search/3.x/search.js"></script>
+
+	<!-- Navbar shrink script -->
+	<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+	{% block extra_js_bottom %}{% endblock %}
+	{{ google_analytics|safe }}
 </body>
-{% block extra_js_bottom %}{% endblock %}
-{{ google_analytics|safe }}
 </html>
