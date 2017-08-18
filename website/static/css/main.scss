@@ -3,7 +3,7 @@
 			transition: all 0.5s;
 	}
 
-	p {
+	p#iu-campus{
 		transition: all 0.5s;
 	}
 
@@ -12,9 +12,80 @@
 			transform: scale(0.7) translate(0, -1em);
 		}
 
-		p {
+		p#iu-campus {
 			// background: #990000;
 			transform: scale(1.1);
 		}
 	}
+	#login-block {
+		float: right;
+	}
+
+	#login-dp {
+
+		p{
+			margin: 0px;
+			font-size: medium;
+
+		}
+
+		.layout {
+			position: inherit;
+			width: auto;
+		}
+
+		.panel{
+			margin: 0px;
+			padding-top: 9px;
+		}
+
+		label{
+			font-size: smaller;
+		}
+	}
+}
+
+
+/*.social{
+	text-align:center;
+	font-size:12px;
+
+	p{
+		margin:15px 0;
+	}
+	ul{
+		margin:0;
+		padding:0;
+		list-style-type:none;
+	}
+
+}
+.social ul li{
+	width:33%;
+	float:left;
+    clear:fix;
+}*/
+
+
+.social ul li a{
+	text-align: center;
+	font-size:13px;
+	color:#fff;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	text-decoration:none;
+	//padding:10px 0;
+	display:block;
+}
+.social ul li:nth-child(1) a{
+	background:#3b5998;
+}
+.social ul li:nth-child(2) a{
+	background:#e74c3d;
+}
+.social ul li:nth-child(3) a{
+	background:#3698d9;
+}
+.social ul li:nth-child(4) a{
+	background:#3b5998;
 }
