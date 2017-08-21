@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 <nav role="navigation" aria-label="Main navigation" id="nav-main" itemscope="itemscope"
-     itemtype="http://schema.org/SiteNavigationElement" class="main show-for-large">
+     itemtype="http://schema.org/SiteNavigationElement" class="main show-for-large dropdown">
     <ul class="row pad">
         <li class="show-on-sticky home"><a href="{% url 'index' %}">Home</a></li>
         <li class="first"><a href="{% url 'people' %}" itemprop="url"><span itemprop="name">Team</span></a></li>
@@ -10,8 +10,16 @@
         <li><a href="{% url 'publications' %}" itemprop="name"><span itemprop="name">Publications</span></a></li>
         <li><a href="#" itemprop="url"><span itemprop="name">Projects</span></a></li>
         <li><a href="#" itemprop="url"><span itemprop="name">Software</span></a></li>
-        <li class="last"><a href="#" itemprop="url"><span itemprop="name">News &amp; Events</span></a></li>
+        <li><a href="#" itemprop="url"><span itemprop="name">News &amp; Events</span></a></li>
+        <li class="last has-children"><a href="#" itemprop="url" class="current"><span itemprop="name">Login</span></a>
+            <ul class="children">
+                <li><a href="" itemprop="url"><span itemprop="name"> Github</span></a></li>
+                <li><a href="" itemprop="url"><span itemprop="name"><i class="icon-googleplus"></i>Google+</span></a></li>
+                <li><a href="" itemprop="url"><span itemprop="name"> Twitter</span></a></li>
+                <li><a href="" itemprop="url"><span itemprop="name"> Facebook</span></a></li>
+            </ul>
+        </li>
+        <li><a href="#" itemprop="url"><i class="icon-googleplus"></i></a></li>
         <li class="show-on-sticky search"><a class="search-toggle" href="/search">Search</a></li>
     </ul>
 </nav>
-

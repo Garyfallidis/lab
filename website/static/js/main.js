@@ -31,7 +31,9 @@
 
         /* Delete modules if necessary (prevents them from auto-initializing) */
         // delete IU.uiModules['accordion'];
-
+        console.log("hey")
+        var $modal = new Foundation.Reveal($('#myModal'));
+        //$modal.open();
         /*
          * Initialize global IU & its modules
          * Custom settings can be passsed here
