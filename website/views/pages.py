@@ -49,6 +49,13 @@ def blog_post(request, identifier):
     return render(request, 'website/blog_post.html', context)
 
 
+def research(request):
+    context = {
+               'meta': get_meta_tags_dict(title="DIPY - Research"),
+               }
+    return render(request, 'website/research.html', context)
+
+
 def publications(request):
     context = {'all_publications': Publication.objects.all(),
                'meta': get_meta_tags_dict(title="DIPY - Publications"),

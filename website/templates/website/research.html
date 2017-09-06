@@ -1,0 +1,203 @@
+{% extends "website/base_template.html" %}
+{% load staticfiles %}
+
+{% block banner %}
+
+<!--<section id="banner" class="section bg-image text-overlay">
+  <div class="bg-image-cover" style="background: url('{% static "images/teaching-982162_1920.jpg" %}');"></div>
+  <div class="row pad">
+      <div class=" two-thirds">
+          <h2>Teaching</h2>
+      </div>
+  </div>
+
+</section> -->
+
+<div class="section banner bg-video loaded video-loaded" id="banner" style="background-image: none;">
+    <div class="bg-image-cover" style="background-image: url('../images/banners/research-1216.jpg');"></div>
+    <div class="bg-video-viewport loaded" data-height="600" data-mp4="{% static 'videos/visual_description_of_the_QuickBundles_algorithm.mp4' %}"
+         data-webm="../videos/webm/research-1216.webm" data-width="1800">
+        <video autoplay="autoplay" loop="loop" preload="preload" width="1800" height="600">
+            <source type="video/webm" src="../videos/webm/research-1216.webm">
+            <source type="video/mp4" src="{% static 'videos/visual_description_of_the_QuickBundles_algorithm.mp4' %}">
+        </video>
+    </div>
+    <div class="play-controls via-js">
+        <div class="row pad"><a class="icon-pause" href="#">Pause Video 1</a></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content_body %}
+
+<aside class="section-nav show-for-large" id="section-nav">
+    <div class="row">
+        <nav itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" data-parent-url="/research/index">
+            <ul>
+                <li class=""><a href="{% url 'research' %}#neuroimaging" itemprop="url" class=""><span
+                        itemprop="name">Intelligent Neuroimaging</span></a></li>
+                <li class=""><a href="{% url 'research' %}#visualization" itemprop="url" class=""><span
+                        itemprop="name">Scientific Visualization</span></a></li>
+                <li class=""><a href="{% url 'research' %}#machine_learning" itemprop="url" class=""><span
+                        itemprop="name">Machine Learning</span></a></li>
+                <li class=""><a href="{% url 'research' %}#medical_analytic" itemprop="url" class=""><span
+                        itemprop="name">Medical Analytic</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+<div class="section breadcrumbs">
+    <div class="row">
+        <div class="layout">
+            <ul itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem"><a
+                        href="../index.html" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta content="1" itemprop="position">
+                </li>
+                <li class="current" itemprop="itemListElement" itemscope="itemscope"
+                    itemtype="http://schema.org/ListItem"><span itemprop="item name">Research</span>
+                    <meta content="2" itemprop="position">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="bg-none section" id="content">
+    <div class="row">
+        <div class="layout">
+            <div class="float-left">
+                <div class="text">
+                    <h2>Research</h2>
+                    <p>Our research topics are: medical imaging, machine learning, signal processing, scientific visualization and software engineering.
+                    More specifically, we focus on the development of new methods from these topics applied to diffusion MRI analysis for generic applications e.g., understanding the structural connectivity of the brain and specific applications e.g., Alzheimer’s disease, obsessive compulsive disorder or brain tumors.
+                    </p>
+                    <h2>Improving human health with translational outcomes</h2>
+                    <p> Until today, I worked with my collaborators in examining traumatic brain injury,
+                    trichotillomania and autism using dMRI (see publications in my CV). However,
+                    during the last year of my Postdoctoral fellowship I collaborated on an exciting aging study
+                    with Prof. Stephen Cunnane [10] testing the hypothesis that a ketone enriched diet can reduce
+                    the effects of Alzheimer’s disease. This project is possibly leading to an important new approach
+                    for characterising the neuroanatomical features of the progression with a biomarker based on
+                    identifying microstructural changes in specific bundles. I believe, similar hypotheses can be tested
+                    for many other diseases. I am looking forward for ideas and collaborations from the different experts,
+                    who have accumulated decades of expertise looking into how the brain functions, so that we can clearly
+                    extend the clinical usage of dMRI from mainly used as a method for examining stroke,
+                    into creating new generations of advanced biomarkers which can evaluate therapies.
+                    I believe this is a realistic expectation and we should be able to show this in the coming years.
+                    </p>
+                </div>
+            </div>
+        </div><!-- /.layout --></div>
+</div>
+<div class="breakout bg-none bg-image parallax bg-dark section" id="neuroimaging" style="height: 419px;">
+    <div class="bg-image-cover"
+         style="background-image: url({% static 'images/three_brains_golden_new.png' %}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
+    <div class="row">
+        <div class="layout">
+            <div class=" two-thirds">
+                <h2>Intelligent Neuroimaging</h2>
+            </div>
+
+        </div><!-- /.layout --></div>
+</div>
+<div class="collapsed bg-gray section">
+    <div class="row">
+        <div class="layout">
+            <h3 class="section-title">Title </h3>
+            <div class="text">
+                <p>I have contributed new methods for nearly every level of diffusion MRI analysis: voxel reconstruction,
+                    fiber tracking, tractography segmentation, and registration of bundles and images.
+                    Recently I have been looking into the problem of statistical analysis of bundles. However,
+                    the areas for which I believe I have contributed the most are those of (a) tractography segmentation
+                    with the invention of QuickBundles [2] and (b) registration of fascicles with the invention of
+                    Streamline-based Linear Registration (SLR) [3]. Finally, I have contributed to making available
+                    cutting-edge methods to the scientific community by creating, developing and managing
+                    the Diffusion Imaging in Python (DIPY) [1] project which has an enthusiastic and
+                    active team of 34+ contributors from different labs around the world.
+                </p>
+                <p>These days I am working on improving the analysis methods of diffusion MRI.
+                    More specifically, working on analyzing the output of fiber tracking algorithms.
+                    Currently, there are some important open problems with fiber tracking:
+                    a) it is difficult to assess the quality of fiber tracking,
+                    b) it is very time consuming for neuroscientists to interact with the output fiber tracks and extract bundles of interest,
+                    c) the analysis procedures for group comparisons are underdeveloped compared to the richness of information available in modern diffusion datasets.
+                    I am confident that these problems can be solved or improved considerably by creating methods that
+                    can automatically or semi-automatically discover bundles and do statistical analysis directly
+                    on these bundles rather than on the entire brain as is mostly used today.
+                    I separate my methodology into two sections; bundle recognition and bundle analytics.
+                </p>
+            </div>
+        </div><!-- /.layout -->
+    </div>
+</div>
+<div class="breakout bg-none bg-image parallax bg-dark section" id="visualization" style="height: 419px;">
+    <div class="bg-image-cover"
+         style="background-image: url({% static 'images/jet_odfs.png' %}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
+    <div class="row">
+        <div class="layout">
+            <div class=" two-thirds">
+                <h2>Scientific Visualization</h2>
+            </div>
+
+        </div><!-- /.layout --></div>
+</div>
+<div class="collapsed bg-gray section">
+    <div class="row">
+        <div class="layout">
+            <h3 class="section-title">One picture is worth than thousand words </h3>
+            <div class="text">
+                <p>We really believe of this citation. It is for this reason we focus on the improvements of
+                    data visualization for researchers, neurologists, doctors and patients.
+                </p>
+            </div>
+        </div><!-- /.layout -->
+    </div>
+</div>
+<div class="breakout bg-none bg-image parallax bg-dark section" id="machine_learning" style="height: 419px;">
+    <div class="bg-image-cover"
+         style="background-image: url({% static 'images/machine-learning.jpeg' %}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
+    <div class="row">
+        <div class="layout">
+            <div class=" two-thirds">
+                <h2>Machine Learning</h2>
+            </div>
+
+        </div><!-- /.layout --></div>
+</div>
+<div class="collapsed bg-gray section">
+    <div class="row">
+        <div class="layout">
+            <h3 class="section-title">Title </h3>
+            <div class="text">
+                <p>We really believe of this citation. It is for this reason we focus on the improvements of
+                    data visualization for researchers, neurologists, doctors and patients.
+                </p>
+            </div>
+        </div><!-- /.layout -->
+    </div>
+</div>
+<div class="breakout bg-none bg-image parallax bg-dark section" id="medical_analytic" style="height: 419px;">
+    <div class="bg-image-cover"
+         style="background-image: url({% static 'images/medical_analytic.jpg' %}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
+    <div class="row">
+        <div class="layout">
+            <div class=" two-thirds">
+                <h2 style="color: #990000;">Medical Analytic</h2>
+            </div>
+
+        </div><!-- /.layout --></div>
+</div>
+<div class="collapsed bg-gray section">
+    <div class="row">
+        <div class="layout">
+            <h3 class="section-title">Title </h3>
+            <div class="text">
+                <p>We really believe of this citation. It is for this reason we focus on the improvements of
+                    data visualization for researchers, neurologists, doctors and patients.
+                </p>
+            </div>
+        </div><!-- /.layout -->
+    </div>
+</div>
+{% endblock %}

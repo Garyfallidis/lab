@@ -23,7 +23,10 @@ urlpatterns = [
     url(r'^people/(?P<username>.*?)/$', views.people_profile,
         name='people_profile'),
 
-    # Cite Page for publications
+    # Cite Page for research
+    url(r'^research/$', views.research, name='research'),
+
+    # Cite Page for teaching
     url(r'^teaching/$', views.teaching, name='teaching'),
 
     # Cite Page for publications
