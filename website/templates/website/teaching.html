@@ -1,0 +1,52 @@
+{% extends "website/base_template.html" %}
+{% load staticfiles %}
+
+
+{% block banner %}
+
+<section id="banner" class="section bg-image text-overlay">
+  <div class="bg-image-cover" style="background: url('{% static "images/teaching-982162_1920.jpg" %}');"></div>
+  <div class="row pad">
+      <div class=" two-thirds">
+          <h2>Teaching</h2>
+      </div>
+  </div>
+
+</section>
+
+{% endblock %}
+
+{% block content_body %}
+
+<div class="extra-space bg-none section" id="content">
+    <div class="row">
+        <div class="grid halves">
+            {% for course in all_courses %}
+
+            <div class="grid-item">
+                <div class="panel">
+                    <h2 class="title">{{course.title}}</h2>
+                    <p>{{course.acronym}}</p>
+                    <div class="text">
+                        <p><strong>Level : </strong> {{course.level}} </p>
+                        <p><strong>Prerequisite(s) : </strong>{{course.prerequisite}}</p>
+                        <p class="lead">Course Description : </p>
+                        <p>{{course.description}}</p>
+                    </div>
+                    {% if course.syllabus %}
+                        <a href="{{course.syllabus}}" class="show-hide left-separator"><span itemprop="name">Download syllabus</span></a>
+                    {% else %}
+                        <a href="" class="show-hide left-separator"><span itemprop="name">Download syllabus</span></a>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+{% endblock %}

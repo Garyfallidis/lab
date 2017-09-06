@@ -1,0 +1,922 @@
+[
+  {
+    "model": "website.publication",
+    "pk": 0,
+    "fields": {
+      "title": "Dipy, a library for the analysis of diffusion MRI data",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3931231/",
+      "author": "Eleftherios Garyfallidis and Matthew Brett and Bagrat Amirbekian and Ariel Rokem and Stefan Van Der Walt and Maxime Descoteaux and Ian Nimmo-Smith and Dipy Contributors",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Frontiers Media SA",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Diffusion Imaging in Python (Dipy) is a free and open source software project for the analysis of data from diffusion magnetic resonance imaging (dMRI) experiments. dMRI is an application of MRI that can be used to measure structural features of brain white matter. Many methods have been developed to use dMRI data to model the local configuration of white matter nerve fiber bundles and infer the trajectory of bundles connecting different parts of the brain. Dipy gathers implementations of many different methods in dMRI, including:  ...",
+      "created": "2017-09-04T16:53:29.752361+00:00",
+      "modified": "2017-09-04T16:53:29.752386+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 1,
+    "fields": {
+      "title": "Tractometer: towards validation of tractography pipelines",
+      "url": "http://www.sciencedirect.com/science/article/pii/S1361841513000479",
+      "author": "Marc-Alexandre C\u00f4t\u00e9 and Gabriel Girard and Arnaud Bor\u00e9 and Eleftherios Garyfallidis and Jean-Christophe Houde and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Elsevier",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "We have developed the Tractometer: an online evaluation and validation system for tractography processing pipelines. One can now evaluate the results of more than 57,000 fiber tracking outputs using different acquisition settings (b-value, averaging), different local estimation techniques (tensor, q-ball, spherical deconvolution) and different tracking parameters (masking, seeding, maximum curvature, step size). At this stage, the system is solely based on a revised FiberCup analysis, but we hope that the community will get  ...",
+      "created": "2017-09-04T16:53:39.273938+00:00",
+      "modified": "2017-09-04T16:53:39.273959+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 2,
+    "fields": {
+      "title": "Quickbundles, a method for tractography simplification",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3518823/",
+      "author": "Eleftherios Garyfallidis and Matthew Brett and Marta Morgado Correia and Guy B Williams and Ian Nimmo-Smith",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Frontiers Media SA",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Diffusion MR data sets produce large numbers of streamlines which are hard to visualize, interact with, and interpret in a clinically acceptable time scale, despite numerous proposed approaches. As a solution we present a simple, compact, tailor-made clustering algorithm, QuickBundles (QB), that overcomes the complexity of these large data sets and provides informative clusters in seconds. Each QB cluster can be represented by a single centroid streamline; collectively these centroid streamlines can be taken as an effective  ...",
+      "created": "2017-09-04T16:53:49.105490+00:00",
+      "modified": "2017-09-04T16:53:49.105509+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 3,
+    "fields": {
+      "title": "Quantitative comparison of reconstruction methods for intra-voxel fiber recovery from diffusion MRI",
+      "url": "http://ieeexplore.ieee.org/abstract/document/6630106/",
+      "author": "Alessandro Daducci and Erick Jorge Canales-Rodr\u0131 and Maxime Descoteaux and Eleftherios Garyfallidis and Yaniv Gur and Ying-Chia Lin and Merry Mani and Sylvain Merlet and Michael Paquette and Alonso Ramirez-Manzanares and Marco Reisert and Paulo Reis Rodrigues and Farshid Sepehrband and Emmanuel Caruyer and Jeiran Choupan and Rachid Deriche and Mathews Jacob and Gloria Menegaz and Vesna Pr\u010dkovska and Mariano Rivera and Yves Wiaux and Jean-Philippe Thiran",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "IEEE",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Validation is arguably the bottleneck in the diffusion magnetic resonance imaging (MRI) community. This paper evaluates and compares 20 algorithms for recovering the local intra-voxel fiber structure from diffusion MRI data and is based on the results of the \u201cHARDI reconstruction challenge\u201d organized in the context of the \u201cISBI 2012\u201d conference. Evaluated methods encompass a mixture of classical techniques well known in the literature such as diffusion tensor, Q-Ball and diffusion spectrum imaging, algorithms inspired by the recent  ...",
+      "created": "2017-09-04T16:53:55.256384+00:00",
+      "modified": "2017-09-04T16:53:55.256404+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 4,
+    "fields": {
+      "title": "Extracting biomarkers of autism from MEG resting-state functional connectivity networks",
+      "url": "http://www.sciencedirect.com/science/article/pii/S0010482511000758",
+      "author": "Vassilis Tsiaras and Panagiotis G Simos and Roozbeh Rezaie and Bhavin R Sheth and Eleftherios Garyfallidis and Eduardo M Castillo and Andrew C Papanicolaou",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Pergamon",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "The present study is a preliminary attempt to use graph theory for deriving distinct features of resting-state functional networks in young adults with autism spectrum disorder (ASD). Networks modeled neuromagnetic signal interactions between sensors using three alternative interdependence measures:(a) a non-linear measure of generalized synchronization (robust interdependence measure [RIM]),(b) mutual information (MI), and (c) partial directed coherence (PDC). To summarize the information contained in each  ...",
+      "created": "2017-09-04T16:54:02.330923+00:00",
+      "modified": "2017-09-04T16:54:02.330943+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 5,
+    "fields": {
+      "title": "Reduced brain white matter integrity in trichotillomania: a diffusion tensor imaging study",
+      "url": "http://jamanetwork.com/journals/jamapsychiatry/fullarticle/210879",
+      "author": "Samuel R Chamberlain and Adam Hampshire and Lara A Menzies and Eleftherios Garyfallidis and Jon E Grant and Brian L Odlaug and Kevin Craig and Naomi Fineberg and Barbara J Sahakian",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "American Medical Association",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Main Outcome Measures Fractional anisotropy (measured using diffusion tensor imaging), trichotillomania disease severity (Massachusetts General Hospital Hairpulling Scale score), and dysphoria (Montgomery-Asberg Depression Rating Scale score). Results Subjects with trichotillomania exhibited significantly reduced fractional anisotropy in anterior cingulate, presupplementary motor area, and temporal cortices. Fractional anisotropy did not correlate significantly with trichotillomania disease severity or depressive mood scores.  ...",
+      "created": "2017-09-04T16:54:07.939818+00:00",
+      "modified": "2017-09-04T16:54:07.939839+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 6,
+    "fields": {
+      "title": "Towards an accurate brain tractography",
+      "url": "http://ethos.bl.uk/OrderDetails.do?uin=uk.bl.ethos.607682",
+      "author": "Eleftherios Garyfallidis",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "",
+      "created": "2017-09-04T16:54:13.493331+00:00",
+      "modified": "2017-09-04T16:54:13.493348+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 7,
+    "fields": {
+      "title": "Dipy\u2013a novel software library for diffusion MR and tractography",
+      "url": "https://www.researchgate.net/profile/Eleftherios_Garyfallidis/publication/216827037_Dipy_-_a_novel_software_library_for_diffusion_MR_and_tractography/links/0fcfd50d5baf95cfad000000.pdf",
+      "author": "Eleftherios Garyfallidis and Matthew Brett and Bagrat Amirbekian and Christopher Nguyen and Fang-Cheng Yeh and Y Halchenko and I Nimmo-Smith",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Dipy [1] stands for diffusion imaging in python and it is a free, open source, python toolbox, which is growing, with an already extensive core. It provides a library or API of methods to give a full pathway from raw diffusion MR data to tractographies, with several novel algorithms for analysing and displaying tractographies.",
+      "created": "2017-09-04T16:54:20.601229+00:00",
+      "modified": "2017-09-04T16:54:20.601247+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 8,
+    "fields": {
+      "title": "Robust and efficient linear registration of white-matter fascicles in the space of streamlines",
+      "url": "http://www.sciencedirect.com/science/article/pii/S1053811915003961",
+      "author": "Eleftherios Garyfallidis and Omar Ocegueda and Demian Wassermann and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Academic Press",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "The neuroscientific community today is very much interested in analyzing specific white matter bundles like the arcuate fasciculus, the corticospinal tract, or the recently discovered Aslant tract to study sex differences, lateralization and many other connectivity applications. For this reason, experts spend time manually segmenting these fascicles and bundles using streamlines obtained from diffusion MRI tractography. However, to date, there are very few computational tools available to register these fascicles directly so that they  ...",
+      "created": "2017-09-04T16:54:27.402241+00:00",
+      "modified": "2017-09-04T16:54:27.402265+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 9,
+    "fields": {
+      "title": "Dynamic changes in white matter abnormalities correlate with late improvement and deterioration following TBI: a diffusion tensor imaging study",
+      "url": "http://journals.sagepub.com/doi/abs/10.1177/1545968315584004",
+      "author": "Virginia FJ Newcombe and Marta M Correia and Christian Ledig and Maria G Abate and Joanne G Outtrim and Doris Chatfield and Thomas Geeraerts and Anne E Manktelow and Eleftherios Garyfallidis and John D Pickard and Barbara J Sahakian and Peter JA Hutchinson and Daniel Rueckert and Jonathan P Coles and Guy B Williams and David K Menon",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "SAGE Publications",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Objective. Traumatic brain injury (TBI) is not a single insult with monophasic resolution, but a chronic disease, with dynamic processes that remain active for years. We aimed to assess patient trajectories over the entire disease narrative, from ictus to late outcome. Methods. Twelve patients with moderate-to-severe TBI underwent magnetic resonance imaging in the acute phase (within 1 week of injury) and twice in the chronic phase of injury (median 7 and 21 months), with some undergoing imaging at up to 2 additional time points. Longitudinal  ...",
+      "created": "2017-09-04T16:54:36.570030+00:00",
+      "modified": "2017-09-04T16:54:36.570050+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 10,
+    "fields": {
+      "title": "The approximation of the dissimilarity projection",
+      "url": "http://ieeexplore.ieee.org/abstract/document/6295934/",
+      "author": "Emanuele Olivetti and Thien Bao Nguyen and Eleftherios Garyfallidis",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "IEEE",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Diffusion magnetic resonance imaging (dMRI) data allow to reconstruct the 3D pathways of axons within the white matter of the brain as a tractography. The analysis of tractographies has drawn attention from the machine learning and pattern recognition communities providing novel challenges such as finding an appropriate representation space for the data. Many of the current learning algorithms require the input to be from a vectorial space. This requirement contrasts with the intrinsic nature of the tractography  ...",
+      "created": "2017-09-04T16:54:45.794527+00:00",
+      "modified": "2017-09-04T16:54:45.794548+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 11,
+    "fields": {
+      "title": "Fast clustering for interactive tractography segmentation",
+      "url": "http://ieeexplore.ieee.org/abstract/document/6603552/",
+      "author": "Emanuele Olivetti and Thien Bao Nguyen and Eleftherios Garyfallidis and Nivedita Agarwal and Paolo Avesani",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "IEEE",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "We developed a novel interactive system for human brain tractography segmentation to assist neuroanatomists in identifying white matter anatomical structures of interest from diffusion magnetic resonance imaging (dMRI) data. The difficulty in segmenting and navigating tractographies lies in the very large number of reconstructed neuronal pathways, ie the streamlines, which are in the order of hundreds of thousands with modern dMRI techniques. The novelty of our system resides in presenting the user a clustered  ...",
+      "created": "2017-09-04T16:54:53.896889+00:00",
+      "modified": "2017-09-04T16:54:53.896909+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 12,
+    "fields": {
+      "title": "Cleaning up the mess: tractography outlier removal using hierarchical QuickBundles clustering",
+      "url": "http://scil.dinf.usherbrooke.ca/wp-content/papers/cote-etal-ismrm15.pdf",
+      "author": "Marc-Alexandre C\u00f4t\u00e9 and Eleftherios Garyfallidis and Hugo Larochelle and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Method Detecting outliers is performed by finding small clusters produced by a clustering algorithm. Most algorithms require that the user knows the true number of clusters beforehand (eg K-Means) because otherwise the computational complexity is too high to be applied on millions of streamlines (eg hierarchical clustering). QuickBundles performs tractography simplification in O (nm)(n:# streamlines, m:# clusters found) and does not require knowing the number of clusters a priori. Instead, a threshold parameter t  ...",
+      "created": "2017-09-04T16:54:59.522696+00:00",
+      "modified": "2017-09-04T16:54:59.522714+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 13,
+    "fields": {
+      "title": "Fast dimensionality reduction for brain tractography clustering",
+      "url": "https://www.researchgate.net/profile/Ian_Nimmo-Smith2/publication/216826876_Fast_Dimensionality_Reduction_for_Brain_Tractography_Clustering/links/0deec51b73554d5421000000.pdf",
+      "author": "Eleftherios Garyfallidis and Matthew Brett and Ian Nimmo-Smith",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Algorithms for clustering and classifying diffusion imaging white matter tractographies are typically quite slow often needing days or weeks of processing on a single CPU core. Much of the computational burden of clustering techniques arises from the need for detailed geometric comparisons between pairs of tracks in large datasets often containing hundreds of thousands of tracks. We have developed an approach that leaves this more detailed comparison to a later stage after an initial first pass through the dataset to create prototype  ...",
+      "created": "2017-09-04T16:55:07.132072+00:00",
+      "modified": "2017-09-04T16:55:07.132089+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 14,
+    "fields": {
+      "title": "Tractography-based connectomes are dominated by false-positive connections. bioRxiv",
+      "url": "http://scholar.google.com/scholar?cluster=3092050287548561251&hl=en&oi=scholarr",
+      "author": "Klaus Maier-Hein and Peter Neher and Jean-Christophe Houde and Marc-Alexandre Cote and Eleftherios Garyfallidis and Jidan Zhong and Maxime Chamberland and Fang-Cheng Yeh and Ying Chia Lin and Qing Ji",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "November",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "",
+      "created": "2017-09-04T16:55:12.953880+00:00",
+      "modified": "2017-09-04T16:55:12.953907+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 15,
+    "fields": {
+      "title": "Tractography-based connectomes are dominated by false-positive connections",
+      "url": "http://biorxiv.org/content/early/2016/11/07/084137.abstract",
+      "author": "Klaus Maier-Hein and Peter Neher and Jean-Christophe Houde and Marc-Alexandre Cote and Eleftherios Garyfallidis and Jidan Zhong and Maxime Chamberland and Fang-Cheng Yeh and Ying Chia Lin and Qing Ji and Wilburn E Reddick and John O Glass and David Qixiang Chen and Yuanjing Feng and Chengfeng Gao and Ye Wu and Jieyan Ma and He Renjie and Qiang Li and Carl-Fredrik Westin and Samuel Deslauriers-Gauthier and J Omar Ocegueda Gonzalez and Michael Paquette and Samuel St-Jean and Gabriel Girard and Francois Rheault and Jasmeen Sidhu and Chantal MW Tax and Fenghua Guo and Hamed Y Mesri and Szabolcs David and Martijn Froeling and Anneriet M Heemskerk and Alexander Leemans and Arnaud Bore and Basile Pinsard and Christophe Bedetti and Matthieu Desrosiers and Simona Brambati and Julien Doyon and Alessia Sarica and Roberta Vasta and Antonio Cerasa and Aldo Quattrone and Jason Yeatman and Ali R Khan and Wesley Hodges and Simon Alexander and Darcvi Romascano and Muhamed Barakovic and Anna Auria and Oscar Esteban and Alia Lemkaddem and Jean-Philippe Thiran and H Ertan Cetingul and Benjamin L Odry and Boris Mailhe and Mariappan Nadar and Fabrizio Pizzagalli and Gautam Prasad and Julio Villalon-Reina and Justin Galvis and Paul Thompson and Francisco Requejo and Pedro Laguna and Luis Lacerda and Rachel Barrett and Flavio Dell'Acqua and Marco Catani and Laurent Petit and Emmanuel Caruyer and Alessandro Daducci and Tim Dyrby and Tim Holland-Letz and Claus Hilgetag and Bram Stieltjes and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Cold Spring Harbor Labs Journals",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Fiber tractography based on non-invasive diffusion imaging is at the heart of connectivity studies of the human brain. To date, the approach has not been systematically validated in ground truth studies. Based on a simulated human brain dataset with ground truth white matter tracts, we organized an open international tractography challenge, which resulted in 96 distinct submissions from 20 research groups. While most state-of-the-art algorithms reconstructed 90% of ground truth bundles to at least some extent, on average they  ...",
+      "created": "2017-09-04T16:55:21.613139+00:00",
+      "modified": "2017-09-04T16:55:21.613162+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 16,
+    "fields": {
+      "title": "Tract-profiling and bundle statistics: a test-retest validation study",
+      "url": "http://submissions.mirasmart.com/Verify/ISMRM2016/Submission/3436.html",
+      "author": "Martin Cousineau and Eleftherios Garyfallidis and Marc-Alexandre C\u00f4t\u00e9 and Pierre-Marc Jodoin and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Synopsis Tractometry is a hot topic in population analysis that combines diffusion MRI metrics along white matter bundles. Using a dataset of 11 healthy subjects with 3 different acquisitions collected within the same week, and a state of the art processing pipeline that removes outliers and splits bundles in separate parts by computing their centroid, we perform a test-retest study which validates that tractometry results are reproducible in terms of shape, volume, average metric value, and tract profiles.",
+      "created": "2017-09-04T16:55:29.564964+00:00",
+      "modified": "2017-09-04T16:55:29.564987+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 17,
+    "fields": {
+      "title": "Tractome: a visual data mining tool for brain connectivity analysis",
+      "url": "http://link.springer.com/article/10.1007/s10618-015-0408-z",
+      "author": "Diana Porro-Mu\u00f1oz and Emanuele Olivetti and Nusrat Sharmin and Thien Bao Nguyen and Eleftherios Garyfallidis and Paolo Avesani",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Springer US",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Diffusion magnetic resonance imaging data allows reconstructing the neural pathways of the white matter of the brain as a set of 3D polylines. This kind of data sets provides a means of study of the anatomical structures within the white matter, in order to detect neurologic diseases and understand the anatomical connectivity of the brain. To the best of our knowledge, there is still not an effective or satisfactory method for automatic processing of these data. Therefore, a manually guided visual exploration of experts is  ...",
+      "created": "2017-09-04T16:55:37.980924+00:00",
+      "modified": "2017-09-04T16:55:37.980944+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 18,
+    "fields": {
+      "title": "Comparison between discrete and continuous propagator indices from cartesian q-space dsi sampling",
+      "url": "http://scil.dinf.usherbrooke.ca/wp-content/papers/zuchelli_etal_ismrm14.pdf",
+      "author": "Mauro Zucchelli and Eleftherios Garyfallidis and Michael Paquette and Sylvain Merlet and Gloria Menegaz and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "PURPOSE\u2013DSI1 is often considered the state-of-the-art technique to analyze q-space measurements sampled from a Cartesian grid. The 3D fast Fourier transform is used to directly obtain a discrete version of the EAP (Ensemble Average Propagator). DSI was one of the first techniques used to infer complex fiber configurations as it allows resolving crossings. In principle, DSI also captures some radial information which, in theory, can be used to extract diffusion features of the EAP. However, a discrete propagator  ...",
+      "created": "2017-09-04T16:55:46.059735+00:00",
+      "modified": "2017-09-04T16:55:46.059755+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 19,
+    "fields": {
+      "title": "Semi-Automatic Segmentation of Optic Radiations and LGN, and Their Relationship to EEG Alpha Waves",
+      "url": "http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0156436",
+      "author": "Emmanuelle Renauld and Maxime Descoteaux and Micha\u00ebl Bernier and Eleftherios Garyfallidis and Kevin Whittingstall",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Public Library of Science",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "At rest, healthy human brain activity is characterized by large electroencephalography (EEG) fluctuations in the 8-13 Hz range, commonly referred to as the alpha band. Although it is well known that EEG alpha activity varies across individuals, few studies have investigated how this may be related to underlying morphological variations in brain structure. Specifically, it is generally believed that the lateral geniculate nucleus (LGN) and its efferent fibres (optic radiation, OR) play a key role in alpha activity,  ...",
+      "created": "2017-09-04T16:55:52.315365+00:00",
+      "modified": "2017-09-04T16:55:52.315386+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 20,
+    "fields": {
+      "title": "A hybrid approach for optimal automatic segmentation of white matter tracts in hardi",
+      "url": "http://ieeexplore.ieee.org/abstract/document/7047481/",
+      "author": "Amira Chekir and Maxime Descoteaux and Eleftherios Garyfallidis and Marc-Alexandre C\u00f4t\u00e9 and Fatima Oulebsir Boumghar",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "IEEE",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Whole brain tractography generates a very huge dataset composed by various tracts of different shapes, lengths, positions. Then clustering them into anatomically meaningful bundles is a challenge. Until now, several clustering methods have been proposed such as methods based on similarity measures or methods based on anatomical information, but no optimal clustering criteria were found yet. All methods have deficiencies. The combination of appropriate and distinguishable aspects of both methods is  ...",
+      "created": "2017-09-04T16:55:58.296220+00:00",
+      "modified": "2017-09-04T16:55:58.296247+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 21,
+    "fields": {
+      "title": "QuickBundlesX: sequential clustering of millions of streamlines in multiple levels of detail at record execution time",
+      "url": "http://scil.dinf.usherbrooke.ca/wp-content/papers/garyfallidis-etal-ismrm16.pdf",
+      "author": "Eleftherios Garyfallidis and Marc-Alexandre C\u00f4t\u00e9 and Fran\u00e7ois Rheault and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Synopsis QuickBundlesX shows a remarkable 20+ X speedup over it's predecessor who was until today the fastest clustering algorithm for streamlines. In addition, it returns a useful tree of clusters at different resolutions which allows to query streamlines and easily process millions of streamlines by comparing only with their neighbours.",
+      "created": "2017-09-04T16:56:07.914691+00:00",
+      "modified": "2017-09-04T16:56:07.914709+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 22,
+    "fields": {
+      "title": "Localizing and characterizing single fiber populations throughout the brain",
+      "url": "http://scil.dinf.usherbrooke.ca/wp-content/papers/tax-etal-ismrm15a.pdf",
+      "author": "Chantal MW Tax and Dmitry S Novikov and Eleftherios Garyfallidis and Max A Viergever and Maxime Descoteaux and Alexander Leemans",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Purpose Diffusion MRI can measure the diffusion process of water particles to infer information on tissue microstructure and architecture. While a lot of attention has been given to the so called \u201ccrossing fibers problem\u201d in the brain, many fundamental questions on the microstructure in \u201csingle fiber population (SFP) configurations\u201d remain still unanswered. Studying SFPs can infer information on its organization into distinct fiber compartments1, 2, on our ability to measure microstructural parameters like axon diameter3 and amount of  ...",
+      "created": "2017-09-04T16:56:14.979780+00:00",
+      "modified": "2017-09-04T16:56:14.979800+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 23,
+    "fields": {
+      "title": "Direct native-space fiber bundle alignment for group comparisons",
+      "url": "https://hal.archives-ouvertes.fr/hal-00991740/",
+      "author": "Eleftherios Garyfallidis and Demian Wassermann and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Let's suppose that we want to study specific fiber bundles in different subjects. The common approach would be to use a voxel-wise analysis like TBSS or VBM which will warp scalar volumes in a common space, eg MNI space, and show how every subject differentiates from an average template. However, we know that with averaging and warping much of the specific information about the individual subjects' differences is lost. In this work, we provide a solution to this problem by using local streamline registration of specific bundles from  ...",
+      "created": "2017-09-04T16:56:23.141798+00:00",
+      "modified": "2017-09-04T16:56:23.141816+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 24,
+    "fields": {
+      "title": "Constrained spherical deconvolution on signal and ODF values",
+      "url": "https://hal.archives-ouvertes.fr/hal-00829328/",
+      "author": "Eleftherios Garyfallidis and Samuel St-Jean and Michael Paquette and Pierrick Coup\u00e9 and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "For the purpose of the ISBI HARDI reconstruction challenge 2013 and for the categories DTI and HARDI acquisitions, we reconstructed the diffusion datasets using two well established methods: a) Spherical Deconvolution Transform (SDT) and b) Constrained Spherical Deconvolution (CSD).",
+      "created": "2017-09-04T16:56:29.984959+00:00",
+      "modified": "2017-09-04T16:56:29.984979+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 25,
+    "fields": {
+      "title": "Identification of corresponding tracks in diffusion MRI tractographies",
+      "url": "https://www.researchgate.net/profile/Eleftherios_Garyfallidis/publication/216827122_Identification_of_corresponding_tracks_in_diffusion_MRI_tractographies/links/0912f50d5c3cbc3c0d000000.pdf",
+      "author": "Eleftherios Garyfallidis and Matthew Brett and Vassilis Tsiaras and George Vogiatzis and Ian Nimmo-Smith",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Identifying manually corresponding tracks in different brain tractogaphies is a very complicated task, typically requiring lots of expertise, and lots of time. Moreover different local diffusion models and different tractography algorithms generate tractographies with wide differences in numbers of tracks and in shape characteristics. We address these problems by introducing an automatic method for detecting corresponding tracks in different dMRI (diffusion weighted MRI) datasets. Methods For two MNI registered brains, we  ...",
+      "created": "2017-09-04T16:56:39.905421+00:00",
+      "modified": "2017-09-04T16:56:39.905440+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 26,
+    "fields": {
+      "title": "On the computation of integrals over fixed-size rectangles of arbitrary dimension",
+      "url": "http://www.sciencedirect.com/science/article/pii/S0167865516300861",
+      "author": "Omar Ocegueda and Oscar Dalmau and Eleftherios Garyfallidis and Maxime Descoteaux and Mariano Rivera",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "North-Holland",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "We present a formula for computing integrals over rectangles of arbitrary dimension in the special case that the size of the rectangles of interest is constant. Compared to the popular method of integral images, our approach reduces the amount of auxiliary memory and alleviates the effect of precision loss when computing large integral images. As an application of this technique we present a fast implementation of the Normalized Cross Correlation (NCC) metric for deformable image registration and test it with the popular  ...",
+      "created": "2017-09-04T16:56:47.520010+00:00",
+      "modified": "2017-09-04T16:56:47.520052+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 27,
+    "fields": {
+      "title": "False positive bundles in tractography",
+      "url": "http://indexsmart.mirasmart.com/ISMRM2016/PDFfiles/0790.html",
+      "author": "Maxime Descoteaux and Jasmeen Sidhu and Eleftherios Garyfallidis and Jean-Christophe Houde and Peter Neher and Bram Stieltjes and Klaus H Maier-Hein",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "ISMRM",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Synopsis This work provides novel insights in false positive bundles produced by tractography using a highly realistic diffusion MRI phantom with known underlying white matter ground truth anatomy. This MRI phantom was used in the ISMRM 2015 Tractography Challenge. We show that regardless of the tractography pipeline used, many invalid bundles with dense and meaningful structures are found in the tractograms.",
+      "created": "2017-09-04T16:56:56.024469+00:00",
+      "modified": "2017-09-04T16:56:56.024492+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 28,
+    "fields": {
+      "title": "Deconvolution enhanced Generalized Q-Sampling 2 and DSI deconvolution",
+      "url": "https://hal.archives-ouvertes.fr/hal-00829320/",
+      "author": "Eleftherios Garyfallidis and Michael Paquette and Samuel St-Jean and Pierrick Coup\u00e9 and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "For the purpose of the ISBI HARDI reconstruction challenge 2013 and for the heavyweight category, we reconstructed the diffusion datasets using two methods: a) Generalized Q-sampling Imaging 2 with spherical deconvolution (GQID), and b) Diffusion Spectrum Imaging with Deconvolution (DSID).",
+      "created": "2017-09-04T16:57:02.765679+00:00",
+      "modified": "2017-09-04T16:57:02.765700+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 29,
+    "fields": {
+      "title": "Recognition of white matter bundles using local and global streamline-based registration and clustering",
+      "url": "http://www.sciencedirect.com/science/article/pii/S1053811917305839",
+      "author": "Eleftherios Garyfallidis and Marc-Alexandre C\u00f4t\u00e9 and Francois Rheault and Jasmeen Sidhu and Janice Hau and Laurent Petit and David Fortin and Stephen Cunanne and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Academic Press",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Virtual dissection of diffusion MRI tractograms is cumbersome and needs extensive knowledge of white matter anatomy. This virtual dissection often requires several inclusion and exclusion regions-of-interest that make it a process that is very hard to reproduce across experts. Having automated tools that can extract white matter bundles for tract-based studies of large numbers of people is of great interest for neuroscience and neurosurgical planning. The purpose of our proposed method, named RecoBundles, is to segment white matter  ...",
+      "created": "2017-09-04T16:57:09.604080+00:00",
+      "modified": "2017-09-04T16:57:09.604101+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 30,
+    "fields": {
+      "title": "3D-SSF: A bio-inspired approach for dynamic multi-subject clustering of white matter tracts",
+      "url": "http://www.sciencedirect.com/science/article/pii/S0010482517300239",
+      "author": "A Chekir and Salima Hassas and Maxime Descoteaux and M C\u00f4t\u00e9 and Eleftherios Garyfallidis and Fatima Oulebsir-Boumghar",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Pergamon",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "There is growing interest in the study of white matter (WM) variation across subjects, and in particular the analysis of specific WM bundles, to better understand brain development and aging, as well as to improve early detection of some diseases. Several WM multi-subject clustering methods have been proposed to study WM bundles. These methods aim to overcome the complexity of the problem, which includes the huge size of the WM tractography datasets generated from multiple subjects, the existence of various  ...",
+      "created": "2017-09-04T16:57:18.547099+00:00",
+      "modified": "2017-09-04T16:57:18.547117+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 31,
+    "fields": {
+      "title": "To appear in: Computers in Biology and Medicine",
+      "url": "http://scil.dinf.usherbrooke.ca/wp-content/papers/chekir-etal-CompBiomed17.pdf",
+      "author": "A Chekir and S Hassas and M Descoteaux and M C\u00f4t\u00e9 and E Garyfallidis and F Oulebsir-Boumghar",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "There is growing interest in the study of white matter (WM) variation across subjects, and in particular the analysis of specific WM bundles, to better understand brain development and aging, as well as to improve early detection of some diseases. Several WM multi-subject clustering methods have been proposed to study WM bundles. These methods aim to overcome the complexity of the problem, which includes the huge size of the WM tractography datasets generated from multiple subjects, the existence of various  ...",
+      "created": "2017-09-04T16:57:28.087530+00:00",
+      "modified": "2017-09-04T16:57:28.087549+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 32,
+    "fields": {
+      "title": "[Re] Optimization of a free water elimination two-compartment model for diffusion tensor imaging.",
+      "url": "http://biorxiv.org/content/early/2017/02/15/108795.abstract",
+      "author": "Rafael Neto Henriques and Ariel Rokem and Eleftherios Garyfallidis and Samuel St-Jean and Eric Thomas Peterson and Marta Correia",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Cold Spring Harbor Labs Journals",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Typical diffusion-weighted imaging (DWI) is susceptible to partial volume effects: different types of tissue that reside in the same voxel are inextricably mixed. For instance, in regions near the cerebral ventricles or parenchyma, fractional anisotropy (FA) from diffusion tensor imaging (DTI) may be underestimated, due to partial volumes of cerebral spinal fluid (CSF). Free-water can be suppressed by adding parameters to diffusion MRI models. For example, the DTI model can be extended to separately take into account the contributions of tissue  ...",
+      "created": "2017-09-04T16:57:36.854315+00:00",
+      "modified": "2017-09-04T16:57:36.854334+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 33,
+    "fields": {
+      "title": "NeuroView: a customizable browser-base utility",
+      "url": "https://academic.oup.com/gigascience/article-abstract/5/suppl_1/25/2965228",
+      "author": "Anibal S\u00f3lon Heinsfeld and Alexandre Rosa Franco and Augusto Buchweitz and Felipe Meneguzzi",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "Oxford University Press",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Results We created three tools using NeuroView to best analyze our research results: CC200 search, SVM coefficients and Connectivity matrix. Each tool is used to aid the analysis of results in Machine Learning tasks. Each of these tools is described below in detail.",
+      "created": "2017-09-04T16:57:45.202170+00:00",
+      "modified": "2017-09-04T16:57:45.202189+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 34,
+    "fields": {
+      "title": "2015 Brainhack Proceedings",
+      "url": "https://gigascience.biomedcentral.com/articles/10.1186/s13742-016-0147-0",
+      "author": "R Cameron Craddock and Pierre Bellec and Daniel S Margules and B Nolan Nichols and J\u00f6rg P Pfannm\u00f6ller and AmanPreet Badhwar and David Kennedy and Jean-Baptiste Poline and Roberto Toro and Ben Cipollini and Ariel Rokem and Daniel Clark and Krzysztof J Gorgolewski and Daniel J Clark and Samir Das and C\u00e9cile Madjar and Ayan Sengupta and Zia Mohades and Sebastien Dery and Weiran Deng and Eric Earl and Damion V Demeter and Kate Mills and Glad Mihai and Luka Ruzic and Nick Ketz and Andrew Reineberg and Marianne C Reddan and Anne-Lise Goddings and Javier Gonzalez-Castillo and Caroline Froehlich and Gil Dekel and Daniel S Margulies and Ben D Fulcher and Tristan Glatard and Reza Adalat and Natacha Beck and R\u00e9mi Bernard and Najmeh Khalili-Mahani and Pierre Rioux and Marc-\u00c9tienne Rousseau and Alan C Evans and Yaroslav O Halchenko and Matteo Visconti di Oleggio Castello and Ra\u00fal Hern\u00e1ndez-P\u00e9rez and Edgar A Morales and Laura V Cuaya and Kaori L Ito and Sook-Lei Liew and Hans J Johnson and Erik Kan and Julia Anglin and Michael Borich and Neda Jahanshad and Paul Thompson and Marcel Falkiewicz and Julia M Huntenburg and David O\u2019Connor and Michael P Milham and Ramon Fraga Pereira and Anibal S\u00f3lon Heinsfeld and Alexandre Rosa Franco and Augusto Buchweitz and Felipe Meneguzzi and Rickson Mesquita and Luis CT Herrera and Daniela Dentico and Vanessa Sochat and Julio E Villalon-Reina and Eleftherios Garyfallidis",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "BioMed Central",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Results Supplementary manual data edit options In the original version of Brainspell, users were able to edit experiment (table) title, caption and coordinates for each article. We added four supplementary options. In particular, users are now provided with enhanced 'edit feedback':",
+      "created": "2017-09-04T16:57:53.853404+00:00",
+      "modified": "2017-09-04T16:57:53.853424+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 35,
+    "fields": {
+      "title": "Fast implementations of contextual PDE's for HARDI data processing in DIPY",
+      "url": "https://pure.tue.nl/ws/files/52031668/main_abstract.pdf",
+      "author": "SPL Meesters and GR Sanguinetti and Eleftherios Garyfallidis and JM Portegies and Remco Duits",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Purpose We present a novel open-source module, included in the DIPY (Diffusion Imaging in Python) software library [1], implementing contextual PDE's [2] for processing HARDI data. Here we propose an efficient implementation based on multithreaded processing and pre-computed lookup tables that enable large scale experiments. We demonstrate its potential in crossing-preserving enhancement of ODF/FOD fields where the aim is to enhance the alignment of elongated structures such that crossings are maintained.",
+      "created": "2017-09-04T16:58:02.231475+00:00",
+      "modified": "2017-09-04T16:58:02.231499+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 36,
+    "fields": {
+      "title": "Cleaning output of tractography via fiber to bundle coherence, a new open source implementation",
+      "url": "http://bmia.bmt.tue.nl/people/RDuits/ERCprog_2.pdf",
+      "author": "SPL Meesters and GR Sanguinetti and Eleftherios Garyfallidis and JM Portegies and PPW Ossenblok and Remco Duits",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Page 1. Cleaning output of tractography via fiber to bundle coherence, a new open source\nimplementation Stephan Meesters1,2, Gonzalo Sanguinetti1, Eleftherios Garyfallidis3, Jorg\nPortegies1, Pauly Ossenblok2 and Remco Duits1 \u2022 Implemented in the DIPY framework using\nthe Cython language, including multi- thread processing via the OpenMP library. \u2022Fiber\ntractograms are obtained from the 'LocalTracking' probabilistic tractography algorithm in DIPY. \u2022\nConsiderable speedup of the kernel density estimation is achieved by computing ...\n",
+      "created": "2017-09-04T16:58:07.632294+00:00",
+      "modified": "2017-09-04T16:58:07.632312+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 37,
+    "fields": {
+      "title": "Particle Swarm Optimization in Multi-Tensor Imaging",
+      "url": "https://hal.archives-ouvertes.fr/hal-00829323/",
+      "author": "Micheal Paquette and Eleftherios Garyfallidis and Samuel St-Jean and Pierrick Coup\u00e9 and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "HAL is a multi-disciplinary open access archive for the deposit and dissemination of sci- entific \nresearch documents, whether they are pub- lished or not. The documents may come from teaching \nand research institutions in France or abroad, or from public or private research centers.   ... \nL'archive ouverte pluridisciplinaire HAL, est destin\u00e9e au d\u00e9p\u00f4t et `a la diffusion de documents \nscientifiques de niveau recherche, publi\u00e9s ou non, \u00e9manant des \u00e9tablissements d'enseignement \net de recherche fran\u00e7ais ou \u00e9trangers, des laboratoires publics ou priv\u00e9s.  ",
+      "created": "2017-09-04T16:58:15.443843+00:00",
+      "modified": "2017-09-04T16:58:15.443877+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 38,
+    "fields": {
+      "title": "D21 Manual Segmentation of Fiber Tracts with Bundles of Interest",
+      "url": "",
+      "author": "Paolo Avesani and Eleftherios Garyfallidis and Emanuele Olivetti and Stephan Gerhard",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "",
+      "created": "2017-09-04T16:58:23.136901+00:00",
+      "modified": "2017-09-04T16:58:23.136921+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 39,
+    "fields": {
+      "title": "Robustness of diffusion scalar metrics when estimated with Generalized Q-Sampling Imaging acquisition schemes",
+      "url": "https://pdfs.semanticscholar.org/dab4/ae0cb365693e193569676e5bfa149f194ec0.pdf",
+      "author": "MM Correia and GB Williams and F Yeh and I Nimmo-Smith and E Garyfallidis",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Methods: Twelve healthy volunteers aged between 18 and 40 were scanned on a 3T scanner (TIM Trio, Siemens), using Siemens advanced diffusion work-in-progress sequence, and STEAM [2] as the diffusion preparation method. The field of view was 240x240mm2, matrix size 96x96, and slice thickness 2.5 mm (no gap). 55 slices were acquired to achieve full brain coverage, and the voxel resolution was 2.5 x. 2.5 x2. 5mm3. Two sampling schemes were considered: a 102-point grid acquisition with a maximum b- ...",
+      "created": "2017-09-04T16:58:32.379145+00:00",
+      "modified": "2017-09-04T16:58:32.379174+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 40,
+    "fields": {
+      "title": "Multiple-scale Visualization of Large Data based on Hierarchical Clustering",
+      "url": "https://www.researchgate.net/profile/Bao_Thien/publication/271303592_Multiple-Scale_Visualization_of_Large_Data_Based_on_Hierarchical_Clustering/links/572c0d9908aef7c7e2c6bbac/Multiple-Scale-Visualization-of-Large-Data-Based-on-Hierarchical-Clustering.pdf",
+      "author": "Thien Bao Nguyen and Emanuele Olivetti and Eleftherios Garyfallidis and Nivedita Agarwal and Paolo Avesani",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Nowadays, the large datasets become more and more common. However, traditional visualization techniques, which although allow to visually analyze and explore data, can not scale well with the large one. This restrains the ability of detecting, recognizing and classifying phenomena of interest, such as patterns, clusters, trends, etc. This paper proposes a method for interactive multi-resolution visualization to overcome the problem of traditional visualization techniques when working with a large dataset via hierarchical  ...",
+      "created": "2017-09-04T16:58:39.004623+00:00",
+      "modified": "2017-09-04T16:58:39.004646+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 41,
+    "fields": {
+      "title": "brainhack",
+      "url": "http://scholar.google.com/scholar?cluster=17465473868450386042&hl=en&oi=scholarr",
+      "author": "Julio E Villalon-Reina and Eleftherios Garyfallidis",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "",
+      "created": "2017-09-04T16:58:49.067986+00:00",
+      "modified": "2017-09-04T16:58:49.068008+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 42,
+    "fields": {
+      "title": "Cartesian 3D-SHORE with Laplacian Regularization",
+      "url": "http://www.win.tue.nl/~gsanguin/CDMRI2014b.pdf",
+      "author": "Gonzalo Sanguinetti and Samuel St-Jean and Eleftherios Garyfallidis and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "The following is a description of the algorithm used to generate submissions to the Sparse Reconstruction Challenge for Diffusion MRI (SPARC dMRI) of the MICCAI 2014 Workshop on Computational Diffusion MRI. A total of three submissions were generated for the challenge# 1 using the threeshells datasets with 20, 30, and 60 gradients per shells (bvalues of 1000, 2000, and 3000 s/mm2). We pre-processed the data using a 3D Non-Local Means denoising [1] on each DWIs separately.",
+      "created": "2017-09-04T16:58:57.674512+00:00",
+      "modified": "2017-09-04T16:58:57.674538+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 43,
+    "fields": {
+      "title": "An algorithm and quantitative evaluation framework for registration of multi-modal brain MRI",
+      "url": "http://scil.dinf.usherbrooke.ca/wp-content/papers/ocegueda-etal-ismrm15.pdf",
+      "author": "Omar Ocegueda and Eleftherios Garyfallidis and Maxime Descoteaux and Mariano Rivera",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "Purpose: We present a new algorithm for multi-modal symmetric diffeomorphic image registration and propose a protocol based on existing manually annotated datasets to quantitatively evaluate multi-modal image registration algorithms. Methods: Given a pair of input images I, J, we aim to find two diffeomorphisms \u03c6I, \u03c6J that map the input images to a reference space \u03a9R, in which both images get aligned. This symmetric approach was proposed by Avants et al.[3], where each of the aforementioned transformations is  ...",
+      "created": "2017-09-04T16:59:02.879629+00:00",
+      "modified": "2017-09-04T16:59:02.879649+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 44,
+    "fields": {
+      "title": "Spherical Deconvolution on single shell and multishell combined with denoising",
+      "url": "https://www.researchgate.net/profile/Samuel_St-Jean/publication/265383591_Spherical_Deconvolution_on_single_shell_and_multishell_combined_with_denoising/links/540c6f8e0cf2d8daaaca46f9.pdf",
+      "author": "Samuel St-Jean and Michael Paquette and Eleftherios Garyfallidis and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "We tested some classical deconvolution methods for the Sparse Reconstruction Challenge for Diffusion MRI (SPARC dMRI) of the MICCAI 2014 Workshop on Computational Diffusion MRI. We used the Constrained Spherical Deconvolution (CSD)[1] and the Sharpening Deconvolution Transform (SDT)[2] with two denoising algorithms: the Non Local Means (NLM)[3] and the Non Local Spatial and Angular Matching (NLSAM)[4] techniques. The aim was to test regular methods combined with denoising algorithms that do not take explicit  ...",
+      "created": "2017-09-04T16:59:09.404992+00:00",
+      "modified": "2017-09-04T16:59:09.405014+00:00"
+    }
+  },
+  {
+    "model": "website.publication",
+    "pk": 45,
+    "fields": {
+      "title": "Cartesian 3D-SHORE with Laplacian Regularization",
+      "url": "https://www.researchgate.net/profile/Samuel_St-Jean/publication/265383667_Cartesian_3D-SHORE_with_Laplacian_Regularization/links/540c70fb0cf2d8daaaca4716.pdf",
+      "author": "Michael Paquette and Gonzalo Sanguinetti and Samuel St-Jean and Eleftherios Garyfallidis and Maxime Descoteaux",
+      "doi": "",
+      "entry_type": "",
+      "publisher": "",
+      "published_in": "",
+      "year_of_publication": "",
+      "month_of_publication": "",
+      "bibtex": "",
+      "project_url": "",
+      "abstract": "The following is a description of the algorithm used to generate submissions to the Sparse Reconstruction Challenge for Diffusion MRI (SPARC dMRI) of the MICCAI 2014 Workshop on Computational Diffusion MRI. A total of three submissions were generated for the challenge# 1 using the threeshells datasets with 20, 30, and 60 gradients per shells (bvalues of 1000, 2000, and 3000 s/mm2). We pre-processed the data using a 3D Non-Local Means denoising [1] on each DWIs separately.",
+      "created": "2017-09-04T16:59:15.575638+00:00",
+      "modified": "2017-09-04T16:59:15.575658+00:00"
+    }
+  }
+]

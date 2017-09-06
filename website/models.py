@@ -116,9 +116,11 @@ class Publication(models.Model):
     published_in = models.CharField(max_length=200, null=True, blank=True)
     publisher = models.CharField(max_length=200, null=True, blank=True)
     year_of_publication = models.CharField(max_length=4, null=True, blank=True)
-    month_of_publication = models.CharField(max_length=10, null=True,
-                                            blank=True)
+    month_of_publication = models.CharField(max_length=10, null=True, blank=True)
     bibtex = models.TextField(null=True, blank=True)
+    project_url = models.CharField(max_length=200, null=True, blank=True)
+    pdf = models.FileField(null=True, upload_to="publication_uploads/")
+    abstract = models.TextField(null=True, blank=True)
     is_highlighted = models.BooleanField(default=False)
 
     created = models.DateTimeField(editable=False, auto_now_add=True)
@@ -132,6 +134,34 @@ class Publication(models.Model):
 
         # Call the "real" save() method.
         super(Publication, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+
+
+class Course(models.Model):
+    """
+    Model for storing Course information.
+    """
+    title = models.CharField(max_length=200)
+    acronym = models.CharField(max_length=200)
+    level = models.CharField(max_length=200)
+    prerequisite = models.CharField(max_length=200)
+    description = models.TextField()
+    syllabus = models.FileField(null=True, upload_to="course_uploads/")
+
+    created = models.DateTimeField(editable=False, auto_now_add=True)
+    modified = models.DateTimeField(editable=False, auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self.modified = datetime.datetime.now()
+
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(Course, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -163,7 +193,7 @@ class CarouselImage(models.Model):
         return self.image_url
 
 
-class Postion(models.Model):
+class Position(models.Model):
     """
     Model for defining the position of a lab member
     """
@@ -188,7 +218,7 @@ class Profile(models.Model):
     contactURL = models.URLField(blank=True, null=True)
     description = models.TextField(null=True, blank=True)
 
-    position = models.ForeignKey('Postion', null=True, blank=True)
+    position = models.ForeignKey('Position', null=True, blank=True)
 
     profile_page_markdown = models.TextField(null=True, blank=True)
     profile_page_html = models.TextField(null=True, blank=True, editable=False)

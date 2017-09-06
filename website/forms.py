@@ -30,6 +30,13 @@ class AddEditPublicationForm(ModelForm):
                   'month_of_publication', 'bibtex']
 
 
+class AddEditCourseForm(ModelForm):
+    class Meta:
+        model = Course
+        fields = ['title', 'acronym', 'level', 'prerequisite', 'description',
+                  'syllabus']
+
+
 class AddEditCarouselImageForm(ModelForm):
     class Meta:
         model = CarouselImage

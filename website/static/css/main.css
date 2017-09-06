@@ -1,61 +1,20 @@
-#branding-bar {
-  /*	#login-block {
-  		float: right;
-  	}
-  
-  	#login-dp {
-  
-  		p{
-  			margin: 0px;
-  			font-size: medium;
-  
-  		}
-  
-  		.layout {
-  			position: inherit;
-  			width: auto;
-  		}
-  
-  		.panel{
-  			margin: 0px;
-  			padding-top: 9px;
-  		}
-  
-  		label{
-  			font-size: smaller;
-  		}
-  	}
-  	*/ }
-  #branding-bar img {
-    transition: all 0.5s; }
-  #branding-bar p#iu-campus {
-    transition: all 0.5s; }
-  #branding-bar:hover img {
-    transform: scale(0.7) translate(0, -1em); }
-  #branding-bar:hover p#iu-campus {
-    transform: scale(1.1); }
+#branding-bar img {
+  transition: all 0.5s; }
+#branding-bar p#iu-campus {
+  transition: all 0.5s; }
+#branding-bar:hover img {
+  transform: scale(0.7) translate(0, -1em); }
+#branding-bar:hover p#iu-campus {
+  transform: scale(1.1); }
 
-/*.social ul li a{
-	text-align: center;
-	font-size:13px;
-	color:#fff;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	text-decoration:none;
-	//padding:10px 0;
-	display:block;
-}
-.social ul li:nth-child(1) a{
-	background:#3b5998;
-}
-.social ul li:nth-child(2) a{
-	background:#e74c3d;
-}
-.social ul li:nth-child(3) a{
-	background:#3698d9;
-}
-.social ul li:nth-child(4) a{
-	background:#3b5998;
-}*/
+.left-separator {
+  padding-left: 5px;
+  padding-right: 5px;
+  border-left: medium solid lightgray; }
+
+.highlight-block {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  padding-left: 20px; }
 
 /*# sourceMappingURL=main.css.map */

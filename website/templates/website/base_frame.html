@@ -9,8 +9,8 @@
 
 	{% block extra_css %}{% endblock %}
 
-	<!-- IU CSS Design-->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet">
+	<!-- IU CSS Design
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet">-->
 	<link href="https://fonts.iu.edu/style.css?family=BentonSans:regular,bold%7CBentonSansCond:regular%7CGeorgiaPro:regular" rel="stylesheet">
 	<link href="https://assets.iu.edu/web/fonts/icon-font.css" rel="stylesheet">
 	<link href="https://assets.iu.edu/web/3.x/css/iu-framework.min.css" rel="stylesheet" type="text/css">
@@ -32,14 +32,16 @@
         	<!-- global branding bar -->
         	<!-- global search and toggles -->
 		{% endblock %}
-		<div class="inner-wrap">
+		<div class="off-canvas-content" data-off-canvas-content>
 			{% block nav %}
             	<!-- site-name -->
             	<!-- main navigation -->
             	<!-- optional: secondary navigation -->
-            	<!-- banner -->
 			{% endblock %}
-            <main class="">
+			{% block banner %}
+				<!-- banner image or video -->
+			{% endblock %}
+            <main class="" role="main">
 				<!-- section/sidebar navigation -->
                 <!-- breadcrumbs -->
                 <!-- optional: page-title -->
@@ -49,7 +51,7 @@
                 <!-- optional: skirt -->
             </main>
 			{% block footer %}{% endblock %}
-		</div><!-- /.inner-wrap -->
+		</div><!-- /.off-canvas-content -->
 	</div><!-- /.off-canvas-wrapper -->
 	<div id="offCanvas" class="off-canvas position-right" data-off-canvas="" data-position="right">
 		<!-- offcanvas: includes menu for mobile -->
@@ -61,16 +63,13 @@
 	<!-- Include Javascript -->
 	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 
-	<!-- IU Global js -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation-essential/6.2.2/js/foundation.min.js"></script>
+	<!-- IU Global js
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation-essential/6.2.2/js/foundation.min.js"></script>-->
 	<script src="https://assets.iu.edu/web/3.x/js/iu-framework.min.js"></script>
 	<script src="https://assets.iu.edu/search/3.x/search.js"></script>
 
 	<!-- Navbar shrink script -->
 	<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-	<script>
-
-	</script>
 
 	{% block extra_js_bottom %}{% endblock %}
 	{{ google_analytics|safe }}

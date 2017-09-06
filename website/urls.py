@@ -24,6 +24,9 @@ urlpatterns = [
         name='people_profile'),
 
     # Cite Page for publications
+    url(r'^teaching/$', views.teaching, name='teaching'),
+
+    # Cite Page for publications
     url(r'^publications/$', views.publications, name='publications'),
 
     # News Post display page

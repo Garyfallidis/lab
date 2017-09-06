@@ -56,6 +56,12 @@ def publications(request):
     return render(request, 'website/publications.html', context)
 
 
+def teaching(request):
+    context = {'all_courses': Course.objects.all(),
+               'meta': get_meta_tags_dict(title="DIPY - Teaching"),
+               }
+    return render(request, 'website/teaching.html', context)
+
 def people(request):
     context = {'all_profile': Profile.objects.all(),
                'meta': get_meta_tags_dict(),
