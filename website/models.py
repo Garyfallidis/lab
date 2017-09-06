@@ -210,7 +210,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
     avatar_img = models.ImageField(upload_to='avatar_images/',
-                                   blank=True, null=True)
+                                   default='images/user-1633250_640.png')
     contactNumber = models.CharField(max_length=15, blank=True, null=True)
 
     emailId = models.EmailField(blank=True, null=True)

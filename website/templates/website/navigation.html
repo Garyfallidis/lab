@@ -11,15 +11,25 @@
         <li><a href="http://nipy.org/dipy/" itemprop="url"><span itemprop="name">Software</span></a></li>
         <li><a href="#" itemprop="url"><span itemprop="name">News</span></a></li>
         <li><a href="#" itemprop="url"><span itemprop="name">Events</span></a></li>
-        <li class="last has-children"><a href="#" itemprop="url" class="current"><span itemprop="name">Login</span></a>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'dashboard' %}" itemprop="url">
+                <!--<figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt="" itemprop="image" width="21" height="21" src="{% static "images/user-1633250_640.png" %}"></figure>-->
+                <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt="" itemprop="image" width="21" height="21" src="{{user.avatar_img}}"></figure>
+            </a></li>
+        {% else %}
+        <li class="last has-children"><a href="#" itemprop="url"><span itemprop="name">Login</span></a>
             <ul class="children">
-                <li><a href="" itemprop="url"><span itemprop="name"> Github</span></a></li>
-                <li><a href="" itemprop="url"><span itemprop="name"><i class="icon-googleplus"></i>Google+</span></a></li>
-                <li><a href="" itemprop="url"><span itemprop="name"> Twitter</span></a></li>
-                <li><a href="" itemprop="url"><span itemprop="name"> Facebook</span></a></li>
+                {% for backend in backends.backends %}
+                {% if next %}
+                <li><a href="{% url 'social:begin' backend %}?next={{next}}" itemprop="url"><span itemprop="name"> {{backend}}</span></a></li>
+                {% else %}
+                <li><a href="{% url 'social:begin' backend %}?next={% url 'dashboard' %}" itemprop="url"><span itemprop="name"> {{backend}}</span></a></li>
+                {% endif %}
+                {% endfor %}
+                <li><a href="" itemprop="url"><span itemprop="name">IU-Login</span></a></li>
             </ul>
         </li>
-        <li><a href="#" itemprop="url"><i class="icon-googleplus"></i></a></li>
+        {% endif %}
         <li class="show-on-sticky search"><a class="search-toggle" href="/search">Search</a></li>
     </ul>
 </nav>
