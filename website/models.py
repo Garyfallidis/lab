@@ -141,7 +141,6 @@ class Publication(models.Model):
         return self.title
 
 
-
 class Course(models.Model):
     """
     Model for storing Course information.

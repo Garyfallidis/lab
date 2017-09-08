@@ -8,7 +8,9 @@
 	<form action="." method="post">
     {% csrf_token %}
     <fieldset class="fieldset">
-        <legend>Edit Publication</legend>
+        {% if box_legend %}
+            <legend>{{ box_legend }}</legend>
+        {% endif %}
         {% for field in form %}
 
         <div class="form-item">

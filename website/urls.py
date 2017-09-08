@@ -76,6 +76,14 @@ urlpatterns = [
     url(r'^dashboard/publications/highlight/$',
         views.highlight_publications, name='highlight_publications'),
 
+    # Teaching Management
+    url(r'^dashboard/courses/$', views.dashboard_courses,
+        name='dashboard_courses'),
+    url(r'^dashboard/courses/edit/(?P<course_id>.*?)/$',
+        views.edit_course, name='edit_course'),
+    url(r'^dashboard/courses/delete/(?P<course_id>.*?)/$',
+        views.delete_course, name='delete_course'),
+
     # Carousel Management
     url(r'^dashboard/carousel/$', views.dashboard_carousel,
         name='dashboard_carousel'),

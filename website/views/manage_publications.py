@@ -93,7 +93,7 @@ def edit_publication(request, publication_id):
     except:
         raise Http404("Publication does not exist")
 
-    context = {}
+    context = {"box_legend": "Edit Publication",}
     if request.method == 'POST':
         submitted_form = AddEditPublicationForm(request.POST,
                                                 instance=publication)
@@ -102,11 +102,11 @@ def edit_publication(request, publication_id):
             return redirect(reverse('dashboard_publications'))
         else:
             context['form'] = submitted_form
-            return render(request, 'website/editpublication.html', context)
+            return render(request, 'website/editforms.html', context)
 
     form = AddEditPublicationForm(instance=publication)
     context['form'] = form
-    return render(request, 'website/editpublication.html', context)
+    return render(request, 'website/editforms.html', context)
 
 
 @login_required
