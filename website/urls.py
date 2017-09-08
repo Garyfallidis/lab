@@ -71,8 +71,6 @@ urlpatterns = [
         name='dashboard_publications'),
     url(r'^dashboard/publications/edit/(?P<publication_id>.*?)/$',
         views.edit_publication, name='edit_publication'),
-    url(r'^dashboard/publications/add/(?P<method>.*?)/$',
-        views.add_publication, name='add_publication'),
     url(r'^dashboard/publications/delete/(?P<publication_id>.*?)/$',
         views.delete_publication, name='delete_publication'),
     url(r'^dashboard/publications/highlight/$',

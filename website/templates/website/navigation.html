@@ -13,8 +13,7 @@
         <li><a href="#" itemprop="url"><span itemprop="name">Events</span></a></li>
         {% if user.is_authenticated %}
             <li><a href="{% url 'dashboard' %}" itemprop="url">
-                <!--<figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt="" itemprop="image" width="21" height="21" src="{% static "images/user-1633250_640.png" %}"></figure>-->
-                <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt="" itemprop="image" width="21" height="21" src="{{user.avatar_img}}"></figure>
+                <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt="" itemprop="image" width="21" height="21" src="{{user.profile.avatar_url}}"></figure>
             </a></li>
         {% else %}
         <li class="last has-children"><a href="#" itemprop="url"><span itemprop="name">Login</span></a>

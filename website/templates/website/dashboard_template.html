@@ -1,0 +1,57 @@
+{% extends "website/base_template.html" %}
+{% load staticfiles %}
+
+
+{% block banner %}
+<section id="banner" class="section bg-gray text-overlay">
+    <div class="row pad">
+        <div class="two-thirds">
+            {% if user.get_full_name|length > 0 %}
+
+                <h2>Welcome {{user.get_full_name}}</h2>
+
+			{% else %}
+
+                <h2>Welcome {{user.username}}</h2>
+
+			{% endif %}
+            <p>Manage events, news, publications or your profile</p>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
+
+{% block content_body %}
+<!-- Dashboard Menu -->
+<aside class="section-nav show-for-large extra-space" id="section-nav">
+	<div class="row">
+		<nav itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" data-parent-url="{% url 'dashboard' %}">
+			<ul>
+                <li class=""><a href="{% url 'dashboard' %}" itemprop="url" class=""><span itemprop="name">Dashboard</span></a></li>
+				<li class=""><a href="{% url 'edit_profile' %}" itemprop="url" class=""><span itemprop="name">Profile</span></a></li>
+				<li class=""><a href="{% url 'dashboard_publications' %}" itemprop="url" class=""><span itemprop="name">Publications</span></a></li>
+				<li class=""><a href="https://students.iupuc.edu/register/when-register/index.html" itemprop="url"
+								class=""><span itemprop="name">Blog</span></a></li>
+				<li class=""><a href="https://students.iupuc.edu/register/steps-register/index.html" itemprop="url"
+								class=""><span itemprop="name">Events</span></a></li>
+				<li class=""><a href="https://students.iupuc.edu/register/dropping-adding/index.html" itemprop="url"
+								class=""><span itemprop="name">Research page</span></a></li>
+				<li class=""><a href="https://students.iupuc.edu/register/audit/index.html" itemprop="url"><span
+						itemprop="name">Course page</span></a></li>
+				<li class=""><a href="{% url 'dashboard_logout' %}" itemprop="url" class=""><span itemprop="name">Logout</span></a></li>
+			</ul>
+		</nav>
+	</div>
+</aside>
+
+<div class="bg-none section" id="content">
+    <div class="row">
+        <div class="layout">
+               {% block dashboard_content_body %}{% endblock %}
+        </div>
+    </div><!-- /.layout --></div>
+</div>
+
+
+{% endblock %}

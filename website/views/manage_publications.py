@@ -14,29 +14,17 @@ from website.models import Publication
 def dashboard_publications(request):
     all_publications = Publication.objects.all()
     context = {'all_publications': all_publications}
-    return render(request, 'website/dashboard_publications.html', context)
-
-
-@login_required
-@github_permission_required
-def add_publication(request, method):
-    if method == "manual":
-        context = {}
-        if request.method == 'POST':
+    if request.method == 'POST':
+        if 'manual' in request.POST:
             submitted_form = AddEditPublicationForm(request.POST)
             if submitted_form.is_valid():
                 submitted_form.save()
                 return redirect(reverse('dashboard_publications'))
             else:
                 context['form'] = submitted_form
-                return render(request, 'website/addeditpublication.html',
-                              context)
+                return render(request, 'website/dashboard_publications.html', context)
 
-        form = AddEditPublicationForm()
-        context['form'] = form
-        return render(request, 'website/addeditpublication.html', context)
-    elif method == "bibtex":
-        if request.method == 'POST':
+        elif 'bibtex' in request.POST:
             bibtex_entered = request.POST.get('bibtex')
             try:
                 bib_parsed = bibtexparser.loads(bibtex_entered)
@@ -84,23 +72,24 @@ def add_publication(request, method):
                     return redirect(reverse('dashboard_publications'))
 
                 else:
-                    return render(request,
-                                  'website/addpublicationbibtex.html', {})
+                    return render(request, 'website/dashboard_publications.html', context)
             except:
-                return render(request, 'website/addpublicationbibtex.html', {})
+                return render(request, 'website/dashboard_publications.html', context)
 
         else:
-            return render(request, 'website/addpublicationbibtex.html', {})
-    else:
-        raise Http404("Not a valid method for adding publications.")
+            raise Http404("Not a valid method for adding publications.")
+
+    form = AddEditPublicationForm()
+    context['form'] = form
+
+    return render(request, 'website/dashboard_publications.html', context)
 
 
 @login_required
 @github_permission_required
 def edit_publication(request, publication_id):
     try:
-        publication = Publication.objects.get(
-            id=publication_id)
+        publication = Publication.objects.get(id=publication_id)
     except:
         raise Http404("Publication does not exist")
 
@@ -113,11 +102,11 @@ def edit_publication(request, publication_id):
             return redirect(reverse('dashboard_publications'))
         else:
             context['form'] = submitted_form
-            return render(request, 'website/addeditpublication.html', context)
+            return render(request, 'website/editpublication.html', context)
 
     form = AddEditPublicationForm(instance=publication)
     context['form'] = form
-    return render(request, 'website/addeditpublication.html', context)
+    return render(request, 'website/editpublication.html', context)
 
 
 @login_required

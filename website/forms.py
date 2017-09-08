@@ -44,9 +44,14 @@ class AddEditCarouselImageForm(ModelForm):
                   'image_description', 'target_url']
 
 
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+
 class EditProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['full_name', 'avatar_img', 'contactNumber', 'emailId',
-                  'contactURL', 'description', 'position',
+        fields = ['avatar_img', 'contact_number', 'contact_url', 'description',
                   'profile_page_markdown']

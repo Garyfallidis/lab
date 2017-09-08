@@ -1,6 +1,8 @@
+import os
 import datetime
 
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db.models.signals import post_save
@@ -193,35 +195,35 @@ class CarouselImage(models.Model):
         return self.image_url
 
 
-class Position(models.Model):
-    """
-    Model for defining the position of a lab member
-    """
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
 
 class Profile(models.Model):
     """
     Model for storing more information about user
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=100)
-    avatar_img = models.ImageField(upload_to='avatar_images/',
-                                   default='images/user-1633250_640.png')
-    contactNumber = models.CharField(max_length=15, blank=True, null=True)
+    avatar_img = models.ImageField(upload_to='avatar_images/', blank=True, null=True)
+    contact_number = models.CharField(max_length=15, blank=True, null=True)
 
-    emailId = models.EmailField(blank=True, null=True)
-
-    contactURL = models.URLField(blank=True, null=True)
+    contact_url = models.URLField(blank=True, null=True)
     description = models.TextField(null=True, blank=True)
-
-    position = models.ForeignKey('Position', null=True, blank=True)
 
     profile_page_markdown = models.TextField(null=True, blank=True)
     profile_page_html = models.TextField(null=True, blank=True, editable=False)
+
+
+    def avatar_url(self):
+        """
+        Returns the URL of the image associated with this Object.
+        If an image hasn't been uploaded yet, it returns a stock image
+
+        :returns: str -- the image url
+
+        """
+        if self.avatar_img and hasattr(self.avatar_img, 'url'):
+            return self.avatar_img.url
+        else:
+            return os.path.join(settings.STATIC_URL, 'images', 'user-1633250_640.png')
+
 
     def save(self, *args, **kwargs):
         html_content = markdown.markdown(self.profile_page_markdown,
@@ -242,7 +244,7 @@ class Profile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance, full_name=instance.username,
+        Profile.objects.create(user=instance,
                                profile_page_markdown="")
         instance.profile.save()
 

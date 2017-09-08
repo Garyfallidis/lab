@@ -1,0 +1,31 @@
+{% extends "website/dashboard_template.html" %}
+{% load staticfiles %}
+
+
+{% block dashboard_content_body %}
+
+{% if form %}
+	<form action="." method="post">
+    {% csrf_token %}
+    <fieldset class="fieldset">
+        <legend>Edit Publication</legend>
+        {% for field in form %}
+
+        <div class="form-item">
+
+            <div class="form-item-label">
+               {{ field.label_tag }}
+            </div>
+
+            <div class="form-item-input">
+                {{ field }}
+            </div>
+
+        </div>
+        {% endfor %}
+        <p><input class="button" type="submit" value="Save Changes"></p>
+    </fieldset>
+	</form>
+{% endif %}
+
+{% endblock %}

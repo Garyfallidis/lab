@@ -1,4 +1,4 @@
-{% extends "website/base_template.html" %}
+{% extends "website/dashboard_template.html" %}
 {% load staticfiles %}
 
 {% block extra_css %}
@@ -7,13 +7,43 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.datetimepicker.min.css' %}">
 {% endblock %}
 
-{% block content_body %}
+{% block dashboard_content_body %}
 
-{% if form %}
+{% if user_form and  profile_form%}
 <form enctype="multipart/form-data" action="." method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
+    <fieldset class="fieldset">
+        <legend>Edit Profile</legend>
+        {% for field in user_form %}
+
+        <div class="form-item">
+
+            <div class="form-item-label">
+               {{ field.label_tag }}
+            </div>
+
+            <div class="form-item-input">
+                {{ field }}
+            </div>
+
+        </div>
+        {% endfor %}
+        {% for field in profile_form %}
+
+        <div class="form-item">
+
+            <div class="form-item-label">
+               {{ field.label_tag }}
+            </div>
+
+            <div class="form-item-input">
+                {{ field }}
+            </div>
+
+        </div>
+        {% endfor %}
+        <p><input class="button" type="submit" value="Save Changes"></p>
+    </fieldset>
 </form>
 {% endif %}
 
