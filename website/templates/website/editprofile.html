@@ -8,12 +8,12 @@
 {% endblock %}
 
 {% block dashboard_content_body %}
-
+<div class="panel">
+    <h2 class="title">Edit Profile</h2>
 {% if user_form and  profile_form%}
 <form enctype="multipart/form-data" action="." method="post">
     {% csrf_token %}
     <fieldset class="fieldset">
-        <legend>Edit Profile</legend>
         {% for field in user_form %}
 
         <div class="form-item">
@@ -46,7 +46,7 @@
     </fieldset>
 </form>
 {% endif %}
-
+</div>
 {% endblock %}
 
 

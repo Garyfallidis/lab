@@ -4,7 +4,7 @@
 {% block dashboard_content_body %}
 
 <div class="panel">
-    <h2 class="title">Add / Edit Publications</h2>
+    <h2 class="title">Add Publication</h2>
 	<div class="grid halves">
 		<div class="grid-item">
 			<a href="#" class="show-hide left-separator">via Bibtex</a>
@@ -51,7 +51,8 @@
 		<!--<a href="{% url 'highlight_publications' %}">Highlight Publications</a>-->
 </div>
 <div class="panel">
-
+	<h2 class="title">Edit Publication</h2>
+	<br>
 	{% if all_publications %}
 		{% for publication in all_publications %}
 			{% if publication.is_highlighted %}<b>{% endif %}
@@ -61,8 +62,8 @@
 	{{publication.author}}<br>
 	<div class="grid halves">
 		<div class="grid-item">
-			<a href="{% url 'edit_publication' publication_id=publication.id %}" class="left-separator ">Edit</a>
-			<a href="{% url 'delete_publication' publication_id=publication.id %}" class="left-separator publicationDeleteLink">Delete</a>
+			<a href="{% url 'edit_page' model_name='publication' model_id=publication.id %}" class="left-separator ">Edit</a>
+			<a href="{% url 'delete_page' model_name='publication' model_id=publication.id %}" class="left-separator publicationDeleteLink">Delete</a>
 		</div>
 	</div>
 	<hr>

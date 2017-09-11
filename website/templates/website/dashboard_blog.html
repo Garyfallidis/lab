@@ -1,0 +1,90 @@
+{% extends "website/dashboard_template.html" %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<!-- Include simplemde markdown editor css-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+
+{% block dashboard_content_body %}
+
+<div class="panel">
+    <a href="#" class="show-hide"><h2 class="title">Add Blog Post</h2></a>
+    <div class="form-container" style="display: none;">
+        {% if form%}
+        <form action="." method="post">
+            {% csrf_token %}
+            <fieldset class="fieldset">
+                <legend>Blog post</legend>
+                {% for field in form %}
+
+                <div class="form-item">
+
+                    <div class="form-item-label">
+                        {{ field.label_tag }}
+                    </div>
+
+                    <div class="form-item-input">
+                        {{ field }}
+                    </div>
+
+                </div>
+                {% endfor %}
+                <p><input class="button" name="manual" type="submit" value="Submit"></p>
+            </fieldset>
+        </form>
+        {% endif %}
+    </div>
+</div>
+<div class="panel">
+    <h2 class="title">Edit Blog</h2>
+	{% if all_blog_post %}
+		{% for blog_post in all_blog_post %}
+            <hr>
+	        <h5>{{blog_post.title}}</h5>
+            <p>{{ blog_post.body_html | truncatechars_html:200 | safe }}</p>
+            <p>{{ blog_post.author }}</p>
+	<div class="grid halves">
+		<div class="grid-item">
+			<a href="{% url 'edit_page' model_name='blog' model_id=blog_post.id %}" class="left-separator ">Edit</a>
+			<a href="{% url 'delete_page' model_name='blog' model_id=blog_post.id %}" class="left-separator blogDeleteLink">Delete</a>
+		</div>
+	</div>
+
+	{% endfor %}
+	{% endif %}
+</div>
+
+
+{% endblock %}
+
+{% block extra_js_bottom %}
+<!-- Include and call simplemde markdown editor js-->
+<script type="text/javascript" src="{% static 'js/simplemde.min.js' %}"></script>
+<!-- Script to show confirmation box before deleting -->
+<script>
+	$( ".blogDeleteLink" ).click(function( event ) {
+		event.preventDefault();
+		var r = confirm("Are you sure you want to delete this blog post?");
+		if (r == true) {
+			window.location.href = $(this).attr('href');
+		}
+	});
+
+    $(".panel .show-hide").each(function () {
+        var $this = $(this);
+        var $code = $this.next('.form-container');
+
+        $code.hide();
+
+        $this.on('click', function (e) {
+            e.preventDefault();
+            $code.slideToggle();
+
+        });
+    });
+
+    var simplemde = new SimpleMDE({ element: $("#id_profile_page_markdown")[0], forceSync:true });
+</script>
+
+{% endblock %}

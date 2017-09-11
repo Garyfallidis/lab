@@ -8,6 +8,8 @@ from django.core.cache import cache
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
+from django.utils.text import slugify
+
 import markdown
 import bleach
 
@@ -253,15 +255,17 @@ class BlogPost(models.Model):
     Model to store blog posts
     """
     title = models.CharField(max_length=100, unique=True)
-    identifier = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=150, unique=True)
     body = models.TextField()
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
-    author = models.ForeignKey(User)
+    authors = models.ManyToManyField(User)
     body_html = models.TextField(null=True, blank=True, editable=False)
 
     def save(self, *args, **kwargs):
-        html_content = markdown.markdown(self.body,
-                                         extensions=['codehilite'])
+        date = datetime.date.today()
+        self.slug = '%i/%i/%i/%s' % (date.year, date.month, date.day, slugify(self.title))
+        html_content = markdown.markdown(self.body, extensions=['codehilite'])
+
         # bleach is used to filter html tags like <script> for security
         self.body_html = bleach.clean(html_content, allowed_html_tags,
                                       allowed_attrs)
@@ -274,5 +278,6 @@ class BlogPost(models.Model):
     def __str__(self):
         return self.title
 
+    @models.permalink
     def get_absolute_url(self):
-        return "/blog/%i/" % self.identifier
+        return "/blog/%i/" % self.slug

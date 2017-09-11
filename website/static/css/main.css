@@ -17,4 +17,10 @@
   padding: 20px;
   padding-left: 20px; }
 
+.news-event.one-third {
+  background: #eeedeb;
+  padding: 1.5rem; }
+  .news-event.one-third p {
+    font-size: 0.7rem; }
+
 /*# sourceMappingURL=main.css.map */

@@ -11,41 +11,46 @@ urlpatterns = [
     url(r'^page/(?P<position_id>.*?)/$', views.page,
         name='section_page'),
 
-    # Blog Page
-    url(r'^blog/$', views.blog,
-        name='blog'),
-
-    url(r'^blog/(?P<identifier>.*?)/$', views.blog_post,
-        name='blog_post'),
-
     # People page
     url(r'^people/$', views.people, name='people'),
     url(r'^people/(?P<username>.*?)/$', views.people_profile,
         name='people_profile'),
 
-    # Cite Page for research
+    # Research Page
     url(r'^research/$', views.research, name='research'),
 
-    # Cite Page for teaching
+    # Teaching Page
     url(r'^teaching/$', views.teaching, name='teaching'),
 
-    # Cite Page for publications
+    # Publications Page
     url(r'^publications/$', views.publications, name='publications'),
 
+    # News Page
+    url(r'^news/$', views.news_page, name='news_page'),
+
+    # Blog specific page
+    url(r'^blog/(?P<slug>[^\.]+)/$', views.blog_post, name='blog_post'),
+
+    # Events Page
+    url(r'^events/$', views.events_page, name='events_page'),
+
     # News Post display page
-    url(r'^news/(?P<news_id>.*?)/$', views.news_page, name='news_page'),
+    #url(r'^news/(?P<news_id>.*?)/$', views.news_page, name='news_page'),
 
     # Honeycomb gallery
     url(r'^gallery/$', views.honeycomb, name='gallery'),
-
-    # Follow us page for social feeds
-    url(r'^follow/$', views.follow_us, name='follow_us'),
 
     # Admin Panel Dash Board
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
 
     # Admin Panel Login Page
     url(r'^dashboard/login/?$', views.dashboard_login, name='dashboard_login'),
+
+    # Generic Add / Edit page
+    url(r'^dashboard/(?P<model_name>.*?)/edit/(?P<model_id>.*?)/$',
+        views.edit_page, name='edit_page'),
+    url(r'^dashboard/(?P<model_name>.*?)/delete/(?P<model_id>.*?)/$',
+        views.delete_page, name='delete_page'),
 
     # Section and Page Management
     url(r'^dashboard/sections/edit/(?P<section_type_requested>.*?)/(?P<position_id>.*?)/$',
@@ -57,6 +62,16 @@ urlpatterns = [
     url(r'^dashboard/sections/(?P<section_type_requested>.*?)/$',
         views.dashboard_sections, name='dashboard_sections'),
 
+    # Blog Management
+    url(r'^dashboard/blog/$', views.dashboard_blog, name='dashboard_blog'),
+
+    # Publication Management
+    url(r'^dashboard/publications/$', views.dashboard_publications, name='dashboard_publications'),
+    url(r'^dashboard/publications/highlight/$', views.highlight_publications, name='highlight_publications'),
+
+    # Teaching Management
+    url(r'^dashboard/courses/$', views.dashboard_courses, name='dashboard_courses'),
+
     # News Management
     url(r'^dashboard/news/$', views.dashboard_news, name='dashboard_news'),
     url(r'^dashboard/news/edit/(?P<news_id>.*?)/$',
@@ -65,24 +80,6 @@ urlpatterns = [
         name='add_news_post'),
     url(r'^dashboard/news/delete/(?P<news_id>.*?)/$',
         views.delete_news_post, name='delete_news_post'),
-
-    # Publication Management
-    url(r'^dashboard/publications/$', views.dashboard_publications,
-        name='dashboard_publications'),
-    url(r'^dashboard/publications/edit/(?P<publication_id>.*?)/$',
-        views.edit_publication, name='edit_publication'),
-    url(r'^dashboard/publications/delete/(?P<publication_id>.*?)/$',
-        views.delete_publication, name='delete_publication'),
-    url(r'^dashboard/publications/highlight/$',
-        views.highlight_publications, name='highlight_publications'),
-
-    # Teaching Management
-    url(r'^dashboard/courses/$', views.dashboard_courses,
-        name='dashboard_courses'),
-    url(r'^dashboard/courses/edit/(?P<course_id>.*?)/$',
-        views.edit_course, name='edit_course'),
-    url(r'^dashboard/courses/delete/(?P<course_id>.*?)/$',
-        views.delete_course, name='delete_course'),
 
     # Carousel Management
     url(r'^dashboard/carousel/$', views.dashboard_carousel,

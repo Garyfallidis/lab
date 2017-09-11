@@ -35,18 +35,40 @@ def page(request, position_id):
     return render(request, 'website/section_page.html', context)
 
 
-def blog(request):
+def news_page(request):
     context = {'all_blog_posts': BlogPost.objects.all(),
-               'meta': get_meta_tags_dict(),
+               'gplus_feed': get_google_plus_activity("107763702707848478173", 4),
+               'fb_posts': get_facebook_page_feed("diffusionimaginginpython", 5),
+               'tweets': get_twitter_feed('dipymri', 5),
+               'meta': get_meta_tags_dict(title="DIPY - News - Follow Us"),
                }
-    return render(request, 'website/blog.html', context)
+    return render(request, 'website/news.html', context)
 
 
-def blog_post(request, identifier):
-    context = {'blog_post': BlogPost.objects.get(identifier=identifier),
+def blog_post(request, slug):
+    context = {'blog_post': BlogPost.objects.get(slug=slug),
                'meta': get_meta_tags_dict(),
                }
     return render(request, 'website/blog_post.html', context)
+
+
+def events_page(request):
+    context = {
+               'meta': get_meta_tags_dict(),
+               }
+    return render(request, 'website/blog_post.html', context)
+
+# def news_page(request, news_id):
+#     try:
+#         news_post = NewsPost.objects.get(id=news_id)
+#     except ObjectDoesNotExist:
+#         raise Http404("News Post does not exist")
+#     meta_title = "DIPY - %s" % (news_post.title,)
+#     context = {'news_post': news_post,
+#                'meta': get_meta_tags_dict(title=meta_title,
+#                                           description=news_post.description),
+#                }
+#     return render(request, 'website/news.html', context)
 
 
 def research(request):
@@ -69,6 +91,7 @@ def teaching(request):
                }
     return render(request, 'website/teaching.html', context)
 
+
 def people(request):
     context = {'all_profile': Profile.objects.all(),
                'meta': get_meta_tags_dict(),
@@ -89,29 +112,6 @@ def honeycomb(request):
                'meta': get_meta_tags_dict(title="DIPY - Gallery"),
                }
     return render(request, 'website/honeycomb.html', context)
-
-
-def follow_us(request):
-    context = {'latest_news': get_latest_news_posts(5),
-               'gplus_feed': get_google_plus_activity("107763702707848478173", 4),
-               'fb_posts': get_facebook_page_feed("diffusionimaginginpython", 5),
-               'tweets': get_twitter_feed('dipymri', 5),
-               'meta': get_meta_tags_dict(title="DIPY - Follow Us"),
-               }
-    return render(request, 'website/follow_us.html', context)
-
-
-def news_page(request, news_id):
-    try:
-        news_post = NewsPost.objects.get(id=news_id)
-    except ObjectDoesNotExist:
-        raise Http404("News Post does not exist")
-    meta_title = "DIPY - %s" % (news_post.title,)
-    context = {'news_post': news_post,
-               'meta': get_meta_tags_dict(title=meta_title,
-                                          description=news_post.description),
-               }
-    return render(request, 'website/news.html', context)
 
 
 @login_required

@@ -16,6 +16,12 @@ class AddEditPageSectionForm(ModelForm):
                   'show_in_nav']
 
 
+class AddEditBlogPostForm(ModelForm):
+    class Meta:
+        model = BlogPost
+        fields = ['title', 'body', 'authors']
+
+
 class AddEditNewsPostForm(ModelForm):
     class Meta:
         model = NewsPost
