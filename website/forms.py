@@ -22,10 +22,10 @@ class AddEditBlogPostForm(ModelForm):
         fields = ['title', 'body', 'authors']
 
 
-class AddEditNewsPostForm(ModelForm):
+class AddEditEventPostForm(ModelForm):
     class Meta:
-        model = NewsPost
-        fields = ['title', 'body_markdown', 'post_date', 'description']
+        model = EventPost
+        fields = ['title', 'description', 'start_date', 'end_date', 'body_markdown',]
 
 
 class AddEditPublicationForm(ModelForm):
@@ -59,5 +59,5 @@ class UserForm(ModelForm):
 class EditProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['avatar_img', 'contact_number', 'contact_url', 'description',
+        fields = ['job_title', 'avatar_img', 'contact_number', 'contact_url', 'description',
                   'profile_page_markdown']

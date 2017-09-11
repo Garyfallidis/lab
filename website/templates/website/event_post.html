@@ -1,0 +1,23 @@
+{% extends "website/base_template.html" %}
+
+{% block content_body %}
+
+<!-- Content -->
+<div class="container lab_style_container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <div class="full_blog_post_container">
+        <h1 class="blog_post_title">{{ event_post.title }}</h1>
+        
+        <div class="blog_post_time">{{ event_post.start_date }}</div>
+
+        <div class="blog_post_body">{{ event_post.body_html | safe }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js_bottom %}
+{% endblock %}

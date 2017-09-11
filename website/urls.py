@@ -33,9 +33,7 @@ urlpatterns = [
 
     # Events Page
     url(r'^events/$', views.events_page, name='events_page'),
-
-    # News Post display page
-    #url(r'^news/(?P<news_id>.*?)/$', views.news_page, name='news_page'),
+    url(r'^events/(?P<slug>[^\.]+)/$', views.event_post, name='event_post'),
 
     # Honeycomb gallery
     url(r'^gallery/$', views.honeycomb, name='gallery'),
@@ -72,14 +70,8 @@ urlpatterns = [
     # Teaching Management
     url(r'^dashboard/courses/$', views.dashboard_courses, name='dashboard_courses'),
 
-    # News Management
-    url(r'^dashboard/news/$', views.dashboard_news, name='dashboard_news'),
-    url(r'^dashboard/news/edit/(?P<news_id>.*?)/$',
-        views.edit_news_post, name='edit_news_post'),
-    url(r'^dashboard/news/add/$', views.add_news_post,
-        name='add_news_post'),
-    url(r'^dashboard/news/delete/(?P<news_id>.*?)/$',
-        views.delete_news_post, name='delete_news_post'),
+    # Events Management
+    url(r'^dashboard/events/$', views.dashboard_events, name='dashboard_events'),
 
     # Carousel Management
     url(r'^dashboard/carousel/$', views.dashboard_carousel,
@@ -92,8 +84,7 @@ urlpatterns = [
         views.delete_carousel_image, name='delete_carousel_image'),
 
     # Profile Management
-    url(r'^dashboard/profile/$', views.edit_profile,
-        name='edit_profile'),
+    url(r'^dashboard/profile/$', views.edit_profile, name='edit_profile'),
 
     # logout url
     url(r'^dashboard/logout/$', logout,

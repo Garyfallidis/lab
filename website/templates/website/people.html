@@ -1,78 +1,38 @@
 {% extends "website/base_template.html" %}
 
 {% block content_body %}
-
 <!-- Content -->
-<div class="container lab_style_container">
-  <div class="row">
-    {% for profile in all_profile %}
-    <div class="col-md-12 col-lg-12 profile_container">
-      <div class="row profile-row">
-        <a  class="profile_container_link" href="{% url 'people_profile' username=profile.user.username %}">
-          <div class="col-sm-3 col-md-2 col-lg-2 col-sm-push-9 col-md-push-10 col-lg-push-10 profile_img_col">
-            <img class="avatar_img img-responsive img-circle" src="{{ MEDIA_URL }}{{ profile.avatar_img }}">
-          </div>
-          <div class="col-sm-9 col-md-10 col-lg-10 col-sm-pull-3 col-md-pull-2 col-lg-pull-2 profile_description_col">
-            <h1 class="full_name">{{ profile.full_name }}</h1>
-            <div class="description">{{ profile.description }}</div>
-          </div>
-        </a>
-      </div>
+<div class="bg-none section" id="home">
+    <div class="row">
+        <div class="layout">
+            {% for profile in all_profile %}
+            <a href="{% url 'people_profile' username=profile.user.username %}">
+                <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
+                    <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img
+                            alt="" itemprop="image"
+                            src="{{ profile.avatar_url }}">
+                    </figure>
+                    <div class="content">
+                        {% if profile.user.get_full_name|length > 0 %}
+                        <h1 class="no-margin title"><span itemprop="name">{{ profile.user.get_full_name }}</span></h1>
+                        {% else %}
+                        <h1 class="no-margin title"><span itemprop="name">{{ profile.user.username }}</span></h1>
+                        {% endif %}
+                        <p class="sub-title" itemprop="jobTitle">{{ profile.job_title }}</p>
+                        <dl class="meta inline">
+                            <dt>Phone:</dt>
+                            <dd itemprop="telephone">{{ profile.contact_number }}</dd>
+                            <dt>Email:</dt>
+                            <dd itemprop="email"><a rel="nofollow" href="mailto:jmbarker@iupuc.edu" class="email">{{ profile.user.email }}</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </article>
+            </a>
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
-  </div>
 </div>
 {% endblock %}
 
-
-<div class="layout">
-  <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
-    <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt=""
-                                                                                                     itemprop="image"
-                                                                                                     src="/admissions/contact-admissions/Admissions.JeanetteBarker.jpg">
-    </figure>
-    <div class="content"><h1 class="no-margin title"><span itemprop="name">Jeanette Barker</span></h1>
-      <p class="sub-title" itemprop="jobTitle">Admissions Specialist</p>
-      <dl class="meta inline">
-        <dt>Phone:</dt>
-        <dd itemprop="telephone">812.348.7390</dd>
-        <dt>Email:</dt>
-        <dd itemprop="email"><a rel="nofollow" href="mailto:jmbarker@iupuc.edu" class="email">jmbarker@iupuc.edu</a>
-        </dd>
-      </dl>
-    </div>
-  </article>
-  <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
-    <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt=""
-                                                                                                     itemprop="image"
-                                                                                                     src="/admissions/contact-admissions/Admissions.JoeHeltzel.jpg">
-    </figure>
-    <div class="content"><h1 class="no-margin title"><span itemprop="name">Joe Heltzel, MBA</span></h1>
-      <p class="sub-title" itemprop="jobTitle">Director</p>
-      <dl class="meta inline">
-        <dt>Phone:</dt>
-        <dd itemprop="telephone">812.348.7277</dd>
-        <dt>Email:</dt>
-        <dd itemprop="email"><a rel="nofollow" href="mailto:jheltzel@iupuc.edu" class="email">jheltzel@iupuc.edu</a>
-        </dd>
-      </dl>
-    </div>
-  </article>
-  <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
-    <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt=""
-                                                                                                     itemprop="image"
-                                                                                                     src="/admissions/contact-admissions/Admissions.LoraMiller.jpg">
-    </figure>
-    <div class="content"><h1 class="no-margin title"><span itemprop="name">Lora Miller</span></h1>
-      <p class="sub-title" itemprop="jobTitle">Assistant Director</p>
-      <dl class="meta inline">
-        <dt>Phone:</dt>
-        <dd itemprop="telephone">812.348.7312</dd>
-        <dt>Email:</dt>
-        <dd itemprop="email"><a rel="nofollow" href="mailto:lolmill@iupuc.edu" class="email">lolmill@iupuc.edu</a></dd>
-      </dl>
-    </div>
-  </article>
-</div>
-
-<!-- https://www.iupuc.edu/admissions/contact-admissions/index.html -->
+<!-- see example here : https://www.iupuc.edu/admissions/contact-admissions/index.html -->

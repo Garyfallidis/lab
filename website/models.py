@@ -9,6 +9,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.text import slugify
+from django.core.validators import RegexValidator
 
 import markdown
 import bleach
@@ -77,19 +78,25 @@ class WebsiteSection(models.Model):
         return self.title
 
 
-class NewsPost(models.Model):
+class EventPost(models.Model):
     title = models.CharField(max_length=200)
     body_markdown = models.TextField()
     body_html = models.TextField(editable=False)
     description = models.CharField(max_length=140)
-    post_date = models.DateTimeField(default=timezone.now)
+    start_date = models.DateTimeField(default=timezone.now)
+    end_date = models.DateTimeField(default=timezone.now()+timezone.timedelta(hours=1))
+
+    slug = models.SlugField(max_length=150, unique=True)
+    full_day = models.BooleanField(default=False, editable=False)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(editable=False, auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        html_content = markdown.markdown(self.body_markdown,
-                                         extensions=['codehilite'])
-        print(html_content)
+        html_content = markdown.markdown(self.body_markdown, extensions=['codehilite'])
+        date = datetime.date.today()
+        self.slug = '%i/%i/%i/%s' % (date.year, date.month, date.day, slugify(self.title))
+
+        full_day = True if self.end_date - self.start_date > timezone.timedelta(hours=6) else False
         # bleach is used to filter html tags like <script> for security
         self.body_html = bleach.clean(html_content, allowed_html_tags,
                                       allowed_attrs)
@@ -99,10 +106,14 @@ class NewsPost(models.Model):
         cache.clear()
 
         # Call the "real" save() method.
-        super(NewsPost, self).save(*args, **kwargs)
+        super(EventPost, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return "/event/%i/" % self.slug
 
 
 class Publication(models.Model):
@@ -202,8 +213,11 @@ class Profile(models.Model):
     Model for storing more information about user
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    job_title = models.CharField(max_length=100, blank=True, null=True,)
     avatar_img = models.ImageField(upload_to='avatar_images/', blank=True, null=True)
-    contact_number = models.CharField(max_length=15, blank=True, null=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+                                 message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",)
+    contact_number = models.CharField(validators=[phone_regex], blank=True, null=True, max_length=15) # validators should be a list
 
     contact_url = models.URLField(blank=True, null=True)
     description = models.TextField(null=True, blank=True)

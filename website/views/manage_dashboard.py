@@ -5,8 +5,8 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 
 from .tools import github_permission_required
-from website.forms import AddEditNewsPostForm, AddEditBlogPostForm, AddEditPublicationForm, AddEditCourseForm
-from website.models import NewsPost, BlogPost, Publication, Course
+from website.forms import AddEditEventPostForm, AddEditBlogPostForm, AddEditPublicationForm, AddEditCourseForm
+from website.models import EventPost, BlogPost, Publication, Course
 
 
 @login_required
@@ -27,6 +27,25 @@ def dashboard_blog(request):
     form = AddEditBlogPostForm()
     context['form'] = form
     return render(request, 'website/dashboard_blog.html', context)
+
+@login_required
+@github_permission_required
+def dashboard_events(request):
+    all_event_post = EventPost.objects.all()
+    context = {'all_event_post': all_event_post}
+    if request.method == 'POST':
+        submitted_form = AddEditEventPostForm(request.POST)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect(reverse('dashboard_events'))
+        else:
+            context['form'] = submitted_form
+            return render(request, 'website/dashboard_events.html', context)
+
+
+    form = AddEditEventPostForm()
+    context['form'] = form
+    return render(request, 'website/dashboard_events.html', context)
 
 
 @login_required
@@ -139,6 +158,10 @@ def get_current_model_and_form(model_name):
         container['model'] = Course
         container['form'] = AddEditCourseForm
         container['reverse'] = 'dashboard_course'
+    if model_name.lower() == 'event':
+        container['model'] = EventPost
+        container['form'] = AddEditEventPostForm
+        container['reverse'] = 'dashboard_events'
 
     return container
 

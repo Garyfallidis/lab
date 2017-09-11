@@ -53,22 +53,18 @@ def blog_post(request, slug):
 
 
 def events_page(request):
-    context = {
+    all_events = EventPost.objects.all()
+    context = {'all_events': all_events,
                'meta': get_meta_tags_dict(),
                }
-    return render(request, 'website/blog_post.html', context)
+    return render(request, 'website/events.html', context)
 
-# def news_page(request, news_id):
-#     try:
-#         news_post = NewsPost.objects.get(id=news_id)
-#     except ObjectDoesNotExist:
-#         raise Http404("News Post does not exist")
-#     meta_title = "DIPY - %s" % (news_post.title,)
-#     context = {'news_post': news_post,
-#                'meta': get_meta_tags_dict(title=meta_title,
-#                                           description=news_post.description),
-#                }
-#     return render(request, 'website/news.html', context)
+
+def event_post(request, slug):
+    context = {'event_post': EventPost.objects.get(slug=slug),
+               'meta': get_meta_tags_dict(),
+               }
+    return render(request, 'website/event_post.html', context)
 
 
 def research(request):
@@ -101,7 +97,10 @@ def people(request):
 
 def people_profile(request, username):
     user = User.objects.get(username=username)
+    my_blog_posts = BlogPost.objects.filter(authors=user)
+    print(my_blog_posts)
     context = {'profile': Profile.objects.get(user=user),
+               'my_blog_posts': my_blog_posts,
                'meta': get_meta_tags_dict(),
                }
     return render(request, 'website/people_profile.html', context)
