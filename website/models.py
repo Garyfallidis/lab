@@ -207,11 +207,17 @@ class CarouselImage(models.Model):
         return self.image_url
 
 
-
 class Profile(models.Model):
     """
     Model for storing more information about user
     """
+    STATUS_CHOICE = (
+        (1, 'Current Team'),
+        (2, 'Current Students'),
+        (3, 'Collaborators'),
+        (4, 'Visitors'),
+        (5, 'Old Members'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=100, blank=True, null=True,)
     avatar_img = models.ImageField(upload_to='avatar_images/', blank=True, null=True)
@@ -221,10 +227,10 @@ class Profile(models.Model):
 
     contact_url = models.URLField(blank=True, null=True)
     description = models.TextField(null=True, blank=True)
+    status = models.CharField(max_length=1, default=1, choices=STATUS_CHOICE)
 
     profile_page_markdown = models.TextField(null=True, blank=True)
     profile_page_html = models.TextField(null=True, blank=True, editable=False)
-
 
     def avatar_url(self):
         """
@@ -239,7 +245,6 @@ class Profile(models.Model):
         else:
             return os.path.join(settings.STATIC_URL, 'images', 'user-1633250_640.png')
 
-
     def save(self, *args, **kwargs):
         html_content = markdown.markdown(self.profile_page_markdown,
                                          extensions=['codehilite'])
@@ -253,7 +258,7 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.full_name
+        return self.user.get_full_name()
 
 
 @receiver(post_save, sender=User)

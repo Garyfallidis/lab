@@ -1,120 +1,75 @@
 {% extends "website/dashboard_template.html" %}
 
 
-{% block dashboard_content_body %}
+{% block content_body %}
+<div class="bg-none section" id="content">
+    <div class="row">
+            <div class="grid halves">
 
-<form>
-    <!-- Add/remove a class of .fieldset to show/hide fieldset border -->
-    <fieldset class="fieldset">
-        <!-- Add/remove a class of .show-for-sr to show/hide the legend element -->
-        <!-- <legend class="show-for-sr">Instructions for the Form</legend> -->
-        <legend>Instructions for the Form</legend>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.</p>
-        <h3>Form Element</h3>
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'edit_profile' %}">
+                            <h2 class="title">Profile</h2>
+                        </a>
+                    </div>
 
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui.</p>
+                </div>
 
-        <div class="form-item">
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_publications' %}">
+                            <h2 class="title">Publications</h2>
+                        </a>
+                    </div>
 
-            <div class="form-item-label">
-                <label for="text-input">Sample text input:</label>
+                </div>
+
+                             <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_courses' %}">
+                            <h2 class="title">Courses</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_blog' %}">
+                            <h2 class="title">Blog</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                             <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_events' %}">
+                            <h2 class="title">Events</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_team' %}">
+                            <h2 class="title">Team</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_logout' %}">
+                            <h2 class="title">Logout</h2>
+                        </a>
+                    </div>
+
+                </div>
             </div>
-
-            <div class="form-item-input">
-                <input type="text" name="text-input" id="text-input">
-            </div>
-
-        </div>
-
-
-        <div class="form-item">
-
-            <div class="form-item-label">
-                <label for="textarea-one">Sample textarea:</label>
-            </div>
-
-            <div class="form-item-input">
-                <textarea id="textarea-one" name="comment" rows="10"></textarea>
-            </div>
-
-        </div>
-
-        <div class="form-item">
-
-            <div class="form-item-label">
-                <label for="select-item-one">Select an option:</label>
-            </div>
-
-            <div class="form-item-input">
-                <select name="select-item-one" id="select-item-one">
-                    <option selected="" value="item-1">Item 1</option>
-                    <option value="item-2">Item 2</option>
-                    <option value="item-3">Item 3</option>
-                    <option value="item-4">Item 4</option>
-                    <option value="item-5">Item 5</option>
-                    <option value="item-6">Item 6</option>
-                    <option value="item-7">Item 7</option>
-                    <option value="item-8">Item 8</option>
-                </select>
-            </div>
-
-        </div>
-
-        <div class="form-item">
-
-            <fieldset class="bare">
-            <legend class="label">Choose your favorite:</legend>
-
-            <div class="form-item-input">
-                <input type="radio" name="color" value="Red" id="colorRed"><label for="colorRed">Red</label>
-                <input type="radio" name="color" value="Blue" id="colorBlue"><label for="colorBlue">Blue</label>
-            </div>
-            </fieldset>
-
-        </div>
-
-
-        <div class="form-item">
-
-            <div class="form-item-label">
-                <h4 class="label">Check these out:</h4>
-            </div>
-
-            <div class="form-item-input">
-                <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-                <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-            </div>
-
-        </div>
-
-
-        <div class="form-item">
-
-            <div class="form-item-label">
-                <label for="password">Sample password input:</label>
-            </div>
-
-            <div class="form-item-input">
-                <input type="password" name="password" id="password">
-            </div>
-
-        </div>
-
-
-        <div class="form-item">
-
-            <div class="form-item-label">
-              <label for="file-upload">Upload your file:</label>
-            </div>
-
-            <div class="form-item-input">
-                <input type="file" name="file-upload" id="file-upload" />
-            </div>
-
-        </div>
-
-        <p><input class="button" type="submit" value="Submit" /></p>
-    </fieldset>
-</form>
+    </div><!-- /.layout --></div>
+</div>
 
 {% endblock %}

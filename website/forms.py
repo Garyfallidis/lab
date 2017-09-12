@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, CharField, Form, ChoiceField
 from .models import *
 
 
@@ -61,3 +61,18 @@ class EditProfileForm(ModelForm):
         model = Profile
         fields = ['job_title', 'avatar_img', 'contact_number', 'contact_url', 'description',
                   'profile_page_markdown']
+
+
+class TeamForm(Form):
+    def __init__(self, *args, **kwargs):
+        team = kwargs.pop('team')
+        super(TeamForm, self).__init__(*args, **kwargs)
+        for counter, profile in enumerate(team):
+            self.fields['status-' + str(profile.user.username)] = ChoiceField(label=profile.user.username,
+                                                                              choices=profile.STATUS_CHOICE,
+                                                                              initial=profile.status)
+
+    def get_new_status(self):
+        for name, value in self.cleaned_data.items():
+            if name.startswith('status-'):
+                yield (self.fields[name].label, value)

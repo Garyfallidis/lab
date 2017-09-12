@@ -86,6 +86,9 @@ urlpatterns = [
     # Profile Management
     url(r'^dashboard/profile/$', views.edit_profile, name='edit_profile'),
 
+    # Team Management
+    url(r'^dashboard/team/$', views.dashboard_team, name='dashboard_team'),
+
     # logout url
     url(r'^dashboard/logout/$', logout,
         {'next_page': reverse_lazy('index')}, name='dashboard_logout')

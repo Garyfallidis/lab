@@ -5,8 +5,9 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 
 from .tools import github_permission_required
-from website.forms import AddEditEventPostForm, AddEditBlogPostForm, AddEditPublicationForm, AddEditCourseForm
-from website.models import EventPost, BlogPost, Publication, Course
+from website.forms import AddEditEventPostForm, AddEditBlogPostForm, AddEditPublicationForm, AddEditCourseForm,\
+    TeamForm
+from website.models import EventPost, BlogPost, Publication, Course, Profile, User
 
 
 @login_required
@@ -142,6 +143,29 @@ def dashboard_courses(request):
     form = AddEditCourseForm()
     context['form'] = form
     return render(request, 'website/dashboard_courses.html', context)
+
+
+@login_required
+@github_permission_required
+def dashboard_team(request):
+    all_profile = Profile.objects.all()
+    context = {}
+    if request.method == 'POST':
+        submitted_form = TeamForm(request.POST, team=all_profile)
+        if submitted_form.is_valid():
+            for (username, status) in submitted_form.get_new_status():
+                user = User.objects.get(username=username)
+                p = Profile.objects.get(user=user)
+                p.status = status
+                p.save()
+            return redirect(reverse('dashboard_team'))
+        else:
+            context['form'] = submitted_form
+            return render(request, 'website/dashboard_team.html', context)
+
+    form = TeamForm(team=all_profile)
+    context['form'] = form
+    return render(request, 'website/dashboard_team.html', context)
 
 
 def get_current_model_and_form(model_name):
