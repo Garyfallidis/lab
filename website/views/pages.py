@@ -10,15 +10,15 @@ from website.models import *
 
 def index(request):
     context = {}
-    all_carousel = CarouselImage.objects.filter()
     latest_blog_posts = get_latest_blog_posts(5)
-    latest_news_posts = get_latest_news_posts(5)
-    highlighted_publications = Publication.objects.filter(is_highlighted=True)
+    # all_carousel = CarouselImage.objects.filter()
+    # latest_news_posts = get_latest_news_posts(5)
+    # highlighted_publications = Publication.objects.filter(is_highlighted=True)
 
-    context['all_carousel'] = all_carousel
     context['latest_blog_posts'] = latest_blog_posts
-    context['latest_news_posts'] = latest_news_posts
-    context['highlighted_publications'] = highlighted_publications
+    # context['all_carousel'] = all_carousel
+    # context['latest_news_posts'] = latest_news_posts
+    # context['highlighted_publications'] = highlighted_publications
     context['meta'] = get_meta_tags_dict()
     return render(request, 'website/index.html', context)
 
@@ -98,7 +98,6 @@ def people(request):
 def people_profile(request, username):
     user = User.objects.get(username=username)
     my_blog_posts = BlogPost.objects.filter(authors=user)
-    print(my_blog_posts)
     context = {'profile': Profile.objects.get(user=user),
                'my_blog_posts': my_blog_posts,
                'meta': get_meta_tags_dict(),

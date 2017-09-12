@@ -1,7 +1,23 @@
 {% extends "website/base_template.html" %}
 {% load staticfiles %}
-{% load customfilters %}
 
+{% block banner %}
+
+<div class="section banner bg-video loaded video-loaded" id="banner" style="background-image: none;">
+    <div class="bg-image-cover" style="background-image: url('../images/banners/research-1216.jpg');"></div>
+    <div class="bg-video-viewport loaded" data-height="600" data-mp4="{% static 'videos/QuickBundles_at_work.mp4' %}"
+         data-webm="../videos/webm/research-1216.webm" data-width="1800">
+        <video autoplay="autoplay" loop="loop" preload="preload" width="1800" height="600">
+            <source type="video/webm" src="../videos/webm/research-1216.webm">
+            <source type="video/mp4" src="{% static 'videos/QuickBundles_at_work.mp4' %}">
+        </video>
+    </div>
+    <div class="play-controls via-js">
+        <div class="row pad"><a class="icon-pause" href="#">Pause Video 1</a></div>
+    </div>
+</div>
+
+{% endblock %}
 
 {% block content_body %}
 

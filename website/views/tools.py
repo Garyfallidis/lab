@@ -131,7 +131,7 @@ def get_google_plus_activity(user_id, count):
     if 'error' not in json_response:
         return json_response['items']
     else:
-        print(json_response)
+        # print(json_response)
         return {}
 
 

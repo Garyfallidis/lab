@@ -39,7 +39,7 @@ class AddEditPublicationForm(ModelForm):
 class AddEditCourseForm(ModelForm):
     class Meta:
         model = Course
-        fields = ['title', 'acronym', 'level', 'prerequisite', 'description',
+        fields = ['title', 'acronym', 'level', 'semester', 'prerequisite', 'description',
                   'syllabus']
 
 
