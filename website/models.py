@@ -244,7 +244,7 @@ class Profile(models.Model):
         if self.avatar_img and hasattr(self.avatar_img, 'url'):
             return self.avatar_img.url
         else:
-            return os.path.join(settings.STATIC_URL, 'images', 'user-1633250_640.png')
+            return "{0}{1}/{2}".format(settings.STATIC_URL, 'images', 'user-1633250_640.png')
 
     def save(self, *args, **kwargs):
         html_content = markdown.markdown(self.profile_page_markdown,
@@ -301,3 +301,48 @@ class BlogPost(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return "/blog/%i/" % self.slug
+
+
+class Research(models.Model):
+    """
+    Model for storing new research activity
+    """
+    title = models.CharField(max_length=100)
+    position = models.PositiveSmallIntegerField(default=0, unique=True)
+    show_in_page = models.BooleanField(default=True)
+    background_img = models.ImageField(upload_to='research_images/', blank=True, null=True)
+    default_static_background_img_name = models.CharField(max_length=200, blank=True, null=True)
+
+    description_page_markdown = models.TextField(null=True, blank=True)
+    description_page_html = models.TextField(null=True, blank=True, editable=False)
+
+    def tag(self):
+        """ Returns website tag for internal cross reference"""
+        return "_".join(self.title.lower().split())
+
+    def background_url(self):
+        """
+        Returns the URL of the image associated with this Object.
+        If an image hasn't been uploaded yet, it returns a stock image
+
+        :returns: str -- the image url
+
+        """
+        if self.background_img and hasattr(self.background_img, 'url'):
+            return self.background_img.url
+        else:
+            return "{0}{1}/{2}".format(settings.STATIC_URL, 'images', self.default_static_background_img_name)
+
+    def save(self, *args, **kwargs):
+        html_content = markdown.markdown(self.description_page_markdown, extensions=['codehilite'])
+        # bleach is used to filter html tags like <script> for security
+        self.description_page_html = bleach.clean(html_content, allowed_html_tags, allowed_attrs)
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(Research, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+

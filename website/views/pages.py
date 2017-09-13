@@ -68,7 +68,8 @@ def event_post(request, slug):
 
 
 def research(request):
-    context = {
+    all_research = Research.objects.filter(show_in_page=True).order_by('position')
+    context = {'all_research': all_research,
                'meta': get_meta_tags_dict(title="DIPY - Research"),
                }
     return render(request, 'website/research.html', context)

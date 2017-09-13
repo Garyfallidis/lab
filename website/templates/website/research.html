@@ -35,14 +35,12 @@
     <div class="row">
         <nav itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" data-parent-url="/research/index">
             <ul>
-                <li class=""><a href="{% url 'research' %}#neuroimaging" itemprop="url" class=""><span
-                        itemprop="name">Intelligent Neuroimaging</span></a></li>
-                <li class=""><a href="{% url 'research' %}#visualization" itemprop="url" class=""><span
-                        itemprop="name">Scientific Visualization</span></a></li>
-                <li class=""><a href="{% url 'research' %}#machine_learning" itemprop="url" class=""><span
-                        itemprop="name">Machine Learning</span></a></li>
-                <li class=""><a href="{% url 'research' %}#medical_analytic" itemprop="url" class=""><span
-                        itemprop="name">Medical Analytic</span></a></li>
+                {% for research in all_research %}
+                <li class=""><a href="{% url 'research' %}#{{research.tag}}" itemprop="url" class=""><span
+                        itemprop="name">{{research.title}}</span></a></li>
+                {% endfor %}
+                <li class=""><a href="{% url 'research' %}#funding" itemprop="url" class=""><span
+                        itemprop="name">Funding</span></a></li>
             </ul>
         </nav>
     </div>
@@ -90,13 +88,15 @@
             </div>
         </div><!-- /.layout --></div>
 </div>
-<div class="breakout bg-none bg-image parallax bg-dark section" id="neuroimaging" style="height: 419px;">
+
+{% for research in all_research %}
+<div class="breakout bg-none bg-image parallax bg-dark section" id="{{research.tag}}" style="height: 419px;">
     <div class="bg-image-cover"
-         style="background-image: url({% static 'images/three_brains_golden_new.png' %}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
+         style="background-image: url({{research.background_url}}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
     <div class="row">
         <div class="layout">
             <div class=" two-thirds">
-                <h2>Intelligent Neuroimaging</h2>
+                <h2>{{research.title}}</h2>
             </div>
 
         </div><!-- /.layout --></div>
@@ -104,100 +104,16 @@
 <div class="collapsed bg-gray section">
     <div class="row">
         <div class="layout">
-            <h3 class="section-title">Title </h3>
             <div class="text">
-                <p>I have contributed new methods for nearly every level of diffusion MRI analysis: voxel reconstruction,
-                    fiber tracking, tractography segmentation, and registration of bundles and images.
-                    Recently I have been looking into the problem of statistical analysis of bundles. However,
-                    the areas for which I believe I have contributed the most are those of (a) tractography segmentation
-                    with the invention of QuickBundles [2] and (b) registration of fascicles with the invention of
-                    Streamline-based Linear Registration (SLR) [3]. Finally, I have contributed to making available
-                    cutting-edge methods to the scientific community by creating, developing and managing
-                    the Diffusion Imaging in Python (DIPY) [1] project which has an enthusiastic and
-                    active team of 34+ contributors from different labs around the world.
-                </p>
-                <p>These days I am working on improving the analysis methods of diffusion MRI.
-                    More specifically, working on analyzing the output of fiber tracking algorithms.
-                    Currently, there are some important open problems with fiber tracking:
-                    a) it is difficult to assess the quality of fiber tracking,
-                    b) it is very time consuming for neuroscientists to interact with the output fiber tracks and extract bundles of interest,
-                    c) the analysis procedures for group comparisons are underdeveloped compared to the richness of information available in modern diffusion datasets.
-                    I am confident that these problems can be solved or improved considerably by creating methods that
-                    can automatically or semi-automatically discover bundles and do statistical analysis directly
-                    on these bundles rather than on the entire brain as is mostly used today.
-                    I separate my methodology into two sections; bundle recognition and bundle analytics.
-                </p>
+                {% if research.description_page_html %}
+                    {{research.description_page_html | safe}}
+                {% endif %}
             </div>
         </div><!-- /.layout -->
     </div>
 </div>
-<div class="breakout bg-none bg-image parallax bg-dark section" id="visualization" style="height: 419px;">
-    <div class="bg-image-cover"
-         style="background-image: url({% static 'images/jet_odfs.png' %}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
-    <div class="row">
-        <div class="layout">
-            <div class=" two-thirds">
-                <h2>Scientific Visualization</h2>
-            </div>
 
-        </div><!-- /.layout --></div>
-</div>
-<div class="collapsed bg-gray section">
-    <div class="row">
-        <div class="layout">
-            <h3 class="section-title">One picture is worth than thousand words </h3>
-            <div class="text">
-                <p>We really believe of this citation. It is for this reason we focus on the improvements of
-                    data visualization for researchers, neurologists, doctors and patients.
-                </p>
-            </div>
-        </div><!-- /.layout -->
-    </div>
-</div>
-<div class="breakout bg-none bg-image parallax bg-dark section" id="machine_learning" style="height: 419px;">
-    <div class="bg-image-cover"
-         style="background-image: url({% static 'images/machine-learning.jpeg' %}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
-    <div class="row">
-        <div class="layout">
-            <div class=" two-thirds">
-                <h2>Machine Learning</h2>
-            </div>
+{% endfor %}
 
-        </div><!-- /.layout --></div>
-</div>
-<div class="collapsed bg-gray section">
-    <div class="row">
-        <div class="layout">
-            <h3 class="section-title">Title </h3>
-            <div class="text">
-                <p>We really believe of this citation. It is for this reason we focus on the improvements of
-                    data visualization for researchers, neurologists, doctors and patients.
-                </p>
-            </div>
-        </div><!-- /.layout -->
-    </div>
-</div>
-<div class="breakout bg-none bg-image parallax bg-dark section" id="medical_analytic" style="height: 419px;">
-    <div class="bg-image-cover"
-         style="background-image: url({% static 'images/medical_analytic.jpg' %}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
-    <div class="row">
-        <div class="layout">
-            <div class=" two-thirds">
-                <h2 style="color: #990000;">Medical Analytic</h2>
-            </div>
 
-        </div><!-- /.layout --></div>
-</div>
-<div class="collapsed bg-gray section">
-    <div class="row">
-        <div class="layout">
-            <h3 class="section-title">Title </h3>
-            <div class="text">
-                <p>We really believe of this citation. It is for this reason we focus on the improvements of
-                    data visualization for researchers, neurologists, doctors and patients.
-                </p>
-            </div>
-        </div><!-- /.layout -->
-    </div>
-</div>
 {% endblock %}

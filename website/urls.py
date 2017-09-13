@@ -70,6 +70,9 @@ urlpatterns = [
     # Teaching Management
     url(r'^dashboard/courses/$', views.dashboard_courses, name='dashboard_courses'),
 
+    # Teaching Management
+    url(r'^dashboard/research/$', views.dashboard_research, name='dashboard_research'),
+
     # Events Management
     url(r'^dashboard/events/$', views.dashboard_events, name='dashboard_events'),
 

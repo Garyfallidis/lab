@@ -6,8 +6,8 @@ from django.shortcuts import render, redirect
 
 from .tools import github_permission_required
 from website.forms import AddEditEventPostForm, AddEditBlogPostForm, AddEditPublicationForm, AddEditCourseForm,\
-    TeamForm
-from website.models import EventPost, BlogPost, Publication, Course, Profile, User
+    TeamForm, AddEditResearchForm
+from website.models import EventPost, BlogPost, Publication, Course, Profile, User, Research
 
 
 @login_required
@@ -147,6 +147,26 @@ def dashboard_courses(request):
 
 @login_required
 @github_permission_required
+def dashboard_research(request):
+    all_research = Research.objects.all()
+    context = {'all_research': all_research}
+    if request.method == 'POST':
+        submitted_form = AddEditResearchForm(request.POST)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect(reverse('dashboard_research'))
+        else:
+            context['form'] = submitted_form
+            return render(request, 'website/dashboard_research.html', context)
+
+
+    form = AddEditResearchForm()
+    context['form'] = form
+    return render(request, 'website/dashboard_research.html', context)
+
+
+@login_required
+@github_permission_required
 def dashboard_team(request):
     all_profile = Profile.objects.all()
     context = {}
@@ -186,6 +206,10 @@ def get_current_model_and_form(model_name):
         container['model'] = EventPost
         container['form'] = AddEditEventPostForm
         container['reverse'] = 'dashboard_events'
+    if model_name.lower() == 'research':
+        container['model'] = Research
+        container['form'] = AddEditResearchForm
+        container['reverse'] = 'dashboard_research'
 
     return container
 

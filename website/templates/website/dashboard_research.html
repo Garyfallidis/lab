@@ -1,0 +1,80 @@
+{% extends "website/dashboard_template.html" %}
+
+
+{% block dashboard_content_body %}
+
+<div class="panel">
+    <a href="#" class="show-hide"><h2 class="title">Add Research Section</h2></a>
+    <div class="form-container" style="display: none;">
+        {% if form%}
+        <form action="." method="post">
+            {% csrf_token %}
+            <fieldset class="fieldset">
+                <legend>Research Section</legend>
+                {% for field in form %}
+
+                <div class="form-item">
+
+                    <div class="form-item-label">
+                        {{ field.label_tag }}
+                    </div>
+
+                    <div class="form-item-input">
+                        {{ field }}
+                    </div>
+
+                </div>
+                {% endfor %}
+                <p><input class="button" type="submit" value="Submit"></p>
+            </fieldset>
+        </form>
+        {% endif %}
+    </div>
+</div>
+<div class="panel">
+    <h2 class="title">Edit Research Section</h2>
+	{% if all_research %}
+		{% for research in all_research %}
+            <hr>
+	        <h5>{{research.title}}</h5>
+            <p>Position : {{research.position}}</p>
+	<div class="grid halves">
+		<div class="grid-item">
+			<a href="{% url 'edit_page' model_name='research' model_id=research.id %}" class="left-separator ">Edit</a>
+			<a href="{% url 'delete_page' model_name='research' model_id=research.id %}" class="left-separator ResearchDeleteLink">Delete</a>
+		</div>
+	</div>
+
+	{% endfor %}
+	{% endif %}
+</div>
+
+
+{% endblock %}
+
+{% block extra_js_bottom %}
+<!-- Script to show confirmation box before deleting -->
+<script>
+	$( ".ResearchDeleteLink" ).click(function( event ) {
+		event.preventDefault();
+		var r = confirm("Are you sure you want to delete this section?");
+		if (r == true) {
+			window.location.href = $(this).attr('href');
+		}
+	});
+</script>
+<script>
+        $(".panel .show-hide").each(function() {
+            var $this = $(this);
+            var $code = $this.next('.form-container');
+
+            $code.hide();
+
+            $this.on('click', function(e) {
+                e.preventDefault();
+                $code.slideToggle();
+
+            });
+        });
+        </script>
+{% endblock %}

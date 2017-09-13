@@ -46,8 +46,12 @@ class AddEditCourseForm(ModelForm):
 class AddEditCarouselImageForm(ModelForm):
     class Meta:
         model = CarouselImage
-        fields = ['image_url', 'image_caption',
-                  'image_description', 'target_url']
+        fields = ['image_url', 'image_caption', 'image_description', 'target_url']
+
+class AddEditResearchForm(ModelForm):
+    class Meta:
+        model = Research
+        fields = ['title', 'position', 'show_in_page', 'background_img', 'description_page_markdown']
 
 
 class UserForm(ModelForm):
