@@ -1,4 +1,13 @@
 {% extends "website/base_template.html" %}
+{% load staticfiles %}
+
+{% block banner %}
+
+<section id="banner" class="banner image">
+    <img src="{% static "images/team.jpg" %}" alt="Placeholder" />
+    <a href="#" class="button" title="Read the story">Read the story</a>
+</section>
+{% endblock %}
 
 {% block content_body %}
 <!-- Content -->

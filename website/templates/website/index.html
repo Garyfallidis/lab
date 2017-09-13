@@ -3,6 +3,15 @@
 
 {% block banner %}
 
+<section id="banner" class="banner image">
+    <img src="{% static "images/lab_banner.jpg" %}" alt="Placeholder" />
+    <a href="#" class="button" title="Read the story">Read the story</a>
+</section>
+
+<!--<section id="banner" class="section bg-image text-overlay">
+  <div class="bg-image-cover" style="background: url('{% static "images/66_custom.jpg" %}');"></div>
+</section>
+
 <div class="section banner bg-video loaded video-loaded" id="banner" style="background-image: none;">
     <div class="bg-image-cover" style="background-image: url('../images/banners/research-1216.jpg');"></div>
     <div class="bg-video-viewport loaded" data-height="600" data-mp4="{% static 'videos/QuickBundles_at_work.mp4' %}"
@@ -15,36 +24,105 @@
     <div class="play-controls via-js">
         <div class="row pad"><a class="icon-pause" href="#">Pause Video 1</a></div>
     </div>
-</div>
+</div>-->
 
 {% endblock %}
 
 {% block content_body %}
 
-<ul class="accordion" data-accordion role="tablist">
-
-    <li class="accordion-item is-active">
-        <!-- The tab title needs role="tab", an href, a unique ID, and aria-controls. -->
-        <a href="#panel-1-1" role="tab" class="accordion-title" id="panel-1-1-heading" aria-controls="panel-1-1">Accordion Panel One</a>
-        <!-- The content pane needs an ID that matches the above href, role="tabpanel", data-tab-content, and aria-labelledby. -->
-        <div id="panel-1-1" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel-1-1-heading">
-            <p>Panel one content goes here: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra sodales nulla, eu consequat quam fringilla sed. Suspendisse potenti. Nam ac condimentum mi. Quisque enim arcu, dapibus nec congue nec, luctus non est.</p>
+<div class="breakout title-centered bg-crimson bg-dark section" id="">
+    <a href="https://github.com/nipy/dipy"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+    <a href="https://github.com/nipy/dipy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+    <div class="row">
+        <div class="layout">
+            <a href="http://dipy.org"><h2 class="section-title">Software : <b style="color: darkorange;">DIPY</b> - <b style="color: darkorange;">D</b>iffusion <b style="color: darkorange;">I</b>maging in <b style="color: darkorange;">PY</b>thon</h2></a>
+            <div class="one-half">
+                <div class=" grid halves">
+                    <div class="grid-item" style="height: 50px;">
+                        <div class="panel stat"><p class="stat--info"><span class="stat--number">62</span><span
+                                class="stat--text">Contributors</span>
+                        </p></div>
+                    </div>
+                    <div class="grid-item" style="height: 50px;">
+                        <div class="panel stat"><p class="stat--info"><span class="stat--number">15</span><span
+                                class="stat--text"> international university contribute</span></p></div>
+                    </div>
+                    <div class="grid-item" style="height: 50px;">
+                        <div class="panel stat"><p class="stat--info"><span class="stat--number">1,594</span><span
+                                class="stat--text">Awesome stuff</span></p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="one-half">
+                <figure class="media video ">
+                    <div class="flex-video widescreen">
+                        <iframe allowfullscreen="allowfullscreen" content="https://www.youtube.com/embed/kstL7KKqu94"
+                                frameborder="0" height="100%" itemprop="embedUrl"
+                                src="https://www.youtube.com/embed/kstL7KKqu94" width="100%"></iframe>
+                    </div>
+                </figure>
+            </div>
         </div>
-    </li>
+    </div>
+</div>
 
-    <li class="accordion-item">
-        <a href="#panel-1-2" role="tab" class="accordion-title" id="panel-1-2-heading" aria-controls="panel-1-2">Accordion Panel Two</a>
-        <div id="panel-1-2" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel-1-2-heading">
-            <p>Panele two content goes here: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra sodales nulla, eu consequat quam fringilla sed. Suspendisse potenti. Nam ac condimentum mi. Quisque enim arcu, dapibus nec congue nec, luctus non est.</p>
+<div class="bg-mahogany bg-dark extra-space bg-none section" id="">
+    <div class="row">
+        <h2 class="text-center">Publications</h2>
+        <div class="row">
+            <div class="grid fourths">
+                <div class="grid-item"><img alt="Neuroimage journal" src="{% static "images/journal_neuroimage.jpg"%}">
+                </div>
+                <div class="grid-item"><img alt="IEEE transaction medical imaging journal" src="{% static "images/journal_ieee_tmi.jpg"%}">
+                </div>
+                <div class="grid-item"><img alt="Nature communication journal" src="{% static "images/journal_Nature-Communications.jpg"%}">
+                </div>
+                <div class="grid-item"><img alt="archives of general psychiatry journal" src="{% static "images/journal_archives_of_general_psychiatry.jpg" %}">
+                </div>
+                <div class="grid-item"><img alt="pattern recognition letters journal" src="{% static "images/journal_pattern_recognition_letters.gif" %}">
+                </div>
+                <div class="grid-item"><img alt="frontiers in neuroinformatics journal" src="{% static "images/journal_frontiers_in_neuroinformatics.jpeg" %}">
+                </div>
+            </div>
         </div>
-    </li>
+    </div>
+</div>
 
-    <li class="accordion-item">
-        <a href="#panel-1-3" role="tab" class="accordion-title" id="panel-1-3-heading" aria-controls="panel-1-3">Accordion Panel Three</a>
-        <div id="panel-1-3" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel-1-3-heading">
-            <p>Panel three content goes here: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra sodales nulla, eu consequat quam fringilla sed. Suspendisse potenti. Nam ac condimentum mi. Quisque enim arcu, dapibus nec congue nec, luctus non est.</p>
+
+<div class="bg-gray section" id="">
+        <div class="grid thirds full-width">
+        <div class="grid-item">
+            <h1 class="title">BLOG</h1>
+            <div class="panel">
+                <ul class="feed">
+                    {% for blog_post in all_blog_posts %}
+                    <li class="feed-item news">
+                        <div class="content">
+                            <h2 class="title"><a href="{% url 'blog_post' slug=blog_post.slug %}"> {{ blog_post.title }}</a></h2>
+                            <p class="meta date">{{ blog_post.posted }}</p>
+                            <p>{{ blog_post.body_html | truncatechars_html:400 | safe }}</p>
+                            <!-- {% if blog_post.authors %}
+                            <p class="blog_post_author">{{ blog_post.authors }}</p>
+                            {% endif %} -->
+                            <p><a href="{% url 'blog_post' slug=blog_post.slug %}"><span class="blog_readmore">continue reading...</span></a>
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-    </li>
-</ul><!-- /.accordion -->
+        <div class="grid-item">
+            <div class="fb-page fb_iframe_widget" data-adapt-container-width="true" data-height="600" data-hide-cover="false" data-href="https://www.facebook.com/IndianaUniversity" data-show-facepile="false" data-small-header="false" data-tabs="timeline" data-width="500" fb-xfbml-state="rendered" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=360&amp;height=600&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FIndianaUniversity&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=false&amp;small_header=false&amp;tabs=timeline&amp;width=500"><span style="vertical-align: bottom; width: 360px; height: 600px;"><iframe name="fbc9aeaee8adac" width="500px" height="600px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:page Facebook Social Plugin" src="https://www.facebook.com/v2.5/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F0sTQzbapM8j.js%3Fversion%3D42%23cb%3Df1c1a80d5cdc1a4%26domain%3Dstyleguide.iu.edu%26origin%3Dhttps%253A%252F%252Fstyleguide.iu.edu%252Ff1d493a0286107c%26relation%3Dparent.parent&amp;container_width=360&amp;height=600&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FIndianaUniversity&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=false&amp;small_header=false&amp;tabs=timeline&amp;width=500" style="border: none; visibility: visible; width: 360px; height: 600px;" class=""></iframe></span></div>
+        </div>
+        <div class="grid-item">
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 520px; height: 600px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 200px;" data-widget-id="604370705992523776" title="Twitter Timeline"></iframe>
+        </div>
+        </div>
+</div>
+
+
+
 {% endblock %}
 
+<!--<a href="http://www.freepik.com/free-vector/science-template_1081078.htm">Designed by Freepik</a>-->
