@@ -54,6 +54,11 @@ class AddEditResearchForm(ModelForm):
         fields = ['title', 'position', 'show_in_page', 'background_img', 'description_page_markdown']
 
 
+class AddEditJournalForm(ModelForm):
+    class Meta:
+        model = JournalImage
+        fields = ['title', 'cover', 'caption', 'link_url', 'display']
+
 class UserForm(ModelForm):
     class Meta:
         model = User

@@ -2,6 +2,52 @@
 
 
 {% block dashboard_content_body %}
+<div class="panel">
+    <a href="#" class="show-hide"><h2 class="title">Add Journal</h2></a>
+    <div class="form-container" style="display: none;">
+        {% if journal_form %}
+        <form action="." method="post">
+            {% csrf_token %}
+            <fieldset class="fieldset">
+                <legend>Journal</legend>
+                {% for field in journal_form %}
+
+                <div class="form-item">
+
+                    <div class="form-item-label">
+                        {{ field.label_tag }}
+                    </div>
+
+                    <div class="form-item-input">
+                        {{ field }}
+                    </div>
+
+                </div>
+                {% endfor %}
+                <p><input class="button" name="journal" type="submit" value="Submit"></p>
+            </fieldset>
+        </form>
+        {% endif %}
+    </div>
+</div>
+<div class="panel">
+    <h2 class="title">Edit Journal</h2>
+	{% if all_journal %}
+		{% for journal in all_journal %}
+            <hr>
+	        <h5>{{journal.title}}</h5>
+            <p>{{journal.caption}}</p>
+			<p>Show in page : {{journal.display}}</p>
+	<div class="grid halves">
+		<div class="grid-item">
+			<a href="{% url 'edit_page' model_name='journal' model_id=journal.id %}" class="left-separator ">Edit</a>
+			<a href="{% url 'delete_page' model_name='journal' model_id=journal.id %}" class="left-separator DeleteLink">Delete</a>
+		</div>
+	</div>
+
+	{% endfor %}
+	{% endif %}
+</div>
 
 <div class="panel">
     <h2 class="title">Add Publication</h2>
@@ -63,7 +109,7 @@
 	<div class="grid halves">
 		<div class="grid-item">
 			<a href="{% url 'edit_page' model_name='publication' model_id=publication.id %}" class="left-separator ">Edit</a>
-			<a href="{% url 'delete_page' model_name='publication' model_id=publication.id %}" class="left-separator publicationDeleteLink">Delete</a>
+			<a href="{% url 'delete_page' model_name='publication' model_id=publication.id %}" class="left-separator DeleteLink">Delete</a>
 		</div>
 	</div>
 	<hr>
@@ -77,9 +123,9 @@
 {% block extra_js_bottom %}
 <!-- Script to show confirmation box before deleting -->
 <script>
-	$( ".publicationDeleteLink" ).click(function( event ) {
+	$( ".DeleteLink" ).click(function( event ) {
 		event.preventDefault();
-		var r = confirm("Are you sure you want to delete the publication?");
+		var r = confirm("Are you sure you want to delete this Publication / Journal?");
 		if (r == true) {
 			window.location.href = $(this).attr('href');
 		}
@@ -99,6 +145,18 @@
                     $code.hide();
                     $code.html($current_html);
                 }
+                $code.slideToggle();
+
+            });
+        });
+		$(".panel .show-hide").each(function() {
+            var $this = $(this);
+            var $code = $this.next('.form-container');
+
+            $code.hide();
+
+            $this.on('click', function(e) {
+                e.preventDefault();
                 $code.slideToggle();
 
             });

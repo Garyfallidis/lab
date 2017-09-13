@@ -6,8 +6,8 @@ from django.shortcuts import render, redirect
 
 from .tools import github_permission_required
 from website.forms import AddEditEventPostForm, AddEditBlogPostForm, AddEditPublicationForm, AddEditCourseForm,\
-    TeamForm, AddEditResearchForm
-from website.models import EventPost, BlogPost, Publication, Course, Profile, User, Research
+    TeamForm, AddEditResearchForm, AddEditJournalForm
+from website.models import EventPost, BlogPost, Publication, Course, Profile, User, Research, JournalImage
 
 
 @login_required
@@ -52,9 +52,27 @@ def dashboard_events(request):
 @login_required
 @github_permission_required
 def dashboard_publications(request):
+    all_journal = JournalImage.objects.all()
+    print(all_journal)
     all_publications = Publication.objects.all()
-    context = {'all_publications': all_publications}
+    context = {'all_journal': all_journal,
+               'all_publications': all_publications}
+
     if request.method == 'POST':
+        if 'journal' in request.POST:
+            print('pass here')
+            submitted_form = AddEditJournalForm(request.POST, request.FILES)
+            print(submitted_form)
+            if submitted_form.is_valid():
+                print('valid')
+                submitted_form.save()
+                return redirect(reverse('dashboard_publications'))
+            else:
+                print('not valid')
+                print(submitted_form.errors)
+                context['journal_form'] = submitted_form
+                return render(request, 'website/dashboard_publications.html', context)
+
         if 'manual' in request.POST:
             submitted_form = AddEditPublicationForm(request.POST)
             if submitted_form.is_valid():
@@ -119,8 +137,10 @@ def dashboard_publications(request):
         else:
             raise Http404("Not a valid method for adding publications.")
 
+    journal_form = AddEditJournalForm()
     form = AddEditPublicationForm()
     context['form'] = form
+    context['journal_form'] = journal_form
 
     return render(request, 'website/dashboard_publications.html', context)
 
@@ -210,6 +230,10 @@ def get_current_model_and_form(model_name):
         container['model'] = Research
         container['form'] = AddEditResearchForm
         container['reverse'] = 'dashboard_research'
+    if model_name.lower() == 'journal':
+        container['model'] = JournalImage
+        container['form'] = AddEditJournalForm
+        container['reverse'] = 'dashboard_publication'
 
     return container
 

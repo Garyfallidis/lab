@@ -66,27 +66,21 @@
     </div>
 </div>
 
-<div class="bg-mahogany bg-dark extra-space bg-none section" id="">
+{% if all_journal %}
+<div class="bg-mahogany bg-dark extra-space bg-none section" id="journal">
     <div class="row">
         <h2 class="text-center">Publications</h2>
         <div class="row">
             <div class="grid fourths">
-                <div class="grid-item"><img alt="Neuroimage journal" src="{% static "images/journal_neuroimage.jpg"%}">
+                {% for journal in all_journal%}
+                <div class="grid-item"><img alt="{{journal.title}}" src="{{journal.cover.url}}">
                 </div>
-                <div class="grid-item"><img alt="IEEE transaction medical imaging journal" src="{% static "images/journal_ieee_tmi.jpg"%}">
-                </div>
-                <div class="grid-item"><img alt="Nature communication journal" src="{% static "images/journal_Nature-Communications.jpg"%}">
-                </div>
-                <div class="grid-item"><img alt="archives of general psychiatry journal" src="{% static "images/journal_archives_of_general_psychiatry.jpg" %}">
-                </div>
-                <div class="grid-item"><img alt="pattern recognition letters journal" src="{% static "images/journal_pattern_recognition_letters.gif" %}">
-                </div>
-                <div class="grid-item"><img alt="frontiers in neuroinformatics journal" src="{% static "images/journal_frontiers_in_neuroinformatics.jpeg" %}">
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
+{% endif %}
 
 
 <div class="bg-gray section" id="">

@@ -346,3 +346,23 @@ class Research(models.Model):
     def __str__(self):
         return self.title
 
+
+class JournalImage(models.Model):
+    """
+    Model for storing Journal.
+    """
+    title = models.CharField(max_length=200)
+    cover = models.ImageField(upload_to='journal_images/')
+    caption = models.CharField(max_length=200, blank=True, null=True)
+    link_url = models.URLField(blank=True, null=True)
+    display = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(JournalImage, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.cover.url

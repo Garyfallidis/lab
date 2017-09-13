@@ -9,17 +9,17 @@ from website.models import *
 # Definition of views:
 
 def index(request):
-    context = {}
     latest_blog_posts = get_latest_blog_posts(5)
-    # all_carousel = CarouselImage.objects.filter()
+    all_journal = JournalImage.objects.filter(display=True)
+
+    context = {'latest_blog_posts': latest_blog_posts,
+               'all_journal': all_journal,
+               'meta': get_meta_tags_dict(),
+               }
     # latest_news_posts = get_latest_news_posts(5)
     # highlighted_publications = Publication.objects.filter(is_highlighted=True)
-
-    context['latest_blog_posts'] = latest_blog_posts
-    # context['all_carousel'] = all_carousel
     # context['latest_news_posts'] = latest_news_posts
     # context['highlighted_publications'] = highlighted_publications
-    context['meta'] = get_meta_tags_dict()
     return render(request, 'website/index.html', context)
 
 
