@@ -1,4 +1,4 @@
-from django.forms import ModelForm, CharField, Form, ChoiceField
+from django.forms import ModelForm, ClearableFileInput, Form, ChoiceField
 from .models import *
 
 
@@ -19,7 +19,10 @@ class AddEditPageSectionForm(ModelForm):
 class AddEditBlogPostForm(ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'body', 'authors']
+        fields = ['title', 'body', 'authors', 'show_in_lab_blog', 'show_in_my_blog', 'attachments']
+        widgets = {
+            'attachments': ClearableFileInput(attrs={'multiple': True}),
+        }
 
 
 class AddEditEventPostForm(ModelForm):

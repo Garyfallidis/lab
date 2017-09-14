@@ -12,7 +12,7 @@
     <a href="#" class="show-hide"><h2 class="title">Add Blog Post</h2></a>
     <div class="form-container" style="display: none;">
         {% if form%}
-        <form action="." method="post">
+        <form enctype="multipart/form-data" action="." method="post">
             {% csrf_token %}
             <fieldset class="fieldset">
                 <legend>Blog post</legend>
@@ -59,6 +59,7 @@
 {% endblock %}
 
 {% block extra_js_bottom %}
+
 <!-- Include and call simplemde markdown editor js-->
 <script type="text/javascript" src="{% static 'js/simplemde.min.js' %}"></script>
 <!-- Script to show confirmation box before deleting -->

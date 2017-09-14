@@ -3,29 +3,28 @@
 {% block content_body %}
 
 <!-- Content -->
-<div class="container lab_style_container">
-  <div class="row">
-    <div class="col-md-12 col-lg-12">
-      <div class="full_blog_post_container">
-        <h1 class="blog_post_title">{{ blog_post.title }}</h1>
-        
-        <div class="blog_post_time">{{ blog_post.posted }}</div>
-
-        <div class="blog_post_body">{{ blog_post.body_html | safe }}</div>
-        <hr>
+<div class="extra-space bg-none section" id="content">
+    <div class="row">
+      <h1 class="title">{{ blog_post.title }}</h1>
+      <div class="panel">
+        <p class="meta date">{{ blog_post.posted }}</p>
+        <div class="text">
+          {{ blog_post.body_html | safe }}
+        </div>
+      </div>
+      <hr>
 
         <div class="blog_post_author">
           <p> Author(s) :</p>
-          <p>
           {% for author in blog_post.authors.all %}
-              {{author.user.get_full_name}}
+
+              <figure class="media circle float-left" itemscope="itemscope" itemtype="http://schema.org/ImageObject" style="margin-top: 0px; margin-right: 5px">
+                <img alt="" itemprop="image" width="21" height="21" src="{{author.avatar_url}}">
+              </figure> {{author.user.get_full_name}}
           {% endfor %}
-          </p>
         </div>
 
-      </div>
     </div>
-  </div>
 </div>
 {% endblock %}
 

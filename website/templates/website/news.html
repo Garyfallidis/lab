@@ -26,81 +26,9 @@
             </div>
         </div>
         <!-- Social Media -->
-        <div class="news-event one-third">
-            <h4><i class="icon-twitter"></i> Twitter</h4>
-            <div class="panel">
-                {% for tweet in tweets %}
-                <article class="event item" itemscope="itemscope" itemtype="http://schema.org/Event">
-                    <div class="content">
-                        <p class="meta date">{{ tweet.created_at|slice:":10" }}</p>
-                        <div itemprop="description">
-                            <p>{{ tweet.text|urlize }}</p>
-                        </div>
-                    </div>
-                </article>
-                {% endfor %}
-            </div>
-            <h4><i class="icon-facebook"></i> Facebook</h4>
-            <div class="panel feed">
-                {% for post in fb_posts %}
-                {% if post.message %}
-                <article class="event item" itemscope="itemscope" itemtype="http://schema.org/Event">
-                    <div class="content">
-                        <p class="meta date">{{ post.created_time|slice:":10" }}</p>
-                        <div itemprop="description">
-                            <p>{{ post.message|urlize }}</p>
-                        </div>
-                    </div>
-                </article>
-                {% endif %}
-                {% endfor %}
-            </div>
-            <!-- hide googleplus
-            <h4><i class="icon-googleplus"></i> Google +</h4>
-            <div class="panel">
-                <table class="table">
-                    {% for activity in gplus_feed %}
-                    <tr>
-                        <td class="col-md-3 col-lg-3 col-sm-3"><p>{{activity.published|slice:":10"}}</p></td>
-                        <td class="col-md-9 col-lg-9 col-sm-9">
-                            <a href="{{ activity.url }}" target="_blank"><b>{{ activity.title }}</b></a>
-                            <div class="gplus_content_summary" id="{{ activity.id }}-summary">
-                                {% if activity.object.content == "" %}
-                                <!-- for attachment only posts
-                                {% for attachment in activity.object.attachments %}
-                                <a href="{{ attachment.url }}" target="_blank"><b>{{ attachment.displayName }}</b></a>
-                                {% endfor %}
-                                {% else %}
-                                <p>{{ activity.object.content|truncatechars_html:100|safe }}&emsp;<a
-                                        class="gplus_more_link" data="{{ activity.id }}"
-                                        href="{{ activity.url }}">more</a></p>
-                                {% endif %}
-                            </div>
-                            <div class="gplus_content_body" id="{{ activity.id }}-full">
-                                <div class="gplus_inner_wrapper">
-                                    <a class="gplus_close_link glyphicon glyphicon-remove" data="{{ activity.id }}"
-                                       href="#"></a>
-                                    <div class="clearfix"></div>
-                                    <a href="{{ activity.url }}" target="_blank"><h2>{{ activity.title }}</h2></a>
-                                    <p>{{ activity.object.content|safe }}</p>
-                                    {% for attachment in activity.object.attachments %}
-                                    <div class="gplus_attachments_wrapper">
-                                        <a href="{{ attachment.url }}" target="_blank"><b>{{ attachment.displayName
-                                            }}</b></a>
-                                        <p>{{ attachment.content }}</p>
-                                        {% if attachment.image.url %}
-                                        <img class="gplus_attachment_image" src="{{ attachment.image.url }}">
-                                        {% endif %}
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-
-            </div>-->
+        <div class="one-third">
+            <a class="twitter-timeline" data-width="200" data-height="600" href="https://twitter.com/dipymri">Tweets by dipymri</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdiffusionimaginginpython%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId={{ FACEBOOK_APP_ID }}" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
         </div>
     </div>
 </div>

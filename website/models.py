@@ -279,7 +279,11 @@ class BlogPost(models.Model):
     body = models.TextField()
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
     authors = models.ManyToManyField(Profile)
+    attachments = models.FileField(upload_to='blog_images/', null=True, blank=True, )
+    show_in_lab_blog = models.BooleanField(default=True)
+    show_in_my_blog = models.BooleanField(default=True)
     body_html = models.TextField(null=True, blank=True, editable=False)
+
 
     def save(self, *args, **kwargs):
         date = datetime.date.today()

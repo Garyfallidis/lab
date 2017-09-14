@@ -1,8 +1,6 @@
 import base64
-import os
 import requests
 
-from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
 
@@ -60,7 +58,7 @@ def get_latest_blog_posts(limit):
     ------
     returns a list of BlogPost objects
     """
-    return BlogPost.objects.order_by('-posted')[0:limit]
+    return BlogPost.objects.filter(show_in_lab_blog=True).order_by('-posted')[0:limit]
 
 
 def has_commit_permission(access_token, repository_name):
@@ -131,7 +129,7 @@ def get_google_plus_activity(user_id, count):
     if 'error' not in json_response:
         return json_response['items']
     else:
-        # print(json_response)
+        print(json_response)
         return {}
 
 

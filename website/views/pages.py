@@ -16,10 +16,6 @@ def index(request):
                'all_journal': all_journal,
                'meta': get_meta_tags_dict(),
                }
-    # latest_news_posts = get_latest_news_posts(5)
-    # highlighted_publications = Publication.objects.filter(is_highlighted=True)
-    # context['latest_news_posts'] = latest_news_posts
-    # context['highlighted_publications'] = highlighted_publications
     return render(request, 'website/index.html', context)
 
 
@@ -36,10 +32,7 @@ def page(request, position_id):
 
 
 def news_page(request):
-    context = {'all_blog_posts': BlogPost.objects.all(),
-               'gplus_feed': get_google_plus_activity("107763702707848478173", 4),
-               'fb_posts': get_facebook_page_feed("diffusionimaginginpython", 5),
-               'tweets': get_twitter_feed('dipymri', 5),
+    context = {'all_blog_posts': BlogPost.objects.filter(show_in_lab_blog=True),
                'meta': get_meta_tags_dict(title="DIPY - News - Follow Us"),
                }
     return render(request, 'website/news.html', context)
@@ -100,7 +93,7 @@ def people(request):
 def people_profile(request, username):
     user = User.objects.get(username=username)
     profile = Profile.objects.get(user=user)
-    my_blog_posts = BlogPost.objects.filter(authors=profile)
+    my_blog_posts = BlogPost.objects.filter(authors=profile, show_in_my_blog=True)
     context = {'profile': profile,
                'my_blog_posts': my_blog_posts,
                'meta': get_meta_tags_dict(),
