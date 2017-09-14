@@ -97,19 +97,23 @@
 		<!--<a href="{% url 'highlight_publications' %}">Highlight Publications</a>-->
 </div>
 <div class="panel">
-	<h2 class="title">Edit Publication</h2>
+	<h2 class="title">Edit Publication* </h2>
+	<small class="float-right">*highlight in orange</small>
 	<br>
 	{% if all_publications %}
-		{% for publication in all_publications %}
-			{% if publication.is_highlighted %}<b>{% endif %}
-	<a href="{{ publication.url }}">{{publication.title}}</a>
+	{% for publication in all_publications %}
+	{% if publication.is_highlighted %}<b>{% endif %}
+	<a href="{{ publication.url }}" {% if publication.is_highlighted %}style="color: darkorange" {% endif %}>
+		{{publication.title}}
+	</a>
 	{% if publication.is_highlighted %}</b>{% endif %}
 	<br>
 	{{publication.author}}<br>
 	<div class="grid halves">
 		<div class="grid-item">
 			<a href="{% url 'edit_page' model_name='publication' model_id=publication.id %}" class="left-separator ">Edit</a>
-			<a href="{% url 'delete_page' model_name='publication' model_id=publication.id %}" class="left-separator DeleteLink">Delete</a>
+			<a href="{% url 'delete_page' model_name='publication' model_id=publication.id %}"
+			   class="left-separator DeleteLink">Delete</a>
 		</div>
 	</div>
 	<hr>
