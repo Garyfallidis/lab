@@ -217,11 +217,11 @@ def get_current_model_and_form(model_name):
     if model_name.lower() == "publication":
         container['model'] = Publication
         container['form'] = AddEditPublicationForm
-        container['reverse'] = 'dashboard_publication'
+        container['reverse'] = 'dashboard_publications'
     if model_name.lower() == "course":
         container['model'] = Course
         container['form'] = AddEditCourseForm
-        container['reverse'] = 'dashboard_course'
+        container['reverse'] = 'dashboard_courses'
     if model_name.lower() == 'event':
         container['model'] = EventPost
         container['form'] = AddEditEventPostForm
@@ -233,7 +233,7 @@ def get_current_model_and_form(model_name):
     if model_name.lower() == 'journal':
         container['model'] = JournalImage
         container['form'] = AddEditJournalForm
-        container['reverse'] = 'dashboard_publication'
+        container['reverse'] = 'dashboard_publications'
 
     return container
 
@@ -252,7 +252,7 @@ def edit_page(request, model_name, model_id):
 
     context = {}
     if request.method == 'POST':
-        submitted_form = current_container['form'](request.POST, instance=current_object)
+        submitted_form = current_container['form'](request.POST, request.FILES, instance=current_object)
         if submitted_form.is_valid():
             submitted_form.save()
             return redirect(reverse(current_container['reverse']))

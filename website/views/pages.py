@@ -9,7 +9,7 @@ from website.models import *
 # Definition of views:
 
 def index(request):
-    latest_blog_posts = get_latest_blog_posts(5)
+    latest_blog_posts = get_latest_blog_posts(3)
     all_journal = JournalImage.objects.filter(display=True)
 
     context = {'latest_blog_posts': latest_blog_posts,
@@ -98,8 +98,9 @@ def people(request):
 
 def people_profile(request, username):
     user = User.objects.get(username=username)
-    my_blog_posts = BlogPost.objects.filter(authors=user)
-    context = {'profile': Profile.objects.get(user=user),
+    profile = Profile.objects.get(user=user)
+    my_blog_posts = BlogPost.objects.filter(authors=profile)
+    context = {'profile': profile,
                'my_blog_posts': my_blog_posts,
                'meta': get_meta_tags_dict(),
                }

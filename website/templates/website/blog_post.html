@@ -12,8 +12,16 @@
         <div class="blog_post_time">{{ blog_post.posted }}</div>
 
         <div class="blog_post_body">{{ blog_post.body_html | safe }}</div>
+        <hr>
 
-        <div class="blog_post_author">{{ blog_post.author }}</div>
+        <div class="blog_post_author">
+          <p> Author(s) :</p>
+          <p>
+          {% for author in blog_post.authors.all %}
+              {{author.user.get_full_name}}
+          {% endfor %}
+          </p>
+        </div>
 
       </div>
     </div>

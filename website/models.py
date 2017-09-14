@@ -164,7 +164,7 @@ class Course(models.Model):
     prerequisite = models.CharField(max_length=200)
     semester = models.CharField(max_length=200)
     description = models.TextField()
-    syllabus = models.FileField(null=True, upload_to="course_uploads/")
+    syllabus = models.FileField(blank=True, null=True, upload_to="course_uploads/")
 
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(editable=False, auto_now_add=True)
@@ -278,7 +278,7 @@ class BlogPost(models.Model):
     slug = models.SlugField(max_length=150, unique=True)
     body = models.TextField()
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
-    authors = models.ManyToManyField(User)
+    authors = models.ManyToManyField(Profile)
     body_html = models.TextField(null=True, blank=True, editable=False)
 
     def save(self, *args, **kwargs):
