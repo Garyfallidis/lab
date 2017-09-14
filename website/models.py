@@ -213,11 +213,11 @@ class Profile(models.Model):
     Model for storing more information about user
     """
     STATUS_CHOICE = (
-        (1, 'Current Team'),
-        (2, 'Current Students'),
-        (3, 'Collaborators'),
-        (4, 'Visitors'),
-        (5, 'Old Members'),
+        (1, '1.Current Team'),
+        (2, '2.Current Students'),
+        (3, '3.Collaborators'),
+        (4, '4.Visitors'),
+        (5, '5.Old Members'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=100, blank=True, null=True,)

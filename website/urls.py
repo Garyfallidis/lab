@@ -65,7 +65,6 @@ urlpatterns = [
 
     # Publication Management
     url(r'^dashboard/publications/$', views.dashboard_publications, name='dashboard_publications'),
-    url(r'^dashboard/publications/highlight/$', views.highlight_publications, name='highlight_publications'),
 
     # Teaching Management
     url(r'^dashboard/courses/$', views.dashboard_courses, name='dashboard_courses'),

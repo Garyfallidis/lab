@@ -10,11 +10,27 @@
 {% endblock %}
 
 {% block content_body %}
+<aside class="section-nav show-for-large" id="section-nav">
+    <div class="row">
+        <nav itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" data-parent-url="/people/">
+            <ul>
+                {% for key, value in all_profile_dict.items %}
+                <li class=""><a href="{% url 'people' %}#{{key}}" itemprop="url" class=""><span
+                        itemprop="name">{{key}}</span></a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</aside>
 <!-- Content -->
-<div class="bg-none section" id="home">
+{% for section_name, profile_list in all_profile_dict.items %}
+<div class="bg-none section" id="">
     <div class="row">
         <div class="layout">
-            {% for profile in all_profile %}
+            <div class="float-left panel">
+                <h1 class="title" id="{{section_name}}"> {{section_name}}</h1>
+                <hr>
+            {% for profile in profile_list %}
             <a href="{% url 'people_profile' username=profile.user.username %}">
                 <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
                     <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img
@@ -37,11 +53,12 @@
                         </dl>
                     </div>
                 </article>
-            </a>
+            </a></div>
             {% endfor %}
         </div>
     </div>
 </div>
+{% endfor %}
 {% endblock %}
 
 <!-- see example here : https://www.iupuc.edu/admissions/contact-admissions/index.html -->

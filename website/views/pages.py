@@ -90,7 +90,8 @@ def teaching(request):
 
 
 def people(request):
-    context = {'all_profile': Profile.objects.all(),
+    all_profile_dict = {choice[1]: Profile.objects.filter(status=choice[0]) for choice in Profile.STATUS_CHOICE}
+    context = {'all_profile_dict': all_profile_dict,
                'meta': get_meta_tags_dict(),
                }
     return render(request, 'website/people.html', context)
