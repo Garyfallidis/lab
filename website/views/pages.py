@@ -11,10 +11,11 @@ from website.models import *
 def index(request):
     latest_blog_posts = get_latest_blog_posts(3)
     all_journal = JournalImage.objects.filter(display=True)
+    keywords = [item for blog in latest_blog_posts for item in blog.keywords.split(",")]
 
     context = {'latest_blog_posts': latest_blog_posts,
                'all_journal': all_journal,
-               'meta': get_meta_tags_dict(),
+               'meta': get_meta_tags_dict(keywords=keywords),
                }
     return render(request, 'website/index.html', context)
 
@@ -32,30 +33,38 @@ def page(request, position_id):
 
 
 def news_page(request):
-    context = {'all_blog_posts': BlogPost.objects.filter(show_in_lab_blog=True),
-               'meta': get_meta_tags_dict(title="DIPY - News - Follow Us"),
+    all_blog_posts = BlogPost.objects.filter(show_in_lab_blog=True)
+    keywords = [item for blog in all_blog_posts for item in blog.keywords.split(",")]
+    context = {'all_blog_posts': all_blog_posts,
+               'meta': get_meta_tags_dict(title="DIPY - News - Follow Us", keywords=keywords),
                }
     return render(request, 'website/news.html', context)
 
 
 def blog_post(request, slug):
-    context = {'blog_post': BlogPost.objects.get(slug=slug),
-               'meta': get_meta_tags_dict(),
+    blog_post = BlogPost.objects.get(slug=slug)
+    keywords = [item for item in blog_post.keywords.split(",")]
+    context = {'blog_post': blog_post,
+               'meta': get_meta_tags_dict(title=slug, keywords=keywords),
                }
     return render(request, 'website/blog_post.html', context)
 
 
 def events_page(request):
     all_events = EventPost.objects.all()
+    keywords = [item for event in all_events for item in event.keywords.split(",")]
     context = {'all_events': all_events,
-               'meta': get_meta_tags_dict(),
+               'meta': get_meta_tags_dict(keywords=keywords),
                }
     return render(request, 'website/events.html', context)
 
 
 def event_post(request, slug):
-    context = {'event_post': EventPost.objects.get(slug=slug),
-               'meta': get_meta_tags_dict(),
+    event_posted = EventPost.objects.get(slug=slug)
+    print(event_posted)
+    keywords = [item for item in event_posted.keywords.split(",")]
+    context = {'event_post': event_posted,
+               'meta': get_meta_tags_dict(title=slug, keywords=keywords),
                }
     return render(request, 'website/event_post.html', context)
 

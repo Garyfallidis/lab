@@ -19,7 +19,7 @@ class AddEditPageSectionForm(ModelForm):
 class AddEditBlogPostForm(ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'body', 'authors', 'show_in_lab_blog', 'show_in_my_blog', 'attachments']
+        fields = ['title', 'body', 'authors', 'show_in_lab_blog', 'show_in_my_blog', 'keywords', 'attachments']
         widgets = {
             'attachments': ClearableFileInput(attrs={'multiple': True}),
         }
@@ -28,8 +28,11 @@ class AddEditBlogPostForm(ModelForm):
 class AddEditEventPostForm(ModelForm):
     class Meta:
         model = EventPost
-        fields = ['title', 'description', 'start_date', 'end_date', 'body_markdown',]
-
+        fields = ['title', 'description', 'description_img', 'start_date', 'end_date', 'keywords',
+                  'body_markdown', 'attachments']
+        widgets = {
+            'attachments': ClearableFileInput(attrs={'multiple': True}),
+        }
 
 class AddEditPublicationForm(ModelForm):
     class Meta:

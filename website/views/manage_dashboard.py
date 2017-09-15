@@ -35,7 +35,7 @@ def dashboard_events(request):
     all_event_post = EventPost.objects.all()
     context = {'all_event_post': all_event_post}
     if request.method == 'POST':
-        submitted_form = AddEditEventPostForm(request.POST)
+        submitted_form = AddEditEventPostForm(request.POST, request.FILES)
         if submitted_form.is_valid():
             submitted_form.save()
             return redirect(reverse('dashboard_events'))

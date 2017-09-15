@@ -80,14 +80,16 @@ class WebsiteSection(models.Model):
 
 class EventPost(models.Model):
     title = models.CharField(max_length=200)
-    body_markdown = models.TextField()
-    body_html = models.TextField(editable=False)
     description = models.CharField(max_length=140)
+    description_img = models.FileField(upload_to='event_images/', null=True, blank=True)
+    body_markdown = models.TextField(null=True, blank=True)
+    body_html = models.TextField(editable=False)
     start_date = models.DateTimeField(default=timezone.now)
     end_date = models.DateTimeField(default=timezone.now()+timezone.timedelta(hours=1))
+    keywords = models.CharField(max_length=200, null=True, blank=True)
+    attachments = models.FileField(upload_to='event_images/', null=True, blank=True)
 
     slug = models.SlugField(max_length=150, unique=True)
-    full_day = models.BooleanField(default=False, editable=False)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(editable=False, auto_now_add=True)
 
@@ -96,7 +98,6 @@ class EventPost(models.Model):
         date = datetime.date.today()
         self.slug = '%i/%i/%i/%s' % (date.year, date.month, date.day, slugify(self.title))
 
-        full_day = True if self.end_date - self.start_date > timezone.timedelta(hours=6) else False
         # bleach is used to filter html tags like <script> for security
         self.body_html = bleach.clean(html_content, allowed_html_tags,
                                       allowed_attrs)
@@ -275,6 +276,7 @@ class BlogPost(models.Model):
     Model to store blog posts
     """
     title = models.CharField(max_length=100, unique=True)
+    keywords = models.CharField(max_length=200, null=True, blank=True)
     slug = models.SlugField(max_length=150, unique=True)
     body = models.TextField()
     posted = models.DateTimeField(db_index=True, auto_now_add=True)

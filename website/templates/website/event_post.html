@@ -1,21 +1,32 @@
 {% extends "website/base_template.html" %}
 
+
+{% block banner %}
+{% if event_post.description_img %}
+<section id="banner" class="banner image">
+    <img src="{{ event_post.description_img.url }}" alt="Placeholder" />
+</section>
+
+{% endif %}
+{% endblock %}
+
+
 {% block content_body %}
 
-<!-- Content -->
-<div class="container lab_style_container">
-  <div class="row">
-    <div class="col-md-12 col-lg-12">
-      <div class="full_blog_post_container">
-        <h1 class="blog_post_title">{{ event_post.title }}</h1>
-        
-        <div class="blog_post_time">{{ event_post.start_date }}</div>
-
-        <div class="blog_post_body">{{ event_post.body_html | safe }}</div>
+<div class="extra-space bg-none section" id="content">
+    <div class="row">
+      <h1 class="title">{{ event_post.title }}</h1>
+      <div class="panel">
+          <p class="meta date"><b>Start :</b> {{ event_post.start_date }}</p>
+          <p class="meta date"><b>End :</b> {{ event_post.end_date }}</p>
+        <div class="text">
+          {{ event_post.body_html | safe }}
+        </div>
       </div>
+      <hr>
     </div>
-  </div>
 </div>
+
 {% endblock %}
 
 
