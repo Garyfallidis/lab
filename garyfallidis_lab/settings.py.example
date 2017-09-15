@@ -163,7 +163,8 @@ DEFAULT_DESCRIPTION = """Garyfallidis Lab Description"""
 
 DEFAULT_LOGO_URL = "http://dipy.herokuapp.com/static/images/dipy-thumb.jpg"
 
-DEFAULT_KEYWORDS = ['Garyfallidis', 'Lab']
+DEFAULT_KEYWORDS = ['DTI', 'diffusion tensor imaging', 'MRI', 'white matter', 'tractography', 'software',
+                    'Garyfallidis', 'Lab', 'dipy', 'research', 'group']
 
 # django-meta settings
 META_SITE_PROTOCOL = 'https'
