@@ -21,10 +21,13 @@
         <li class="has-children">
             <a href="#" itemprop="url"><span itemprop="name">Login</span></a>
             <ul class="children">
-                <li><a href="#" itemprop="url"><span itemprop="name"><i class="icon-github"></i>Github</a></li>
-                <li><a href="#" itemprop="url"><span itemprop="name"><i class="icon-googleplus"></i>Google Plus</span></a></li>
-                <li><a href="#" itemprop="url"><span itemprop="name"><i class="icon-facebook"></i>Facebook</span></a></li>
-                <li><a href="#" itemprop="url"><span itemprop="name"><i class="icon-twitter"></i>Twitter</span></a></li>
+                {% for backend in backends.backends %}
+                {% if next %}
+                <li><a href="{% url 'social:begin' backend %}?next={{next}}" itemprop="url"><span itemprop="name"> {{backend}}</span></a></li>
+                {% else %}
+                <li><a href="{% url 'social:begin' backend %}?next={% url 'dashboard' %}" itemprop="url"><span itemprop="name"> {{backend}}</span></a></li>
+                {% endif %}
+                {% endfor %}
             </ul>
         </li>
     </ul>
