@@ -1,0 +1,46 @@
+[
+  {
+    "model": "website.research",
+    "pk": 0,
+    "fields": {
+      "title": "Intelligent Neuroimaging",
+      "position": 0,
+      "show_in_page": "True",
+      "default_static_background_img_name": "three_brains_golden_new.png",
+      "description_page_markdown": "<h1>Title</h1><br/><p>I have contributed new methods for nearly every level of diffusion MRI analysis: voxel reconstruction, fiber tracking, tractography segmentation, and registration of bundles and images. Recently I have been looking into the problem of statistical analysis of bundles. However, the areas for which I believe I have contributed the most are those of (a) tractography segmentation with the invention of QuickBundles [2] and (b) registration of fascicles with the invention of Streamline-based Linear Registration (SLR) [3]. Finally, I have contributed to making available cutting-edge methods to the scientific community by creating, developing and managing the Diffusion Imaging in Python (DIPY) [1] project which has an enthusiastic and active team of 34+ contributors from different labs around the world.</p><p>These days I am working on improving the analysis methods of diffusion MRI. More specifically, working on analyzing the output of fiber tracking algorithms. Currently, there are some important open problems with fiber tracking: a) it is difficult to assess the quality of fiber tracking, b) it is very time consuming for neuroscientists to interact with the output fiber tracks and extract bundles of interest, c) the analysis procedures for group comparisons are underdeveloped compared to the richness of information available in modern diffusion datasets. I am confident that these problems can be solved or improved considerably by creating methods that can automatically or semi-automatically discover bundles and do statistical analysis directly on these bundles rather than on the entire brain as is mostly used today. I separate my methodology into two sections; bundle recognition and bundle analytics.</p>"
+    }
+  },
+    {
+    "model": "website.research",
+    "pk": 1,
+    "fields": {
+      "title": "Sienctific Visualization",
+      "position": 1,
+      "show_in_page": "True",
+      "default_static_background_img_name": "jet_odfs.png",
+      "description_page_markdown": "<h1>One picture is worth than thousand words</h1><br/><p>We really believe of this citation. It is for this reason we focus on the improvements of data visualization for researchers, neurologists, doctors and patients.</p>"
+    }
+  },
+    {
+    "model": "website.research",
+    "pk": 2,
+    "fields": {
+      "title": "Machine Learning",
+      "position": 2,
+      "show_in_page": "True",
+      "default_static_background_img_name": "machine-learning.jpeg",
+      "description_page_markdown": "<h1>One picture is worth than thousand words</h1><br/><p>We really believe of this citation. It is for this reason we focus on the improvements of data visualization for researchers, neurologists, doctors and patients.</p>"
+    }
+  },
+    {
+    "model": "website.research",
+    "pk": 3,
+    "fields": {
+      "title": "Medical Analytics",
+      "position": 3,
+      "show_in_page": "True",
+      "default_static_background_img_name": "medical_analytic.jpg",
+      "description_page_markdown": "<h1>Title</h1><br/><p>We really believe of this citation. It is for this reason we focus on the improvements of data visualization for researchers, neurologists, doctors and patients.</p>"
+    }
+  }
+]

@@ -1,29 +1,63 @@
 {% extends "website/base_template.html" %}
+{% load staticfiles %}
+
+{% block banner %}
+
+<section id="banner" class="banner image">
+    <img src="{% static "images/team.jpg" %}" alt="Placeholder" />
+</section>
+{% endblock %}
 
 {% block content_body %}
-
-<!-- Content -->
-<div class="container lab_style_container">
-  <div class="row">
-    {% for profile in all_profile %}
-    <div class="col-md-12 col-lg-12 profile_container">
-      <div class="row profile-row">
-        <a  class="profile_container_link" href="{% url 'people_profile' username=profile.user.username %}">
-          <div class="col-sm-3 col-md-2 col-lg-2 col-sm-push-9 col-md-push-10 col-lg-push-10 profile_img_col">
-            <img class="avatar_img img-responsive img-circle" src="{{ MEDIA_URL }}{{ profile.avatar_img }}">
-          </div>
-          <div class="col-sm-9 col-md-10 col-lg-10 col-sm-pull-3 col-md-pull-2 col-lg-pull-2 profile_description_col">
-            <h1 class="full_name">{{ profile.full_name }}</h1>
-            <div class="description">{{ profile.description }}</div>
-          </div>
-        </a>
-      </div>
+<aside class="section-nav show-for-large" id="section-nav">
+    <div class="row">
+        <nav itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" data-parent-url="/people/">
+            <ul>
+                {% for key, value in all_profile_dict.items %}
+                <li class=""><a href="{% url 'people' %}#{{key}}" itemprop="url" class=""><span
+                        itemprop="name">{{key}}</span></a></li>
+                {% endfor %}
+            </ul>
+        </nav>
     </div>
-    {% endfor %}
-  </div>
+</aside>
+<!-- Content -->
+{% for section_name, profile_list in all_profile_dict.items %}
+<div class="bg-none section" id="">
+    <div class="row">
+        <div class="layout">
+            <div class="float-left panel">
+                <h1 class="title" id="{{section_name}}"> {{section_name}}</h1>
+                <hr>
+            {% for profile in profile_list %}
+            <a href="{% url 'people_profile' username=profile.user.username %}">
+                <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
+                    <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img
+                            alt="" itemprop="image"
+                            src="{{ profile.avatar_url }}">
+                    </figure>
+                    <div class="content">
+                        {% if profile.user.get_full_name|length > 0 %}
+                        <h1 class="no-margin title"><span itemprop="name">{{ profile.user.get_full_name }}</span></h1>
+                        {% else %}
+                        <h1 class="no-margin title"><span itemprop="name">{{ profile.user.username }}</span></h1>
+                        {% endif %}
+                        <p class="sub-title" itemprop="jobTitle">{{ profile.job_title }}</p>
+                        <dl class="meta inline">
+                            <dt>Phone:</dt>
+                            <dd itemprop="telephone">{{ profile.contact_number }}</dd>
+                            <dt>Email:</dt>
+                            <dd itemprop="email"><a rel="nofollow" href="mailto:profile.user.email" class="email">{{ profile.user.email }}</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </article>
+            </a></div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
+{% endfor %}
 {% endblock %}
 
-
-{% block extra_js_bottom %}
-{% endblock %}
+<!-- see example here : https://www.iupuc.edu/admissions/contact-admissions/index.html -->

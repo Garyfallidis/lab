@@ -1,19 +1,72 @@
 {% extends "website/base_template.html" %}
 
+
+{% block banner %}
+<section id="banner" class="section bg-gray text-overlay">
+    <div class="row pad">
+        <div class="two-thirds">
+            <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img
+                        alt="" itemprop="image"
+                        src="{{ profile.avatar_url }}">
+                </figure>
+                <div class="content">
+                    {% if profile.user.get_full_name|length > 0 %}
+                    <h1 class="no-margin title"><span itemprop="name">{{ profile.user.get_full_name }}</span></h1>
+                    {% else %}
+                    <h1 class="no-margin title"><span itemprop="name">{{ profile.user.username }}</span></h1>
+                    {% endif %}
+                    <p class="sub-title" itemprop="jobTitle">{{ profile.description }}</p>
+                    <dl class="meta inline">
+                        <dt>Phone:</dt>
+                        <dd itemprop="telephone">{{ profile.contact_number }}</dd>
+                        <dt>Email:</dt>
+                        <dd itemprop="email"><a rel="nofollow" href="{{profile.user.email}}" class="email">
+                            {{ profile.user.email }}</a>
+                        </dd>
+                    </dl>
+                </div>
+            </article>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
+
+
 {% block content_body %}
 
-<!-- Content -->
-<div class="container lab_style_container">
-  <div class="row">
-    <div class="col-md-12 col-lg-12">
-      <div class="full_profile_container">
-        <h1 class="full_name">{{ profile.full_name }}</h1>
-        <img class="avatar_img" src="{{ MEDIA_URL }}{{ profile.avatar_img }}">
-        <div class="profile_body">{{ profile.profile_page_html | safe }}</div>
-      </div>
+<div class="bg-none section" id="home">
+    <div class="grid halves full-width">
+        <div class="grid-item">
+            <h1 class="left-separator"> About me</h1>
+            <div class="panel">
+                {{ profile.profile_page_html | safe }}
+            </div>
+        </div>
+        <div class="grid-item">
+            <h1> Blog</h1>
+            <div class="panel">
+                <ul class="feed">
+                    {% for blog_post in my_blog_posts %}
+                    <li class="feed-item news">
+                        <div class="content">
+                            <h2 class="title"><a href="{% url 'blog_post' slug=blog_post.slug %}"> {{ blog_post.title }}</a></h2>
+                            <p class="meta date">{{ blog_post.posted }}</p>
+                            <p>{{ blog_post.body_html | truncatechars_html:400 | safe }}</p>
+                            <p><a href="{% url 'blog_post' slug=blog_post.slug %}"><span class="blog_readmore">continue reading...</span></a>
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
     </div>
-  </div>
+</div><!-- /.layout --></div>
 </div>
+
 {% endblock %}
 
 

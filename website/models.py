@@ -1,11 +1,16 @@
+import os
 import datetime
 
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
+from django.utils.text import slugify
+from django.core.validators import RegexValidator
+
 import markdown
 import bleach
 
@@ -57,7 +62,7 @@ class WebsiteSection(models.Model):
     def save(self, *args, **kwargs):
         html_content = markdown.markdown(self.body_markdown,
                                          extensions=['codehilite'])
-        print(html_content)
+        # print(html_content)
         # bleach is used to filter html tags like <script> for security
         self.body_html = bleach.clean(html_content, allowed_html_tags,
                                       allowed_attrs)
@@ -73,19 +78,26 @@ class WebsiteSection(models.Model):
         return self.title
 
 
-class NewsPost(models.Model):
+class EventPost(models.Model):
     title = models.CharField(max_length=200)
-    body_markdown = models.TextField()
-    body_html = models.TextField(editable=False)
     description = models.CharField(max_length=140)
-    post_date = models.DateTimeField(default=timezone.now)
+    description_img = models.FileField(upload_to='event_images/', null=True, blank=True)
+    body_markdown = models.TextField(null=True, blank=True)
+    body_html = models.TextField(editable=False)
+    start_date = models.DateTimeField(default=timezone.now)
+    end_date = models.DateTimeField(default=timezone.now()+timezone.timedelta(hours=1))
+    keywords = models.CharField(max_length=200, null=True, blank=True)
+    attachments = models.FileField(upload_to='event_images/', null=True, blank=True)
+
+    slug = models.SlugField(max_length=150, unique=True)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(editable=False, auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        html_content = markdown.markdown(self.body_markdown,
-                                         extensions=['codehilite'])
-        print(html_content)
+        html_content = markdown.markdown(self.body_markdown, extensions=['codehilite'])
+        date = datetime.date.today()
+        self.slug = '%i/%i/%i/%s' % (date.year, date.month, date.day, slugify(self.title))
+
         # bleach is used to filter html tags like <script> for security
         self.body_html = bleach.clean(html_content, allowed_html_tags,
                                       allowed_attrs)
@@ -95,10 +107,14 @@ class NewsPost(models.Model):
         cache.clear()
 
         # Call the "real" save() method.
-        super(NewsPost, self).save(*args, **kwargs)
+        super(EventPost, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return "/event/%i/" % self.slug
 
 
 class Publication(models.Model):
@@ -116,9 +132,11 @@ class Publication(models.Model):
     published_in = models.CharField(max_length=200, null=True, blank=True)
     publisher = models.CharField(max_length=200, null=True, blank=True)
     year_of_publication = models.CharField(max_length=4, null=True, blank=True)
-    month_of_publication = models.CharField(max_length=10, null=True,
-                                            blank=True)
+    month_of_publication = models.CharField(max_length=10, null=True, blank=True)
     bibtex = models.TextField(null=True, blank=True)
+    project_url = models.CharField(max_length=200, null=True, blank=True)
+    pdf = models.FileField(null=True, upload_to="publication_uploads/")
+    abstract = models.TextField(null=True, blank=True)
     is_highlighted = models.BooleanField(default=False)
 
     created = models.DateTimeField(editable=False, auto_now_add=True)
@@ -132,6 +150,34 @@ class Publication(models.Model):
 
         # Call the "real" save() method.
         super(Publication, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+
+class Course(models.Model):
+    """
+    Model for storing Course information.
+    """
+    title = models.CharField(max_length=200)
+    acronym = models.CharField(max_length=200)
+    level = models.CharField(max_length=200)
+    prerequisite = models.CharField(max_length=200)
+    semester = models.CharField(max_length=200)
+    description = models.TextField()
+    syllabus = models.FileField(blank=True, null=True, upload_to="course_uploads/")
+
+    created = models.DateTimeField(editable=False, auto_now_add=True)
+    modified = models.DateTimeField(editable=False, auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self.modified = datetime.datetime.now()
+
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(Course, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -163,35 +209,43 @@ class CarouselImage(models.Model):
         return self.image_url
 
 
-class Postion(models.Model):
-    """
-    Model for defining the position of a lab member
-    """
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-
 class Profile(models.Model):
     """
     Model for storing more information about user
     """
+    STATUS_CHOICE = (
+        (1, '1.Current Team'),
+        (2, '2.Current Students'),
+        (3, '3.Collaborators'),
+        (4, '4.Visitors'),
+        (5, '5.Old Members'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=100)
-    avatar_img = models.ImageField(upload_to='avatar_images/',
-                                   blank=True, null=True)
-    contactNumber = models.CharField(max_length=15, blank=True, null=True)
+    job_title = models.CharField(max_length=100, blank=True, null=True,)
+    avatar_img = models.ImageField(upload_to='avatar_images/', blank=True, null=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+                                 message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",)
+    contact_number = models.CharField(validators=[phone_regex], blank=True, null=True, max_length=15) # validators should be a list
 
-    emailId = models.EmailField(blank=True, null=True)
-
-    contactURL = models.URLField(blank=True, null=True)
+    contact_url = models.URLField(blank=True, null=True)
     description = models.TextField(null=True, blank=True)
-
-    position = models.ForeignKey('Postion', null=True, blank=True)
+    status = models.CharField(max_length=1, default=1, choices=STATUS_CHOICE)
 
     profile_page_markdown = models.TextField(null=True, blank=True)
     profile_page_html = models.TextField(null=True, blank=True, editable=False)
+
+    def avatar_url(self):
+        """
+        Returns the URL of the image associated with this Object.
+        If an image hasn't been uploaded yet, it returns a stock image
+
+        :returns: str -- the image url
+
+        """
+        if self.avatar_img and hasattr(self.avatar_img, 'url'):
+            return self.avatar_img.url
+        else:
+            return "{0}{1}/{2}".format(settings.STATIC_URL, 'images', 'user-1633250_640.png')
 
     def save(self, *args, **kwargs):
         html_content = markdown.markdown(self.profile_page_markdown,
@@ -206,13 +260,13 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.full_name
+        return self.user.get_full_name()
 
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance, full_name=instance.username,
+        Profile.objects.create(user=instance,
                                profile_page_markdown="")
         instance.profile.save()
 
@@ -222,15 +276,22 @@ class BlogPost(models.Model):
     Model to store blog posts
     """
     title = models.CharField(max_length=100, unique=True)
-    identifier = models.SlugField(max_length=100, unique=True)
+    keywords = models.CharField(max_length=200, null=True, blank=True)
+    slug = models.SlugField(max_length=150, unique=True)
     body = models.TextField()
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
-    author = models.ForeignKey(User)
+    authors = models.ManyToManyField(Profile)
+    attachments = models.FileField(upload_to='blog_images/', null=True, blank=True, )
+    show_in_lab_blog = models.BooleanField(default=True)
+    show_in_my_blog = models.BooleanField(default=True)
     body_html = models.TextField(null=True, blank=True, editable=False)
 
+
     def save(self, *args, **kwargs):
-        html_content = markdown.markdown(self.body,
-                                         extensions=['codehilite'])
+        date = datetime.date.today()
+        self.slug = '%i/%i/%i/%s' % (date.year, date.month, date.day, slugify(self.title))
+        html_content = markdown.markdown(self.body, extensions=['codehilite'])
+
         # bleach is used to filter html tags like <script> for security
         self.body_html = bleach.clean(html_content, allowed_html_tags,
                                       allowed_attrs)
@@ -243,5 +304,71 @@ class BlogPost(models.Model):
     def __str__(self):
         return self.title
 
+    @models.permalink
     def get_absolute_url(self):
-        return "/blog/%i/" % self.identifier
+        return "/blog/%i/" % self.slug
+
+
+class Research(models.Model):
+    """
+    Model for storing new research activity
+    """
+    title = models.CharField(max_length=100)
+    position = models.PositiveSmallIntegerField(default=0, unique=True)
+    show_in_page = models.BooleanField(default=True)
+    background_img = models.ImageField(upload_to='research_images/', blank=True, null=True)
+    default_static_background_img_name = models.CharField(max_length=200, blank=True, null=True)
+
+    description_page_markdown = models.TextField(null=True, blank=True)
+    description_page_html = models.TextField(null=True, blank=True, editable=False)
+
+    def tag(self):
+        """ Returns website tag for internal cross reference"""
+        return "_".join(self.title.lower().split())
+
+    def background_url(self):
+        """
+        Returns the URL of the image associated with this Object.
+        If an image hasn't been uploaded yet, it returns a stock image
+
+        :returns: str -- the image url
+
+        """
+        if self.background_img and hasattr(self.background_img, 'url'):
+            return self.background_img.url
+        else:
+            return "{0}{1}/{2}".format(settings.STATIC_URL, 'images', self.default_static_background_img_name)
+
+    def save(self, *args, **kwargs):
+        html_content = markdown.markdown(self.description_page_markdown, extensions=['codehilite'])
+        # bleach is used to filter html tags like <script> for security
+        self.description_page_html = bleach.clean(html_content, allowed_html_tags, allowed_attrs)
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(Research, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+
+class JournalImage(models.Model):
+    """
+    Model for storing Journal.
+    """
+    title = models.CharField(max_length=200)
+    cover = models.ImageField(upload_to='journal_images/')
+    caption = models.CharField(max_length=200, blank=True, null=True)
+    link_url = models.URLField(blank=True, null=True)
+    display = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(JournalImage, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.cover.url

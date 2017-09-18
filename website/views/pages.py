@@ -9,17 +9,14 @@ from website.models import *
 # Definition of views:
 
 def index(request):
-    context = {}
-    all_carousel = CarouselImage.objects.filter()
-    latest_blog_posts = get_latest_blog_posts(5)
-    latest_news_posts = get_latest_news_posts(5)
-    highlighted_publications = Publication.objects.filter(is_highlighted=True)
+    latest_blog_posts = get_latest_blog_posts(3)
+    all_journal = JournalImage.objects.filter(display=True)
+    keywords = [item for blog in latest_blog_posts for item in blog.keywords.split(",")]
 
-    context['all_carousel'] = all_carousel
-    context['latest_blog_posts'] = latest_blog_posts
-    context['latest_news_posts'] = latest_news_posts
-    context['highlighted_publications'] = highlighted_publications
-    context['meta'] = get_meta_tags_dict()
+    context = {'latest_blog_posts': latest_blog_posts,
+               'all_journal': all_journal,
+               'meta': get_meta_tags_dict(keywords=keywords),
+               }
     return render(request, 'website/index.html', context)
 
 
@@ -35,18 +32,49 @@ def page(request, position_id):
     return render(request, 'website/section_page.html', context)
 
 
-def blog(request):
-    context = {'all_blog_posts': BlogPost.objects.all(),
-               'meta': get_meta_tags_dict(),
+def news_page(request):
+    all_blog_posts = BlogPost.objects.filter(show_in_lab_blog=True)
+    keywords = [item for blog in all_blog_posts for item in blog.keywords.split(",")]
+    context = {'all_blog_posts': all_blog_posts,
+               'meta': get_meta_tags_dict(title="DIPY - News - Follow Us", keywords=keywords),
                }
-    return render(request, 'website/blog.html', context)
+    return render(request, 'website/news.html', context)
 
 
-def blog_post(request, identifier):
-    context = {'blog_post': BlogPost.objects.get(identifier=identifier),
-               'meta': get_meta_tags_dict(),
+def blog_post(request, slug):
+    blog_post = BlogPost.objects.get(slug=slug)
+    keywords = [item for item in blog_post.keywords.split(",")]
+    context = {'blog_post': blog_post,
+               'meta': get_meta_tags_dict(title=slug, keywords=keywords),
                }
     return render(request, 'website/blog_post.html', context)
+
+
+def events_page(request):
+    all_events = EventPost.objects.all()
+    keywords = [item for event in all_events for item in event.keywords.split(",")]
+    context = {'all_events': all_events,
+               'meta': get_meta_tags_dict(keywords=keywords),
+               }
+    return render(request, 'website/events.html', context)
+
+
+def event_post(request, slug):
+    event_posted = EventPost.objects.get(slug=slug)
+    print(event_posted)
+    keywords = [item for item in event_posted.keywords.split(",")]
+    context = {'event_post': event_posted,
+               'meta': get_meta_tags_dict(title=slug, keywords=keywords),
+               }
+    return render(request, 'website/event_post.html', context)
+
+
+def research(request):
+    all_research = Research.objects.filter(show_in_page=True).order_by('position')
+    context = {'all_research': all_research,
+               'meta': get_meta_tags_dict(title="DIPY - Research"),
+               }
+    return render(request, 'website/research.html', context)
 
 
 def publications(request):
@@ -56,8 +84,16 @@ def publications(request):
     return render(request, 'website/publications.html', context)
 
 
+def teaching(request):
+    context = {'all_courses': Course.objects.all(),
+               'meta': get_meta_tags_dict(title="DIPY - Teaching"),
+               }
+    return render(request, 'website/teaching.html', context)
+
+
 def people(request):
-    context = {'all_profile': Profile.objects.all(),
+    all_profile_dict = {choice[1]: Profile.objects.filter(status=choice[0]) for choice in Profile.STATUS_CHOICE}
+    context = {'all_profile_dict': all_profile_dict,
                'meta': get_meta_tags_dict(),
                }
     return render(request, 'website/people.html', context)
@@ -65,7 +101,10 @@ def people(request):
 
 def people_profile(request, username):
     user = User.objects.get(username=username)
-    context = {'profile': Profile.objects.get(user=user),
+    profile = Profile.objects.get(user=user)
+    my_blog_posts = BlogPost.objects.filter(authors=profile, show_in_my_blog=True)
+    context = {'profile': profile,
+               'my_blog_posts': my_blog_posts,
                'meta': get_meta_tags_dict(),
                }
     return render(request, 'website/people_profile.html', context)
@@ -76,29 +115,6 @@ def honeycomb(request):
                'meta': get_meta_tags_dict(title="DIPY - Gallery"),
                }
     return render(request, 'website/honeycomb.html', context)
-
-
-def follow_us(request):
-    context = {'latest_news': get_latest_news_posts(5),
-               'gplus_feed': get_google_plus_activity("107763702707848478173", 4),
-               'fb_posts': get_facebook_page_feed("diffusionimaginginpython", 5),
-               'tweets': get_twitter_feed('dipymri', 5),
-               'meta': get_meta_tags_dict(title="DIPY - Follow Us"),
-               }
-    return render(request, 'website/follow_us.html', context)
-
-
-def news_page(request, news_id):
-    try:
-        news_post = NewsPost.objects.get(id=news_id)
-    except ObjectDoesNotExist:
-        raise Http404("News Post does not exist")
-    meta_title = "DIPY - %s" % (news_post.title,)
-    context = {'news_post': news_post,
-               'meta': get_meta_tags_dict(title=meta_title,
-                                          description=news_post.description),
-               }
-    return render(request, 'website/news.html', context)
 
 
 @login_required

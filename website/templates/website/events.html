@@ -1,0 +1,62 @@
+{% extends "website/base_template.html" %}
+
+{% block content_body %}
+<div class="extra-space bg-none section" id="content">
+    <div class="row">
+        <!-- Blog -->
+        <div class="two-thirds">
+            <h1 class="title">Latest Events</h1>
+            <div class="panel">
+                <ul class="feed">
+                    {% for event in all_events %}
+                    <li class="feed-item news">
+                        <div class="content">
+                            <h2 class="title"><a href="{% url 'event_post' slug=event.slug %}"> {{ event.title }}</a></h2>
+                            <p class="meta date">{{ event.start_date }}</p>
+                            <p>{{ event.description | truncatechars_html:400 | safe }}</p>
+                            <p><a href="{% url 'event_post' slug=event.slug %}"><span class="blog_readmore">more...</span></a>
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- Social Media -->
+        <div class="news-event one-third">
+            <h4>Events</h4>
+            <div class="panel">
+                {% for event in all_events %}
+                <article class="event feed-item feed-item--small" itemscope="itemscope"
+                         itemtype="http://schema.org/Event">
+                    <div class="date-cube">
+                        <p><span class="month">{{event.start_date.month}}</span><span class="day">{{event.start_date.day}}</span>
+                        </p>
+                        <p></p>
+                    </div>
+                    <div class="content">
+                        <a href="{% url 'event_post' slug=event.slug %}"><h1 class="title"><span itemprop="name">{{event.title}}</span></h1></a>
+                        <p class="meta time"><span itemprop="startDate" content="{{event.start_date}}">{{event.start_date.hour}}</span>
+                            –
+                            <span itemprop="endDate" content="{{event.end_date}}">{{event.end_date.hour}}</span>
+                        </p>
+                        <div class="visually-hidden" itemprop="location" itemscope="itemscope"
+                             itemtype="http://schema.org/Place">
+                            <p itemprop="name">
+                            </p>
+                            <p itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">-</p>
+                        </div>
+                    </div>
+                </article>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+
+{% block extra_js_bottom %}
+{% endblock %}

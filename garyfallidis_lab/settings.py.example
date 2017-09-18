@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'garyfallidis_lab.urls'
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'website.context_processor.nav_pages_processor',
                 'website.context_processor.google_analytics_processor',
+                'garyfallidis_lab.context_processors.social_media_id',
             ],
         },
     },
@@ -161,12 +163,16 @@ DEFAULT_DESCRIPTION = """Garyfallidis Lab Description"""
 
 DEFAULT_LOGO_URL = "http://dipy.herokuapp.com/static/images/dipy-thumb.jpg"
 
-DEFAULT_KEYWORDS = ['Garyfallidis', 'Lab']
+DEFAULT_KEYWORDS = ['DTI', 'diffusion tensor imaging', 'MRI', 'white matter', 'tractography', 'software',
+                    'Garyfallidis', 'Lab', 'dipy', 'research', 'group']
 
 # django-meta settings
 META_SITE_PROTOCOL = 'https'
 META_SITE_DOMAIN = 'dipy.herokuapp.com'
 
+# Repos settings
+REPOSITORY_NAME = "lab"
+REPOSITORY_URL = "/users/garyfallidis/"
 
 # python-social-auth settings
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'

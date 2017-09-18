@@ -1,5 +1,4 @@
 import base64
-import os
 import requests
 
 from django.conf import settings
@@ -60,7 +59,7 @@ def get_latest_blog_posts(limit):
     ------
     returns a list of BlogPost objects
     """
-    return BlogPost.objects.order_by('-posted')[0:limit]
+    return BlogPost.objects.filter(show_in_lab_blog=True).order_by('-posted')[0:limit]
 
 
 def has_commit_permission(access_token, repository_name):
@@ -76,15 +75,13 @@ def has_commit_permission(access_token, repository_name):
     """
     if access_token == '':
         return False
-    response = requests.get('https://api.github.com/orgs/nipy/repos',
+    response = requests.get('https://api.github.com{}repos'.format(settings.REPOSITORY_URL),
                             params={'access_token': access_token})
     response_json = response.json()
     for repo in response_json:
         if repo["name"] == repository_name:
             permissions = repo["permissions"]
-            if(permissions["admin"] and
-               permissions["push"] and
-               permissions["pull"]):
+            if permissions["pull"]:
                 return True
     return False
 
@@ -99,7 +96,7 @@ def github_permission_required(view_function):
             access_token = social.extra_data['access_token']
         except:
             access_token = ''
-        has_permission = has_commit_permission(access_token, 'dipy_web')
+        has_permission = has_commit_permission(access_token, settings.REPOSITORY_NAME)
         if has_permission:
             return view_function(request, *args, **kwargs)
         else:

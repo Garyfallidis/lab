@@ -11,35 +11,44 @@ urlpatterns = [
     url(r'^page/(?P<position_id>.*?)/$', views.page,
         name='section_page'),
 
-    # Blog Page
-    url(r'^blog/$', views.blog,
-        name='blog'),
-
-    url(r'^blog/(?P<identifier>.*?)/$', views.blog_post,
-        name='blog_post'),
-
     # People page
     url(r'^people/$', views.people, name='people'),
     url(r'^people/(?P<username>.*?)/$', views.people_profile,
         name='people_profile'),
 
-    # Cite Page for publications
+    # Research Page
+    url(r'^research/$', views.research, name='research'),
+
+    # Teaching Page
+    url(r'^teaching/$', views.teaching, name='teaching'),
+
+    # Publications Page
     url(r'^publications/$', views.publications, name='publications'),
 
-    # News Post display page
-    url(r'^news/(?P<news_id>.*?)/$', views.news_page, name='news_page'),
+    # News Page
+    url(r'^news/$', views.news_page, name='news_page'),
+
+    # Blog specific page
+    url(r'^blog/(?P<slug>[^\.]+)/$', views.blog_post, name='blog_post'),
+
+    # Events Page
+    url(r'^events/$', views.events_page, name='events_page'),
+    url(r'^events/(?P<slug>[^\.]+)/$', views.event_post, name='event_post'),
 
     # Honeycomb gallery
     url(r'^gallery/$', views.honeycomb, name='gallery'),
-
-    # Follow us page for social feeds
-    url(r'^follow/$', views.follow_us, name='follow_us'),
 
     # Admin Panel Dash Board
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
 
     # Admin Panel Login Page
     url(r'^dashboard/login/?$', views.dashboard_login, name='dashboard_login'),
+
+    # Generic Add / Edit page
+    url(r'^dashboard/(?P<model_name>.*?)/edit/(?P<model_id>.*?)/$',
+        views.edit_page, name='edit_page'),
+    url(r'^dashboard/(?P<model_name>.*?)/delete/(?P<model_id>.*?)/$',
+        views.delete_page, name='delete_page'),
 
     # Section and Page Management
     url(r'^dashboard/sections/edit/(?P<section_type_requested>.*?)/(?P<position_id>.*?)/$',
@@ -51,26 +60,20 @@ urlpatterns = [
     url(r'^dashboard/sections/(?P<section_type_requested>.*?)/$',
         views.dashboard_sections, name='dashboard_sections'),
 
-    # News Management
-    url(r'^dashboard/news/$', views.dashboard_news, name='dashboard_news'),
-    url(r'^dashboard/news/edit/(?P<news_id>.*?)/$',
-        views.edit_news_post, name='edit_news_post'),
-    url(r'^dashboard/news/add/$', views.add_news_post,
-        name='add_news_post'),
-    url(r'^dashboard/news/delete/(?P<news_id>.*?)/$',
-        views.delete_news_post, name='delete_news_post'),
+    # Blog Management
+    url(r'^dashboard/blog/$', views.dashboard_blog, name='dashboard_blog'),
 
     # Publication Management
-    url(r'^dashboard/publications/$', views.dashboard_publications,
-        name='dashboard_publications'),
-    url(r'^dashboard/publications/edit/(?P<publication_id>.*?)/$',
-        views.edit_publication, name='edit_publication'),
-    url(r'^dashboard/publications/add/(?P<method>.*?)/$',
-        views.add_publication, name='add_publication'),
-    url(r'^dashboard/publications/delete/(?P<publication_id>.*?)/$',
-        views.delete_publication, name='delete_publication'),
-    url(r'^dashboard/publications/highlight/$',
-        views.highlight_publications, name='highlight_publications'),
+    url(r'^dashboard/publications/$', views.dashboard_publications, name='dashboard_publications'),
+
+    # Teaching Management
+    url(r'^dashboard/courses/$', views.dashboard_courses, name='dashboard_courses'),
+
+    # Teaching Management
+    url(r'^dashboard/research/$', views.dashboard_research, name='dashboard_research'),
+
+    # Events Management
+    url(r'^dashboard/events/$', views.dashboard_events, name='dashboard_events'),
 
     # Carousel Management
     url(r'^dashboard/carousel/$', views.dashboard_carousel,
@@ -83,8 +86,10 @@ urlpatterns = [
         views.delete_carousel_image, name='delete_carousel_image'),
 
     # Profile Management
-    url(r'^dashboard/profile/$', views.edit_profile,
-        name='edit_profile'),
+    url(r'^dashboard/profile/$', views.edit_profile, name='edit_profile'),
+
+    # Team Management
+    url(r'^dashboard/team/$', views.dashboard_team, name='dashboard_team'),
 
     # logout url
     url(r'^dashboard/logout/$', logout,

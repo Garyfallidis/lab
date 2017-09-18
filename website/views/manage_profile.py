@@ -4,7 +4,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 
 from .tools import github_permission_required
-from website.forms import EditProfileForm
+from website.forms import EditProfileForm, UserForm
 from website.models import Profile
 
 
@@ -12,21 +12,25 @@ from website.models import Profile
 @github_permission_required
 def edit_profile(request):
     try:
-        profile = Profile.objects.get(user=request.user)
+        Profile.objects.get(user=request.user)
     except:
         raise Http404("Profile does not exist. Contact Admin")
 
     context = {}
     if request.method == 'POST':
-        submitted_form = EditProfileForm(request.POST, request.FILES,
-                                         instance=profile)
-        if submitted_form.is_valid():
-            submitted_form.save()
+        submitted_user_form =  UserForm(request.POST, instance=request.user)
+        submitted_profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if submitted_profile_form.is_valid() and submitted_user_form.is_valid():
+            submitted_user_form.save()
+            submitted_profile_form.save()
             return redirect(reverse('dashboard'))
         else:
-            context['form'] = submitted_form
+            context['user_form'] = submitted_user_form
+            context['profile_form'] = submitted_profile_form
             return render(request, 'website/editprofile.html', context)
 
-    form = EditProfileForm(instance=profile)
-    context['form'] = form
+    user_form = UserForm(instance=request.user)
+    profile_form = EditProfileForm(instance=request.user.profile)
+    context['user_form'] = user_form
+    context['profile_form'] = profile_form
     return render(request, 'website/editprofile.html', context)

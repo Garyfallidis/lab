@@ -1,0 +1,34 @@
+{% load staticfiles %}
+
+<nav class="mobile off-canvas-list" role="navigation" aria-label="Mobile navigation" itemscope="itemscope"
+     itemtype="http://schema.org/SiteNavigationElement">
+    <ul>
+        <li class="has-children">
+            <a href="{% url 'research' %}" itemprop="url"><span itemprop="name">Research</span></a>
+            <ul class="children">
+                <li><a href="{% url 'research' %}#neuroimaging" itemprop="url"><span itemprop="name">Intelligent NeuroImaging</span></a></li>
+                <li><a href="{% url 'research' %}#medical_analytic" itemprop="url"><span itemprop="name">Medical Analytics</span></a></li>
+                <li><a href="{% url 'research' %}#visualization" itemprop="url"><span itemprop="name">Scientific Visualization</span></a></li>
+                <li><a href="{% url 'research' %}#machine_learning" itemprop="url"><span itemprop="name">Machine Learning</span></a></li>
+            </ul>
+        </li>
+        <li><a href="{% url 'teaching' %}" itemprop="url"><span itemprop="name">Teaching</span></a></li>
+        <li><a href="{% url 'publications' %}" itemprop="url"><span itemprop="name">Publications</span></a></li>
+        <li><a href="http://nipy.org/dipy/" itemprop="url"><span itemprop="name">Software</span></a></li>
+        <li><a href="{% url 'people' %}" itemprop="url"><span itemprop="name">Team</span></a></li>
+        <li><a href="{% url 'news_page' %}" itemprop="url"><span itemprop="name">News</span></a></li>
+        <li><a href="{% url 'events_page' %}" itemprop="url"><span itemprop="name">Events</span></a></li>
+        <li class="has-children">
+            <a href="#" itemprop="url"><span itemprop="name">Login</span></a>
+            <ul class="children">
+                {% for backend in backends.backends %}
+                {% if next %}
+                <li><a href="{% url 'social:begin' backend %}?next={{next}}" itemprop="url"><span itemprop="name"> {{backend}}</span></a></li>
+                {% else %}
+                <li><a href="{% url 'social:begin' backend %}?next={% url 'dashboard' %}" itemprop="url"><span itemprop="name"> {{backend}}</span></a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</nav>

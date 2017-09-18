@@ -1,0 +1,80 @@
+{% extends "website/dashboard_template.html" %}
+
+
+{% block dashboard_content_body %}
+
+<div class="panel">
+    <a href="#" class="show-hide"><h2 class="title">Add Course</h2></a>
+    <div class="form-container" style="display: none;">
+        {% if form%}
+        <form action="." method="post">
+            {% csrf_token %}
+            <fieldset class="fieldset">
+                <legend>Course</legend>
+                {% for field in form %}
+
+                <div class="form-item">
+
+                    <div class="form-item-label">
+                        {{ field.label_tag }}
+                    </div>
+
+                    <div class="form-item-input">
+                        {{ field }}
+                    </div>
+
+                </div>
+                {% endfor %}
+                <p><input class="button" name="manual" type="submit" value="Submit"></p>
+            </fieldset>
+        </form>
+        {% endif %}
+    </div>
+</div>
+<div class="panel">
+    <h2 class="title">Edit Course</h2>
+	{% if all_courses %}
+		{% for course in all_courses %}
+            <hr>
+	        <h5>{{course.title}}</h5>
+            <p>{{course.acronym}}</p>
+	<div class="grid halves">
+		<div class="grid-item">
+			<a href="{% url 'edit_page' model_name='course' model_id=course.id %}" class="left-separator ">Edit</a>
+			<a href="{% url 'delete_page' model_name='course' model_id=course.id %}" class="left-separator courseDeleteLink">Delete</a>
+		</div>
+	</div>
+
+	{% endfor %}
+	{% endif %}
+</div>
+
+
+{% endblock %}
+
+{% block extra_js_bottom %}
+<!-- Script to show confirmation box before deleting -->
+<script>
+	$( ".courseDeleteLink" ).click(function( event ) {
+		event.preventDefault();
+		var r = confirm("Are you sure you want to delete the course?");
+		if (r == true) {
+			window.location.href = $(this).attr('href');
+		}
+	});
+</script>
+<script>
+        $(".panel .show-hide").each(function() {
+            var $this = $(this);
+            var $code = $this.next('.form-container');
+
+            $code.hide();
+
+            $this.on('click', function(e) {
+                e.preventDefault();
+                $code.slideToggle();
+
+            });
+        });
+        </script>
+{% endblock %}

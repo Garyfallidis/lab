@@ -4,31 +4,18 @@
 {% block extra_css %}
 <!-- Include simplemde markdown editor css-->
 <link rel="stylesheet" type="text/css" href="{% static 'css/simplemde.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.datetimepicker.min.css' %}">
 {% endblock %}
 
 {% block dashboard_content_body %}
-<div class="panel">
-    <h2 class="title">Edit Profile</h2>
-{% if user_form and  profile_form%}
-<form enctype="multipart/form-data" action="." method="post">
+
+{% if form %}
+	<form enctype="multipart/form-data" action="." method="post">
     {% csrf_token %}
     <fieldset class="fieldset">
-        {% for field in user_form %}
-
-        <div class="form-item">
-
-            <div class="form-item-label">
-               {{ field.label_tag }}
-            </div>
-
-            <div class="form-item-input">
-                {{ field }}
-            </div>
-
-        </div>
-        {% endfor %}
-        {% for field in profile_form %}
+        {% if box_legend %}
+            <legend>{{ box_legend }}</legend>
+        {% endif %}
+        {% for field in form %}
 
         <div class="form-item">
 
@@ -44,17 +31,16 @@
         {% endfor %}
         <p><input class="button" type="submit" value="Save Changes"></p>
     </fieldset>
-</form>
+	</form>
 {% endif %}
-</div>
-{% endblock %}
 
+{% endblock %}
 
 {% block extra_js_bottom %}
 <!-- Include and call simplemde markdown editor js-->
 <script type="text/javascript" src="{% static 'js/simplemde.min.js' %}"></script>
-
 <script>
-var simplemde = new SimpleMDE({ element: $("#id_profile_page_markdown")[0], forceSync:true });
+    var simplemde = new SimpleMDE({ element: $("#id_profile_page_markdown")[0], forceSync:true });
 </script>
+
 {% endblock %}

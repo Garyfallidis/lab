@@ -1,33 +1,84 @@
-{% extends "website/base_template.html" %}
+{% extends "website/dashboard_template.html" %}
+
+
 {% block content_body %}
+<div class="bg-none section" id="content">
+    <div class="row">
+            <div class="grid halves">
 
-<div class="row">
-	<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-		<div class="content-card">
-			<div class="page-heading"><h1>Admin Panel</h1></div>
-			<a href="{% url 'dashboard_sections' section_type_requested='fixed' %}">
-				<div class="dashboard-button btn btn-default">Edit Fixed Sections</div>
-			</a>
-			<a href="{% url 'dashboard_sections' section_type_requested='page' %}">
-				<div class="dashboard-button btn btn-default">Add / Edit Pages</div>
-			</a>
-			<a href="{% url 'dashboard_news' %}">
-				<div class="dashboard-button btn btn-default">Add / Edit News</div>
-			</a>
-			<a href="{% url 'dashboard_publications' %}">
-				<div class="dashboard-button btn btn-default">Add / Edit Publications</div>
-			</a>
-			<a href="{% url 'dashboard_carousel' %}">
-				<div class="dashboard-button btn btn-default">Add / Edit Carousel Images</div>
-			</a>
-			<a href="{% url 'edit_profile' %}">
-				<div class="dashboard-button btn btn-default">Edit Profile</div>
-			</a>
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'edit_profile' %}">
+                            <h2 class="title">Profile</h2>
+                        </a>
+                    </div>
 
-			<a href="{% url 'dashboard_logout' %}">
-				<div class="dashboard-button btn btn-default logout">Logout</div>
-			</a>
-		</div>
-	</div>
+                </div>
+
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_publications' %}">
+                            <h2 class="title">Publications / Journals</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                             <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_courses' %}">
+                            <h2 class="title">Courses</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_blog' %}">
+                            <h2 class="title">Blog</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                             <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_events' %}">
+                            <h2 class="title">Events</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_team' %}">
+                            <h2 class="title">Team</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_research' %}">
+                            <h2 class="title">Research Section</h2>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="grid-item">
+                    <div class="panel--interactive">
+                        <a href="{% url 'dashboard_logout' %}">
+                            <h2 class="title">Logout</h2>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+    </div><!-- /.layout --></div>
 </div>
+
 {% endblock %}

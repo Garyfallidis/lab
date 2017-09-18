@@ -1,124 +1,119 @@
 {% extends "website/base_template.html" %}
 {% load staticfiles %}
-{% load customfilters %}
 
+{% block banner %}
+
+<section id="banner" class="banner image">
+    <img src="{% static "images/lab_banner.jpg" %}" alt="Placeholder" />
+    <a href="#" class="button" title="Read the story">Read the story</a>
+</section>
+
+<!--<section id="banner" class="section bg-image text-overlay">
+  <div class="bg-image-cover" style="background: url('{% static "images/66_custom.jpg" %}');"></div>
+</section>
+
+<div class="section banner bg-video loaded video-loaded" id="banner" style="background-image: none;">
+    <div class="bg-image-cover" style="background-image: url('../images/banners/research-1216.jpg');"></div>
+    <div class="bg-video-viewport loaded" data-height="600" data-mp4="{% static 'videos/QuickBundles_at_work.mp4' %}"
+         data-webm="../videos/webm/research-1216.webm" data-width="1800">
+        <video autoplay="autoplay" loop="loop" preload="preload" width="1800" height="600">
+            <source type="video/webm" src="../videos/webm/research-1216.webm">
+            <source type="video/mp4" src="{% static 'videos/QuickBundles_at_work.mp4' %}">
+        </video>
+    </div>
+    <div class="play-controls via-js">
+        <div class="row pad"><a class="icon-pause" href="#">Pause Video 1</a></div>
+    </div>
+</div>-->
+
+{% endblock %}
 
 {% block content_body %}
-<!-- Content -->
-<div class="container lab_style_container">
-	<div id="homeCarousel" class="carousel slide">
-		<!-- Carousel indicators -->
-		<ol class="carousel-indicators">
-			{% for image in all_carousel %}
-			<li data-target="#homeCarousel" data-slide-to="{{forloop.counter|add:'-1'}}" class="{% if forloop.first %}active{% endif %}"></li>
-			{% endfor %}
-		</ol>
-		<!-- Carousel items -->
-		<div class="carousel-inner">
-			{% for image in all_carousel %}
-			<div class="item {% if forloop.first %}active{% endif %}">
-				<img src="{{ image.image_url }}" alt="{{ image.image_caption }}">
-				{% if image.display_description %}
-				<a target="_blank" href="{% if image.target_url %}{{ image.target_url }}{% else %}#{% endif %}">
-					<div class="carousel-caption">
-						<h2>{{ image.image_caption }}</h2>
-						{% if image.image_description %}<p>{{ image.image_description }}</p>{% endif %}
-					</div>
-				</a>
-				{% endif %}
-			</div>
-			{% endfor %}
-		</div>
-		<!-- Carousel nav -->
-		<a class="carousel-control left" href="#homeCarousel" data-slide="prev">&lsaquo;</a>
-		<a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
-	</div>
-	<div class="row">
-		<div class="col-md-4 col-lg-4 col-md-push-8 col-lg-push-8 lab_col col_border_left">
-			<h1 class="lab_column_title">News and Updates</h1>
-			<div class="lab-col-inner">
-				<div id="news_posts_container">
-					{% for news_post in latest_news_posts %}
-					<div class="news_post_item">
-						<h1>{{ news_post.title }}</h1>
-						<div>{{ news_post.body_html|safe }}</div>
-						<div>{{ news_post.post_date }}</div>
-					</div>
-					{% endfor %}
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 col-lg-4 lab_col col_border_left">
-			<h1 class="lab_column_title">Publications</h1>
-			<div class="lab-col-inner">
-				<div class="publications_container">
-					{% for publication in highlighted_publications %}
-					<div class="publication_item">
-						<a href="{{ publication.url }}" target="_blank">
-							<span class="pub_title">{{ publication.title }}</span>
-						</a>
-						<div class="publication_author">
-							{{ publication.author }}
-						</div>
-						<button class="show_pub_details_button btn btn-default">Cite</button>
-						<div class="publication_details_container">
-							<span class="glyphicon glyphicon-remove close_pub_details" aria-hidden="true"></span>
-							<h1>{{ publication.title }}</h1>
 
-							<h3>Authors:</h3>
-							<p>{{ publication.author }}</p>
-							{% if publication.bibtex %}
-							<div class="publication_bibtex">
-								<h3>Bibtex:</h3>
-								<p>{{ publication.bibtex }}</p>
-							</div>
-							{% endif %}
-							<a href="{{ publication.url }}" target="_blank">
-								<button type="button" class="btn btn-default" aria-label="Left Align">
-									<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-									More details
-								</button>
-							</a>
-						</div>
-					</div>
-					{% endfor %}
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 col-lg-4 col-md-pull-8 col-lg-pull-8 lab_col">
-			<h1 class="lab_column_title">Blog Posts</h1>
-			<div class="lab-col-inner">
-				{% for blog_post in latest_blog_posts %}
-				<div class="blog_post_item">
-				<a class="blog_title_link" href="{% url 'blog_post' identifier=blog_post.identifier %}">
-					<h1>{{ blog_post.title }}</h1>
-				</a>
-				<div>{{ blog_post.body_html | truncatechars_html:400 | safe }}</div>
-				<a href="{% url 'blog_post' identifier=blog_post.identifier %}">
-					<span class="blog_readmore">continue reading..</span>
-				</a>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
+<div class="breakout title-centered bg-crimson bg-dark section" id="">
+    <a href="https://github.com/nipy/dipy"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+    <a href="https://github.com/nipy/dipy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+    <div class="row">
+        <div class="layout">
+            <a href="http://dipy.org"><h2 class="section-title">Software : <b style="color: darkorange;">DIPY</b> - <b style="color: darkorange;">D</b>iffusion <b style="color: darkorange;">I</b>maging in <b style="color: darkorange;">PY</b>thon</h2></a>
+            <div class="one-half">
+                <div class=" grid halves">
+                    <div class="grid-item" style="height: 50px;">
+                        <div class="panel stat"><p class="stat--info"><span class="stat--number">62</span><span
+                                class="stat--text">Contributors</span>
+                        </p></div>
+                    </div>
+                    <div class="grid-item" style="height: 50px;">
+                        <div class="panel stat"><p class="stat--info"><span class="stat--number">15</span><span
+                                class="stat--text"> international university contribute</span></p></div>
+                    </div>
+                    <div class="grid-item" style="height: 50px;">
+                        <div class="panel stat"><p class="stat--info"><span class="stat--number">1,594</span><span
+                                class="stat--text">Awesome stuff</span></p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="one-half">
+                <figure class="media video ">
+                    <div class="flex-video widescreen">
+                        <iframe allowfullscreen="allowfullscreen" content="https://www.youtube.com/embed/kstL7KKqu94"
+                                frameborder="0" height="100%" itemprop="embedUrl"
+                                src="https://www.youtube.com/embed/kstL7KKqu94" width="100%"></iframe>
+                    </div>
+                </figure>
+            </div>
+        </div>
+    </div>
 </div>
+
+{% if all_journal %}
+<div class="bg-mahogany bg-dark extra-space bg-none section" id="journal">
+    <div class="row">
+        <h2 class="text-center">Publications</h2>
+        <div class="row">
+            <div class="grid fourths">
+                {% for journal in all_journal%}
+                <div class="grid-item"><img alt="{{journal.title}}" src="{{journal.cover.url}}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="bg-gray section" id="">
+        <div class="grid thirds full-width">
+        <div class="grid-item">
+            <h1 class="title">BLOG</h1>
+            <div class="panel">
+                <ul class="feed">
+                    {% for blog_post in latest_blog_posts %}
+                    <li class="feed-item news">
+                        <div class="content">
+                            <h2 class="title"><a href="{% url 'blog_post' slug=blog_post.slug %}"> {{ blog_post.title }}</a></h2>
+                            <p class="meta date">{{ blog_post.posted }}</p>
+                            <p>{{ blog_post.body_html | truncatechars_html:100 | safe }}</p>
+                            <p><a href="{% url 'blog_post' slug=blog_post.slug %}"><span class="blog_readmore">continue reading...</span></a>
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="grid-item">
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdiffusionimaginginpython%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId={{ FACEBOOK_APP_ID }}" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        </div>
+        <div class="grid-item">
+            <a class="twitter-timeline" data-width="200" data-height="600" href="https://twitter.com/dipymri">Tweets by dipymri</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+        </div>
+</div>
+
+
+
 {% endblock %}
 
-{% block extra_js_bottom %}
-<script src="{% static 'js/jquery.matchHeight-min.js' %}" type="text/javascript"></script>
-<script type="text/javascript">
-	$(function() {
-		// match column heights
-		$('.lab_col').matchHeight({});
-		// display details of publications
-		$('.show_pub_details_button').click(function(){
-			$(this).siblings('.publication_details_container').fadeIn();
-		});
-		// close publication details box
-		$('.close_pub_details').click(function(){
-			$(this).parent().fadeOut();
-		});
-	});
-</script>
-{% endblock %}
+<!--<a href="http://www.freepik.com/free-vector/science-template_1081078.htm">Designed by Freepik</a>-->
