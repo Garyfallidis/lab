@@ -170,6 +170,9 @@ DEFAULT_KEYWORDS = ['DTI', 'diffusion tensor imaging', 'MRI', 'white matter', 't
 META_SITE_PROTOCOL = 'https'
 META_SITE_DOMAIN = 'dipy.herokuapp.com'
 
+# Repos settings
+REPOSITORY_NAME = "lab"
+REPOSITORY_URL = "/users/garyfallidis/"
 
 # python-social-auth settings
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
