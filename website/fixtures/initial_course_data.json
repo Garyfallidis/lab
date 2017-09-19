@@ -3,7 +3,7 @@
     "model": "website.course",
     "pk": 0,
     "fields": {
-      "title": "Image Processing for Medical Imaging",
+      "title": "Image Processing for Medical Applications",
       "acronym": "ISE - ENGR - E535",
       "level": "Graduate",
       "semester": "Spring 2017, 2018",
