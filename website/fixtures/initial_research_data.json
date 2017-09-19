@@ -14,7 +14,7 @@
     "model": "website.research",
     "pk": 1,
     "fields": {
-      "title": "Sienctific Visualization",
+      "title": "Scientific Visualization",
       "position": 1,
       "show_in_page": "True",
       "default_static_background_img_name": "jet_odfs.png",
