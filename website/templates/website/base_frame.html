@@ -12,16 +12,16 @@
 	<!-- IU CSS Design
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet">-->
 	<link href="https://fonts.iu.edu/style.css?family=BentonSans:regular,bold%7CBentonSansCond:regular%7CGeorgiaPro:regular" rel="stylesheet">
-	<link href="https://assets.iu.edu/web/fonts/icon-font.css" rel="stylesheet">
-	<link href="https://assets.iu.edu/web/3.x/css/iu-framework.min.css" rel="stylesheet" type="text/css">
-	<link href="https://assets.iu.edu/brand/3.x/brand.css" rel="stylesheet" type="text/css">
-	<link href="https://assets.iu.edu/search/3.x/search.css" rel="stylesheet" type="text/css">
+	<link href="{% static 'iu-framework/fonts/icon-font.css' %}" rel="stylesheet">
+	<link href="{% static 'iu-framework/css/iu-framework.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'iu-framework/css/iu-brand.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'iu-framework/css/iu-search.css' %}" rel="stylesheet" type="text/css">
 
 	<!-- Custom Main Design -->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
 	<!-- IU Global script + Custom Modernizr -->
-	<script src="http://assets.iu.edu/web/1.5/libs/modernizr.min.js"></script>
+	<script src="{% static 'iu-framework/js/modernizr.min.js' %}"></script>
 	{% block extra_js_top %}{% endblock %}
 
 </head>
@@ -65,8 +65,8 @@
 
 	<!-- IU Global js
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation-essential/6.2.2/js/foundation.min.js"></script>-->
-	<script src="https://assets.iu.edu/web/3.x/js/iu-framework.min.js"></script>
-	<script src="https://assets.iu.edu/search/3.x/search.js"></script>
+	<script src="{% static 'iu-framework/js/iu-framework.min.js' %}"></script>
+	<script src="{% static 'iu-framework/js/search.js' %}"></script>
 
 	<!-- Navbar shrink script -->
 	<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
