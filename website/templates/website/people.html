@@ -14,8 +14,10 @@
         <nav itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" data-parent-url="/people/">
             <ul>
                 {% for key, value in all_profile_dict.items %}
+                {% if value %}
                 <li class=""><a href="{% url 'people' %}#{{key}}" itemprop="url" class=""><span
                         itemprop="name">{{key}}</span></a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
         </nav>
@@ -26,6 +28,7 @@
 <div class="bg-none section" id="">
     <div class="row">
         <div class="layout">
+            {% if profile_list %}
             <div class="float-left panel">
                 <h1 class="title" id="{{section_name}}"> {{section_name}}</h1>
                 <hr>
@@ -55,6 +58,7 @@
             </a></div>
             {% endfor %}
         </div>
+        {% endif %}
     </div>
 </div>
 {% endfor %}
