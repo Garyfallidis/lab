@@ -9,8 +9,8 @@
 
  We allow everything but we should improve security requirements later (like remove inline script)
 
--->
-	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;">
+
+	<meta http-equiv="Content-Security-Policy" content="default-src *; font-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;">-->
 	<!-- DJANGO META TEMPLATE TAGS END -->
 
 	{% block extra_css %}{% endblock %}
