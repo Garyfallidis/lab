@@ -53,8 +53,5 @@
 {% block extra_js_bottom %}
 <!-- Include and call simplemde markdown editor js-->
 <script type="text/javascript" src="{% static 'js/simplemde.min.js' %}"></script>
-
-<script>
-var simplemde = new SimpleMDE({ element: $("#id_profile_page_markdown")[0], forceSync:true });
-</script>
+{{ js_script|safe }}
 {% endblock %}

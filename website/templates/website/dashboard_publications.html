@@ -41,7 +41,7 @@
 	<div class="grid halves">
 		<div class="grid-item">
 			<a href="{% url 'edit_page' model_name='journal' model_id=journal.id %}" class="left-separator ">Edit</a>
-			<a href="{% url 'delete_page' model_name='journal' model_id=journal.id %}" class="left-separator DeleteLink">Delete</a>
+			<a href="{% url 'delete_page' model_name='journal' model_id=journal.id %}" class="left-separator DeleteLink" value="journal">Delete</a>
 		</div>
 	</div>
 
@@ -53,8 +53,8 @@
     <h2 class="title">Add Publication</h2>
 	<div class="grid halves">
 		<div class="grid-item">
-			<a href="#" class="show-hide left-separator">via Bibtex</a>
-			<div class="form-block" style="display: none;">
+			<a href="#" class="shared-show-hide left-separator">via Bibtex</a>
+			<div class="shared-block" style="display: none;">
 				<form action="." method="post">
 					{% csrf_token %}
 					<fieldset class="fieldset">
@@ -64,8 +64,8 @@
 					</fieldset>
 				</form>
 			</div>
-			<a href="#" class="show-hide left-separator">Manually</a>
-			<div class="form-block" style="display: none;">
+			<a href="#" class="shared-show-hide left-separator">Manually</a>
+			<div class="shared-block" style="display: none;">
 				{% if form%}
 				<form action="." method="post">
 					{% csrf_token %}
@@ -91,7 +91,7 @@
 				{% endif %}
 
 			</div>
-			<div class="form-container" style="display: none;"></div>
+			<div class="shared-container" style="display: none;"></div>
 		</div>
 	</div>
 </div>
@@ -112,7 +112,7 @@
 		<div class="grid-item">
 			<a href="{% url 'edit_page' model_name='publication' model_id=publication.id %}" class="left-separator ">Edit</a>
 			<a href="{% url 'delete_page' model_name='publication' model_id=publication.id %}"
-			   class="left-separator DeleteLink">Delete</a>
+			   class="left-separator DeleteLink" value="publication">Delete</a>
 		</div>
 	</div>
 	<hr>
@@ -121,48 +121,4 @@
 </div>
 
 
-{% endblock %}
-
-{% block extra_js_bottom %}
-<!-- Script to show confirmation box before deleting -->
-<script>
-	$( ".DeleteLink" ).click(function( event ) {
-		event.preventDefault();
-		var r = confirm("Are you sure you want to delete this Publication / Journal?");
-		if (r == true) {
-			window.location.href = $(this).attr('href');
-		}
-	});
-</script>
-<script>
-        $(".grid-item .show-hide").each(function() {
-            var $this = $(this);
-            var $current_html = $this.next('div.form-block').html();
-            var $code = $this.parent().find('.form-container');
-
-            $code.hide();
-
-            $this.on('click', function(e) {
-                e.preventDefault();
-                if ($code.html() != $current_html){
-                    $code.hide();
-                    $code.html($current_html);
-                }
-                $code.slideToggle();
-
-            });
-        });
-		$(".panel .show-hide").each(function() {
-            var $this = $(this);
-            var $code = $this.next('.form-container');
-
-            $code.hide();
-
-            $this.on('click', function(e) {
-                e.preventDefault();
-                $code.slideToggle();
-
-            });
-        });
-        </script>
 {% endblock %}

@@ -40,4 +40,47 @@
          */
         IU.init && IU.init({debug: true});
     });
+
+
+    $(".shared-show-hide").each(function() {
+        var $this = $(this);
+        var $current_html = $this.next('div.shared-block').html();
+        var $code = $this.parent().find('.shared-container');
+
+        $code.hide();
+
+        $this.on('click', function(e) {
+            e.preventDefault();
+            if ($code.html() != $current_html){
+                $code.hide();
+                $code.html($current_html);
+            }
+            $code.slideToggle();
+
+        });
+    });
+    $(".panel .show-hide").each(function() {
+        var $this = $(this);
+        var $code = $this.next('.form-container');
+
+        $code.hide();
+
+        $this.on('click', function(e) {
+            e.preventDefault();
+            $code.slideToggle();
+
+        });
+    });
+
+    // Script to show confirmation box before deleting
+    $( ".DeleteLink" ).click(function( event ) {
+		event.preventDefault();
+		var section_text = $(this).attr('value');
+		console.log(section_text);
+		var r = confirm(`Are you sure you want to delete this ${section_text} ?`);
+		if (r == true) {
+			window.location.href = $(this).attr('href');
+		}
+	});
 })(window, window.document, jQuery);
+
