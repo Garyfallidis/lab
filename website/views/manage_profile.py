@@ -16,9 +16,10 @@ def edit_profile(request):
     except:
         raise Http404("Profile does not exist. Contact Admin")
 
-    context = {}
+    js_script = """<script>var simplemde = new SimpleMDE({ element: $("#id_profile_page_markdown")[0], forceSync:true }); </script>"""
+    context = {'js_script': js_script}
     if request.method == 'POST':
-        submitted_user_form =  UserForm(request.POST, instance=request.user)
+        submitted_user_form = UserForm(request.POST, instance=request.user)
         submitted_profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if submitted_profile_form.is_valid() and submitted_user_form.is_valid():
             submitted_user_form.save()

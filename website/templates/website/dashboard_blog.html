@@ -47,7 +47,7 @@
 	<div class="grid halves">
 		<div class="grid-item">
 			<a href="{% url 'edit_page' model_name='blog' model_id=blog_post.id %}" class="left-separator ">Edit</a>
-			<a href="{% url 'delete_page' model_name='blog' model_id=blog_post.id %}" class="left-separator blogDeleteLink">Delete</a>
+			<a href="{% url 'delete_page' model_name='blog' model_id=blog_post.id %}" class="left-separator DeleteLink" value="blog post">Delete</a>
 		</div>
 	</div>
 
@@ -64,27 +64,6 @@
 <script type="text/javascript" src="{% static 'js/simplemde.min.js' %}"></script>
 <!-- Script to show confirmation box before deleting -->
 <script>
-	$( ".blogDeleteLink" ).click(function( event ) {
-		event.preventDefault();
-		var r = confirm("Are you sure you want to delete this blog post?");
-		if (r == true) {
-			window.location.href = $(this).attr('href');
-		}
-	});
-
-    $(".panel .show-hide").each(function () {
-        var $this = $(this);
-        var $code = $this.next('.form-container');
-
-        $code.hide();
-
-        $this.on('click', function (e) {
-            e.preventDefault();
-            $code.slideToggle();
-
-        });
-    });
-
     var simplemde = new SimpleMDE({ element: $("#id_profile_page_markdown")[0], forceSync:true });
 </script>
 

@@ -41,7 +41,7 @@
 	<div class="grid halves">
 		<div class="grid-item">
 			<a href="{% url 'edit_page' model_name='course' model_id=course.id %}" class="left-separator ">Edit</a>
-			<a href="{% url 'delete_page' model_name='course' model_id=course.id %}" class="left-separator courseDeleteLink">Delete</a>
+			<a href="{% url 'delete_page' model_name='course' model_id=course.id %}" class="left-separator DeleteLink" value="course">Delete</a>
 		</div>
 	</div>
 
@@ -50,31 +50,4 @@
 </div>
 
 
-{% endblock %}
-
-{% block extra_js_bottom %}
-<!-- Script to show confirmation box before deleting -->
-<script>
-	$( ".courseDeleteLink" ).click(function( event ) {
-		event.preventDefault();
-		var r = confirm("Are you sure you want to delete the course?");
-		if (r == true) {
-			window.location.href = $(this).attr('href');
-		}
-	});
-</script>
-<script>
-        $(".panel .show-hide").each(function() {
-            var $this = $(this);
-            var $code = $this.next('.form-container');
-
-            $code.hide();
-
-            $this.on('click', function(e) {
-                e.preventDefault();
-                $code.slideToggle();
-
-            });
-        });
-        </script>
 {% endblock %}

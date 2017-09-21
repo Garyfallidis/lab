@@ -29,8 +29,8 @@
             <div class="grid-item">
               <div class="code">
                 {% if publication.abstract %}
-                  <a href="#" class="show-hide left-separator"><span itemprop="name">Abstract</span></a>
-                  <div class="text-block" style="display: none;">
+                  <a href="#" class="shared-show-hide left-separator"><span itemprop="name">Abstract</span></a>
+                  <div class="shared-block" style="display: none;">
                       {{publication.abstract}}
                   </div>
                 {% endif %}
@@ -38,8 +38,8 @@
                   <a href="{{publication.project_url}}" class="left-separator"><span itemprop="name">Project</span></a>
                 {% endif %}
                 {% if publication.bibtex %}
-                  <a href="#" class="show-hide left-separator"><span itemprop="name">Bibtex</span></a>
-                  <div class="text-block" style="display: none;">
+                  <a href="#" class="shared-show-hide left-separator"><span itemprop="name">Bibtex</span></a>
+                  <div class="shared-block" style="display: none;">
                       {{publication.bibtex}}
                   </div>
                 {% endif %}
@@ -47,7 +47,7 @@
                   <a href="{{publication.pdf}}" class="left-separator"><span itemprop="name">PDF</span></a>
                 {% endif %}
 
-                <div class="code-container" style="display: none;">
+                <div class="shared-container" style="display: none;">
                 </div>
               </div>
             </div>
@@ -60,23 +60,4 @@
 {% endblock %}
 
 {% block extra_js_bottom %}
-<script>
-        $(".code .show-hide").each(function() {
-            var $this = $(this);
-            var $current_html = $this.next('div.text-block').html();
-            var $code = $this.parent().find('.code-container');
-
-            $code.hide();
-
-            $this.on('click', function(e) {
-                e.preventDefault();
-                if ($code.html() != $current_html){
-                    $code.hide();
-                    $code.html($current_html);
-                }
-                $code.slideToggle();
-
-            });
-        });
-        </script>
 {% endblock %}
