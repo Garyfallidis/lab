@@ -33,7 +33,7 @@ def page(request, position_id):
 
 
 def news_page(request):
-    all_blog_posts = BlogPost.objects.filter(show_in_lab_blog=True)
+    all_blog_posts = BlogPost.objects.filter(show_in_lab_blog=True).order_by('-posted')
     keywords = [item for blog in all_blog_posts for item in blog.keywords.split(",")]
     context = {'all_blog_posts': all_blog_posts,
                'meta': get_meta_tags_dict(title="DIPY - News - Follow Us", keywords=keywords),
