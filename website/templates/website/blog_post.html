@@ -1,4 +1,7 @@
 {% extends "website/base_template.html" %}
+{% load staticfiles %}
+
+{% block extra_css %}<link rel="stylesheet" type="text/css" href="{% static 'css/codehilite.css' %}">{% endblock %}
 
 {% block content_body %}
 

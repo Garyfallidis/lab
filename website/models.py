@@ -24,7 +24,7 @@ allowed_html_tags = bleach.ALLOWED_TAGS + ['p', 'pre', 'table', 'img',
                                            'dd', 'dt', 'a', 'tr', 'td',
                                            'div', 'span', 'hr']
 
-allowed_attrs = ['href', 'class', 'rel', 'alt', 'class', 'src']
+allowed_attrs = ['href', 'class', 'rel', 'alt', 'class', 'src', 'id']
 
 # Create your models here.
 
@@ -290,7 +290,7 @@ class BlogPost(models.Model):
     def save(self, *args, **kwargs):
         date = datetime.date.today()
         self.slug = '%i/%i/%i/%s' % (date.year, date.month, date.day, slugify(self.title))
-        html_content = markdown.markdown(self.body, extensions=['codehilite'])
+        html_content = markdown.markdown(self.body, extensions=['markdown.extensions.codehilite', 'markdown.extensions.toc'])
 
         # bleach is used to filter html tags like <script> for security
         self.body_html = bleach.clean(html_content, allowed_html_tags,

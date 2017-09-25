@@ -6,11 +6,7 @@
 	<!-- DJANGO META TEMPLATE TAGS START -->
 	{% include "meta.html" %}
 	<!-- More information here: https://stackoverflow.com/questions/30280370/how-does-content-security-policy-work
-
- We allow everything but we should improve security requirements later (like remove inline script)
-
-
-	<meta http-equiv="Content-Security-Policy" content="default-src *; font-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;">-->
+	We allow everything but we should improve security requirements later (like remove inline script)-->
 	<!-- DJANGO META TEMPLATE TAGS END -->
 
 	{% block extra_css %}{% endblock %}

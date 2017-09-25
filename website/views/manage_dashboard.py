@@ -13,7 +13,7 @@ from website.models import EventPost, BlogPost, Publication, Course, Profile, Us
 @login_required
 @github_permission_required
 def dashboard_blog(request):
-    all_blog_post = BlogPost.objects.all()
+    all_blog_post = BlogPost.objects.all().order_by('-posted')
     context = {'all_blog_post': all_blog_post}
     if request.method == 'POST':
         submitted_form = AddEditBlogPostForm(request.POST)

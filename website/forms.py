@@ -37,9 +37,9 @@ class AddEditEventPostForm(ModelForm):
 class AddEditPublicationForm(ModelForm):
     class Meta:
         model = Publication
-        fields = ['title', 'url', 'is_highlighted',  'author', 'doi', 'entry_type',
+        fields = ['title', 'url', 'is_highlighted',  'author', 'doi', 'entry_type', 'abstract',
                   'published_in', 'publisher', 'year_of_publication',
-                  'month_of_publication', 'bibtex']
+                  'month_of_publication', 'bibtex', 'pdf', 'project_url']
         labels = { 'is_highlighted': 'Highlight publication'}
 
 
