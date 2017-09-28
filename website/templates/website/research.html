@@ -16,14 +16,11 @@
 <div class="section banner bg-video loaded video-loaded" id="banner" style="background-image: none;">
     <div class="bg-image-cover" style="background-image: url('../images/banners/research-1216.jpg');"></div>
     <div class="bg-video-viewport loaded" data-height="600" data-mp4="{% static 'videos/visual_description_of_the_QuickBundles_algorithm.mp4' %}"
-         data-webm="../videos/webm/research-1216.webm" data-width="1800">
+         data-webm="{% static 'videos/visual_description_of_the_QuickBundles_algorithm.webm' %}" data-width="1800">
         <video autoplay="autoplay" loop="loop" preload="preload" width="1800" height="600">
-            <source type="video/webm" src="../videos/webm/research-1216.webm">
+            <source type="video/webm" src="{% static 'videos/visual_description_of_the_QuickBundles_algorithm.webm' %}">
             <source type="video/mp4" src="{% static 'videos/visual_description_of_the_QuickBundles_algorithm.mp4' %}">
         </video>
-    </div>
-    <div class="play-controls via-js">
-        <div class="row pad"><a class="icon-pause" href="#">Pause Video 1</a></div>
     </div>
 </div>
 
@@ -45,22 +42,6 @@
         </nav>
     </div>
 </aside>
-<div class="section breadcrumbs">
-    <div class="row">
-        <div class="layout">
-            <ul itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList">
-                <li itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem"><a
-                        href="../index.html" itemprop="item"><span itemprop="name">Home</span></a>
-                    <meta content="1" itemprop="position">
-                </li>
-                <li class="current" itemprop="itemListElement" itemscope="itemscope"
-                    itemtype="http://schema.org/ListItem"><span itemprop="item name">Research</span>
-                    <meta content="2" itemprop="position">
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
 <div class="bg-none section" id="content">
     <div class="row">
         <div class="layout">
