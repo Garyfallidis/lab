@@ -47,3 +47,8 @@
 
 //.bg-video .play-controls{position:absolute;bottom:25px;height:25px;left:0;right:0;z-index:9;pointer-events:none}
 //.bg-video .play-controls .row{text-align:left}
+
+@media screen and (min-width:40em){
+.bg-video-viewport video{font-size:0;vertical-align:top;position:relative;width:100%;}
+.bg-video-viewport.loaded{opacity:1}
+}
