@@ -27,4 +27,14 @@
   margin-left: 3%;
   margin-right: 3%; }
 
+@media screen and (min-width: 40em) {
+  .bg-video-viewport video {
+    font-size: 0;
+    vertical-align: top;
+    position: relative;
+    width: 100%; }
+
+  .bg-video-viewport.loaded {
+    opacity: 1; } }
+
 /*# sourceMappingURL=main.css.map */
