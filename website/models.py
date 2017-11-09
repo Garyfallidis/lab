@@ -230,6 +230,7 @@ class Profile(models.Model):
     contact_url = models.URLField(blank=True, null=True)
     description = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=1, default=1, choices=STATUS_CHOICE)
+    rank = models.IntegerField(blank=True, default=99)
 
     profile_page_markdown = models.TextField(null=True, blank=True)
     profile_page_html = models.TextField(null=True, blank=True, editable=False)
