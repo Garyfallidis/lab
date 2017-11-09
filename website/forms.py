@@ -1,4 +1,4 @@
-from django.forms import ModelForm, ClearableFileInput, Form, ChoiceField
+from django.forms import ModelForm, ClearableFileInput, Form, ChoiceField, IntegerField
 from .models import *
 
 
@@ -84,11 +84,16 @@ class TeamForm(Form):
         team = kwargs.pop('team')
         super(TeamForm, self).__init__(*args, **kwargs)
         for counter, profile in enumerate(team):
-            self.fields['status-' + str(profile.user.username)] = ChoiceField(label=profile.user.username,
+            self.fields['status-' + str(profile.user.username)] = ChoiceField(label="{} Status".format(profile.user.username),
                                                                               choices=profile.STATUS_CHOICE,
                                                                               initial=profile.status)
+            self.fields['rank-' + str(profile.user.username)] = IntegerField(label="{} Rank".format(profile.user.username),
+                                                                             initial= profile.rank,
+                                                                             max_value=99,
+                                                                             min_value=0)
 
-    def get_new_status(self):
+    def get_new_status_and_rank(self):
         for name, value in self.cleaned_data.items():
             if name.startswith('status-'):
-                yield (self.fields[name].label, value)
+                username = name.replace('status-','')
+                yield (username, value, self.cleaned_data['rank-' + username])

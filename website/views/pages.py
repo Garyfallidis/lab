@@ -92,7 +92,7 @@ def teaching(request):
 
 
 def people(request):
-    all_profile_dict = {choice[1]: Profile.objects.filter(status=choice[0]) for choice in Profile.STATUS_CHOICE}
+    all_profile_dict = {choice[1]: Profile.objects.filter(status=choice[0]).order_by('rank') for choice in Profile.STATUS_CHOICE}
     context = {'all_profile_dict': all_profile_dict,
                'meta': get_meta_tags_dict(),
                }

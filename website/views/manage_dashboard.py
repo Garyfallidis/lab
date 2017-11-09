@@ -193,10 +193,11 @@ def dashboard_team(request):
     if request.method == 'POST':
         submitted_form = TeamForm(request.POST, team=all_profile)
         if submitted_form.is_valid():
-            for (username, status) in submitted_form.get_new_status():
+            for (username, status, rank) in submitted_form.get_new_status_and_rank():
                 user = User.objects.get(username=username)
                 p = Profile.objects.get(user=user)
                 p.status = status
+                p.rank = rank
                 p.save()
             return redirect(reverse('dashboard_team'))
         else:
