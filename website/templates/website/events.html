@@ -1,4 +1,6 @@
 {% extends "website/base_template.html" %}
+{% load staticfiles %}
+{% load customfilters %}
 
 {% block content_body %}
 <div class="extra-space bg-none section" id="content">
@@ -13,7 +15,7 @@
                         <div class="content">
                             <h2 class="title"><a href="{% url 'event_post' slug=event.slug %}"> {{ event.title }}</a></h2>
                             <p class="meta date">{{ event.start_date }}</p>
-                            <p>{{ event.description | truncatechars_html:400 | safe }}</p>
+                            <p>{{ event.description | youtube_embed_url | truncatechars_html:400 | safe }}</p>
                             <p><a href="{% url 'event_post' slug=event.slug %}"><span class="blog_readmore">more...</span></a>
                             </p>
                         </div>

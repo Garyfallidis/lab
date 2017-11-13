@@ -1,5 +1,6 @@
 {% extends "website/base_template.html" %}
 {% load staticfiles %}
+{% load customfilters %}
 
 {% block extra_css %}<link rel="stylesheet" type="text/css" href="{% static 'css/codehilite.css' %}">{% endblock %}
 
@@ -12,7 +13,7 @@
       <div class="panel">
         <p class="meta date">{{ blog_post.posted }}</p>
         <div class="text">
-          {{ blog_post.body_html | safe }}
+          {{ blog_post.body_html | youtube_embed_url | safe }}
         </div>
       </div>
       <hr>
