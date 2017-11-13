@@ -24,7 +24,7 @@
 
               <figure class="media circle float-left" itemscope="itemscope" itemtype="http://schema.org/ImageObject" style="margin-top: 0px; margin-right: 5px">
                 <img alt="" itemprop="image" width="21" height="21" src="{{author.avatar_url}}">
-              </figure> {{author.user.get_full_name}}
+              </figure> <a href="{% url 'people_profile' username=author.user.username %}"> {{author.user.get_full_name}}</a>
           {% endfor %}
         </div>
 

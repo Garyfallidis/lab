@@ -74,7 +74,11 @@
         <div class="row">
             <div class="grid fourths">
                 {% for journal in all_journal%}
-                <div class="grid-item"><img alt="{{journal.title}}" src="{{journal.cover.url}}">
+                {% if journal.link_url %}
+                <div class="grid-item"><a href="{{journal.link_url}}"><img alt="{{journal.title}}" src="{{journal.cover.url}}"></a>
+                    {% else %}
+                    <div class="grid-item"><img alt="{{journal.title}}" src="{{journal.cover.url}}">
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div>
