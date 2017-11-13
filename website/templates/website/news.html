@@ -1,4 +1,6 @@
 {% extends "website/base_template.html" %}
+{% load staticfiles %}
+{% load customfilters %}
 
 {% block content_body %}
 <div class="extra-space bg-none section" id="content">
@@ -13,7 +15,7 @@
                         <div class="content">
                             <h2 class="title"><a href="{% url 'blog_post' slug=blog_post.slug %}"> {{ blog_post.title }}</a></h2>
                             <p class="meta date">{{ blog_post.posted }}</p>
-                            <p>{{ blog_post.body_html | truncatechars_html:400 | safe }}</p>
+                            <p>{{ blog_post.body_html | youtube_embed_url | truncatechars_html:400 | safe }}</p>
                             <!-- {% if blog_post.authors %}
                             <p class="blog_post_author">{{ blog_post.authors }}</p>
                             {% endif %} -->

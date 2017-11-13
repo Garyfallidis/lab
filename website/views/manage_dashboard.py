@@ -60,21 +60,17 @@ def dashboard_publications(request):
 
     if request.method == 'POST':
         if 'journal' in request.POST:
-            print('pass here')
             submitted_form = AddEditJournalForm(request.POST, request.FILES)
-            print(submitted_form)
             if submitted_form.is_valid():
-                print('valid')
                 submitted_form.save()
                 return redirect(reverse('dashboard_publications'))
             else:
-                print('not valid')
                 print(submitted_form.errors)
                 context['journal_form'] = submitted_form
                 return render(request, 'website/dashboard_publications.html', context)
 
         if 'manual' in request.POST:
-            submitted_form = AddEditPublicationForm(request.POST)
+            submitted_form = AddEditPublicationForm(request.POST, request.FILES)
             if submitted_form.is_valid():
                 submitted_form.save()
                 return redirect(reverse('dashboard_publications'))
@@ -151,7 +147,7 @@ def dashboard_courses(request):
     all_courses = Course.objects.all()
     context = {'all_courses': all_courses}
     if request.method == 'POST':
-        submitted_form = AddEditCourseForm(request.POST)
+        submitted_form = AddEditCourseForm(request.POST, request.FILES)
         if submitted_form.is_valid():
             submitted_form.save()
             return redirect(reverse('dashboard_courses'))
@@ -171,7 +167,7 @@ def dashboard_research(request):
     all_research = Research.objects.all()
     context = {'all_research': all_research}
     if request.method == 'POST':
-        submitted_form = AddEditResearchForm(request.POST)
+        submitted_form = AddEditResearchForm(request.POST, request.FILES)
         if submitted_form.is_valid():
             submitted_form.save()
             return redirect(reverse('dashboard_research'))

@@ -1,5 +1,6 @@
 {% extends "website/base_template.html" %}
-
+{% load staticfiles %}
+{% load customfilters %}
 
 {% block banner %}
 {% if event_post.description_img %}
@@ -20,7 +21,7 @@
           <p class="meta date"><b>Start :</b> {{ event_post.start_date }}</p>
           <p class="meta date"><b>End :</b> {{ event_post.end_date }}</p>
         <div class="text">
-          {{ event_post.body_html | safe }}
+          {{ event_post.body_html | youtube_embed_url |safe }}
         </div>
       </div>
       <hr>
