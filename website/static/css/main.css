@@ -27,6 +27,19 @@
   margin-left: 3%;
   margin-right: 3%; }
 
+.research-title {
+  padding: 32px 0;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  background: radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 60%); }
+  .research-title p {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-family: BentonSansCondBold,Arial,sans-serif;
+    font-weight: 400; }
+
 .bg-video .play-controls a {
   color: #fff;
   text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; }
