@@ -4,7 +4,6 @@
 {% block banner %}
 <section id="banner" class="section bg-gray text-overlay">
     <div class="row pad">
-        <div class="two-thirds">
             <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
                 <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img
                         alt="" itemprop="image"
@@ -16,7 +15,7 @@
                     {% else %}
                     <h1 class="no-margin title"><span itemprop="name">{{ profile.user.username }}</span></h1>
                     {% endif %}
-                    <p class="sub-title" itemprop="jobTitle">{{ profile.description }}</p>
+                    <p class="sub-title" itemprop="jobTitle">{{ profile.description | linebreaksbr | safe}}</p>
                     <dl class="meta inline">
                         <dt>Phone:</dt>
                         <dd itemprop="telephone">{{ profile.contact_number }}</dd>
@@ -27,7 +26,6 @@
                     </dl>
                 </div>
             </article>
-        </div>
     </div>
 
 </section>
