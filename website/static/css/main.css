@@ -27,7 +27,35 @@
   margin-left: 3%;
   margin-right: 3%; }
 
+.bg-video .play-controls a {
+  color: #fff;
+  text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; }
+
+.bg-video .play-controls a:before {
+  margin-left: -24px;
+  line-height: 25px; }
+
+.bg-video .play-controls {
+  position: absolute;
+  bottom: 95px;
+  height: 25px;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  pointer-events: none; }
+
 @media screen and (min-width: 40em) {
+  .bg-video .play-controls a {
+    pointer-events: auto;
+    position: relative;
+    color: rgba(250, 250, 250, 0.5);
+    width: 0;
+    height: 25px;
+    padding-left: 30px;
+    overflow: hidden;
+    display: block;
+    font-size: 1.5rem; }
+
   .bg-video-viewport video {
     font-size: 0;
     vertical-align: top;
