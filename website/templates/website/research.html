@@ -71,16 +71,22 @@
 </div>
 
 {% for research in all_research %}
-<div class="breakout bg-none bg-image parallax bg-dark section" id="{{research.tag}}" style="height: 419px;">
+<div class="breakout bg-none bg-image parallax bg-dark section text-overlay" id="{{research.tag}}" style="height: 419px;">
     <div class="bg-image-cover"
-         style="background-image: url({{research.background_url}}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);"></div>
-    <div class="row">
+         style="background-image: url({{research.background_url}}); height: 691px; transform: translate(0%, -22.9664%) translate3d(0px, 0px, 0px);">
+    </div>
+    <div class="row" style="top: 40%;">
         <div class="layout">
-            <div class=" two-thirds">
-                <h2>{{research.title}}</h2>
-            </div>
+            <div class="full-width">
+                <div class="text">
+                    <div class="research-title">
+                        <p>{{research.title}}</p>
+                    </div>
 
-        </div><!-- /.layout --></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="collapsed bg-gray section">
     <div class="row">
