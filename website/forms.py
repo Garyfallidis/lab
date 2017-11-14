@@ -77,7 +77,8 @@ class EditProfileForm(ModelForm):
         model = Profile
         fields = ['job_title', 'avatar_img', 'contact_number', 'contact_url', 'description',
                   'profile_page_markdown']
-
+        labels = {'profile_page_markdown': 'About me',
+                  'description': 'Detailed Position & Research Interests'}
 
 class TeamForm(Form):
     def __init__(self, *args, **kwargs):
