@@ -183,7 +183,7 @@ def dashboard_research(request):
             return render(request, 'website/dashboard_research.html', context)
 
 
-    form = AddEditResearchForm()
+    form = AddEditResearchForm(initial={'position': Research.objects.count()})
     context['form'] = form
     return render(request, 'website/dashboard_research.html', context)
 
