@@ -1,5 +1,11 @@
 {% extends "website/dashboard_template.html" %}
+{% load staticfiles %}
+{% load customfilters %}
 
+{% block extra_css %}
+<!-- Include simplemde markdown editor css-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
 
 {% block dashboard_content_body %}
 
@@ -49,5 +55,16 @@
 	{% endif %}
 </div>
 
+
+{% endblock %}
+
+{% block extra_js_bottom %}
+
+<!-- Include and call simplemde markdown editor js-->
+<script type="text/javascript" src="{% static 'js/simplemde.min.js' %}"></script>
+<!-- Script to show confirmation box before deleting -->
+<script>
+    var simplemde = new SimpleMDE({ element: $("#id_profile_page_markdown")[0] });
+</script>
 
 {% endblock %}
