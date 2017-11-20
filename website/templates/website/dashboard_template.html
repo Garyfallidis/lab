@@ -45,10 +45,26 @@
 <div class="bg-none section" id="content">
     <div class="row">
         <div class="layout">
+			{% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert" id="messageModal">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+{% endif %}
                {% block dashboard_content_body %}{% endblock %}
         </div>
     </div><!-- /.layout --></div>
 </div>
 
-
 {% endblock %}
+
+
+{% if messages %}
+{% block extra_js_bottom %}
+<script>
+    // Show the message modal
+    $('#messageModal').hide().fadeIn(200).delay(2000).fadeOut(1000, function () { $(this).remove(); });
+</script>
+{% endblock %}
+{% endif %}

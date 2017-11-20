@@ -1,6 +1,7 @@
 import bibtexparser
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import render, redirect
 
@@ -21,6 +22,7 @@ def dashboard_blog(request):
             submitted_form.save()
             return redirect(reverse('dashboard_blog'))
         else:
+            messages.error(request, submitted_form.errors)
             context['form'] = submitted_form
             return render(request, 'website/dashboard_blog.html', context)
 
@@ -40,6 +42,7 @@ def dashboard_events(request):
             submitted_form.save()
             return redirect(reverse('dashboard_events'))
         else:
+            messages.error(request, submitted_form.errors)
             context['form'] = submitted_form
             return render(request, 'website/dashboard_events.html', context)
 
@@ -65,7 +68,7 @@ def dashboard_publications(request):
                 submitted_form.save()
                 return redirect(reverse('dashboard_publications'))
             else:
-                print(submitted_form.errors)
+                messages.error(request, submitted_form.errors)
                 context['journal_form'] = submitted_form
                 return render(request, 'website/dashboard_publications.html', context)
 
@@ -75,6 +78,7 @@ def dashboard_publications(request):
                 submitted_form.save()
                 return redirect(reverse('dashboard_publications'))
             else:
+                messages.error(request, submitted_form.errors)
                 context['form'] = submitted_form
                 return render(request, 'website/dashboard_publications.html', context)
 
@@ -127,7 +131,8 @@ def dashboard_publications(request):
 
                 else:
                     return render(request, 'website/dashboard_publications.html', context)
-            except:
+            except Exception as e:
+                messages.error(request, str(e))
                 return render(request, 'website/dashboard_publications.html', context)
 
         else:
@@ -152,6 +157,7 @@ def dashboard_courses(request):
             submitted_form.save()
             return redirect(reverse('dashboard_courses'))
         else:
+            messages.error(request, submitted_form.errors)
             context['form'] = submitted_form
             return render(request, 'website/dashboard_courses.html', context)
 
@@ -172,6 +178,7 @@ def dashboard_research(request):
             submitted_form.save()
             return redirect(reverse('dashboard_research'))
         else:
+            messages.error(request, submitted_form.errors)
             context['form'] = submitted_form
             return render(request, 'website/dashboard_research.html', context)
 
@@ -197,6 +204,7 @@ def dashboard_team(request):
                 p.save()
             return redirect(reverse('dashboard_team'))
         else:
+            messages.error(request, submitted_form.errors)
             context['form'] = submitted_form
             return render(request, 'website/dashboard_team.html', context)
 
@@ -254,6 +262,7 @@ def edit_page(request, model_name, model_id):
             submitted_form.save()
             return redirect(reverse(current_container['reverse']))
         else:
+            messages.error(request, submitted_form.errors)
             context['form'] = submitted_form
             return render(request, 'website/editforms.html', context)
 
