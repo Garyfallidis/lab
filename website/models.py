@@ -315,7 +315,7 @@ class Research(models.Model):
     Model for storing new research activity
     """
     title = models.CharField(max_length=100)
-    position = models.PositiveSmallIntegerField(default=0, unique=True)
+    position = models.PositiveSmallIntegerField(default=0)
     show_in_page = models.BooleanField(default=True)
     background_img = models.ImageField(upload_to='research_images/', blank=True, null=True)
     default_static_background_img_name = models.CharField(max_length=200, blank=True, null=True)
