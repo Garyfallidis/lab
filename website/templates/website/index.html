@@ -70,14 +70,14 @@
 {% if all_journal %}
 <div class="bg-mahogany bg-dark extra-space bg-none section" id="journal">
     <div class="row">
-        <h2 class="text-center">Publications</h2>
+        <h2 class="text-center">Journals</h2>
         <div class="row">
             <div class="grid fourths">
                 {% for journal in all_journal%}
                 {% if journal.link_url %}
-                <div class="grid-item"><a href="{{journal.link_url}}"><img alt="{{journal.title}}" src="{{journal.cover.url}}"></a>
+                <div class="grid-item journal"><a href="{{journal.link_url}}"><img alt="{{journal.title}}" src="{{journal.cover.url}}"></a>
                     {% else %}
-                    <div class="grid-item"><img alt="{{journal.title}}" src="{{journal.cover.url}}">
+                    <div class="grid-item journal"><img alt="{{journal.title}}" src="{{journal.cover.url}}">
                     {% endif %}
                 </div>
                 {% endfor %}
