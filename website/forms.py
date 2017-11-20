@@ -34,13 +34,14 @@ class AddEditEventPostForm(ModelForm):
             'attachments': ClearableFileInput(attrs={'multiple': True}),
         }
 
+
 class AddEditPublicationForm(ModelForm):
     class Meta:
         model = Publication
         fields = ['title', 'url', 'is_highlighted',  'author', 'doi', 'entry_type', 'abstract',
                   'published_in', 'publisher', 'year_of_publication',
                   'month_of_publication', 'bibtex', 'pdf', 'project_url']
-        labels = { 'is_highlighted': 'Highlight publication'}
+        labels = {'is_highlighted': 'Highlight publication'}
 
 
 class AddEditCourseForm(ModelForm):
@@ -55,6 +56,7 @@ class AddEditCarouselImageForm(ModelForm):
         model = CarouselImage
         fields = ['image_url', 'image_caption', 'image_description', 'target_url']
 
+
 class AddEditResearchForm(ModelForm):
     class Meta:
         model = Research
@@ -65,6 +67,7 @@ class AddEditJournalForm(ModelForm):
     class Meta:
         model = JournalImage
         fields = ['title', 'cover', 'caption', 'link_url', 'display']
+
 
 class UserForm(ModelForm):
     class Meta:
@@ -80,6 +83,7 @@ class EditProfileForm(ModelForm):
         labels = {'profile_page_markdown': 'About me',
                   'description': 'Detailed Position & Research Interests'}
 
+
 class TeamForm(Form):
     def __init__(self, *args, **kwargs):
         team = kwargs.pop('team')
@@ -89,12 +93,12 @@ class TeamForm(Form):
                                                                               choices=profile.STATUS_CHOICE,
                                                                               initial=profile.status)
             self.fields['rank-' + str(profile.user.username)] = IntegerField(label="{} Rank".format(profile.user.username),
-                                                                             initial= profile.rank,
+                                                                             initial=profile.rank,
                                                                              max_value=99,
                                                                              min_value=0)
 
     def get_new_status_and_rank(self):
         for name, value in self.cleaned_data.items():
             if name.startswith('status-'):
-                username = name.replace('status-','')
+                username = name.replace('status-', '')
                 yield (username, value, self.cleaned_data['rank-' + username])
