@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .tools import *
 from website.models import *
@@ -9,11 +10,11 @@ from website.models import *
 # Definition of views:
 
 def index(request):
-    latest_blog_posts = get_latest_blog_posts(3)
+    all_news = get_news_posts(3)
     all_journal = JournalImage.objects.filter(display=True)
-    keywords = [item for blog in latest_blog_posts for item in blog.keywords.split(",")]
+    keywords = [item for blog in all_news for item in blog.keywords.split(",")]
 
-    context = {'latest_blog_posts': latest_blog_posts,
+    context = {'latest_blog_posts': all_news,
                'all_journal': all_journal,
                'meta': get_meta_tags_dict(keywords=keywords),
                }
@@ -33,10 +34,23 @@ def page(request, position_id):
 
 
 def news_page(request):
-    all_blog_posts = BlogPost.objects.filter(show_in_lab_blog=True).order_by('-posted')
-    keywords = [item for blog in all_blog_posts for item in blog.keywords.split(",")]
-    context = {'all_blog_posts': all_blog_posts,
-               'meta': get_meta_tags_dict(title="DIPY - News - Follow Us", keywords=keywords),
+    all_highlights = get_highlight(3)
+    all_events = EventPost.objects.exclude(end_date__lt=timezone.now())
+    all_news = get_news_posts()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(all_news, 3)
+    try:
+        current_news = paginator.page(page)
+    except PageNotAnInteger:
+        current_news = paginator.page(1)
+    except EmptyPage:
+        current_news = paginator.page(paginator.num_pages)
+
+    context = {'all_news': current_news,
+               'all_events': all_events,
+               'all_highlights': all_highlights,
+               'meta': get_meta_tags_dict(title="DIPY - News / Events"),
                }
     return render(request, 'website/news.html', context)
 
@@ -50,15 +64,6 @@ def blog_post(request, slug):
     return render(request, 'website/blog_post.html', context)
 
 
-def events_page(request):
-    all_events = EventPost.objects.all()
-    keywords = [item for event in all_events for item in event.keywords.split(",")]
-    context = {'all_events': all_events,
-               'meta': get_meta_tags_dict(keywords=keywords),
-               }
-    return render(request, 'website/events.html', context)
-
-
 def event_post(request, slug):
     event_posted = EventPost.objects.get(slug=slug)
     print(event_posted)
@@ -67,6 +72,12 @@ def event_post(request, slug):
                'meta': get_meta_tags_dict(title=slug, keywords=keywords),
                }
     return render(request, 'website/event_post.html', context)
+
+
+def careers_page(request):
+    context = {}
+
+    return render(request, 'website/careers.html', context)
 
 
 def research(request):
