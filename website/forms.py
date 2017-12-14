@@ -19,20 +19,23 @@ class AddEditPageSectionForm(ModelForm):
 class AddEditBlogPostForm(ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'body', 'authors', 'show_in_lab_blog', 'show_in_my_blog', 'keywords', 'attachments']
+        fields = ['title', 'body', 'authors', 'show_in_lab_blog', 'show_in_my_blog',
+                  'is_highlighted', 'keywords', 'attachments']
         widgets = {
             'attachments': ClearableFileInput(attrs={'multiple': True}),
         }
+        labels = {'is_highlighted': 'Highlight Blog Post'}
 
 
 class AddEditEventPostForm(ModelForm):
     class Meta:
         model = EventPost
-        fields = ['title', 'description', 'description_img', 'start_date', 'end_date', 'keywords',
-                  'body_markdown', 'attachments']
+        fields = ['title', 'description', 'description_img', 'start_date', 'end_date', 'is_highlighted',
+                  'keywords', 'body_markdown', 'attachments']
         widgets = {
             'attachments': ClearableFileInput(attrs={'multiple': True}),
         }
+        labels = {'is_highlighted': 'Highlight Event'}
 
 
 class AddEditPublicationForm(ModelForm):

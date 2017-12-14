@@ -27,13 +27,11 @@ urlpatterns = [
 
     # News Page
     url(r'^news/$', views.news_page, name='news_page'),
-
-    # Blog specific page
+    url(r'^events/(?P<slug>[^\.]+)/$', views.event_post, name='event_post'),
     url(r'^blog/(?P<slug>[^\.]+)/$', views.blog_post, name='blog_post'),
 
-    # Events Page
-    url(r'^events/$', views.events_page, name='events_page'),
-    url(r'^events/(?P<slug>[^\.]+)/$', views.event_post, name='event_post'),
+    # Careers Page
+    url(r'^careers/$', views.careers_page, name='careers_page'),
 
     # Honeycomb gallery
     url(r'^gallery/$', views.honeycomb, name='gallery'),

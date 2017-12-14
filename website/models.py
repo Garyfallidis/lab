@@ -92,6 +92,7 @@ class EventPost(models.Model):
     slug = models.SlugField(max_length=150, unique=True)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(editable=False, auto_now_add=True)
+    is_highlighted = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         html_content = markdown.markdown(self.body_markdown, extensions=['codehilite'])
@@ -135,7 +136,7 @@ class Publication(models.Model):
     month_of_publication = models.CharField(max_length=10, null=True, blank=True)
     bibtex = models.TextField(null=True, blank=True)
     project_url = models.CharField(max_length=200, null=True, blank=True)
-    pdf = models.FileField(null=True, upload_to="publication_uploads/")
+    pdf = models.FileField(null=True, blank=True, upload_to="publication_uploads/")
     abstract = models.TextField(null=True, blank=True)
     is_highlighted = models.BooleanField(default=False)
 
@@ -286,6 +287,7 @@ class BlogPost(models.Model):
     show_in_lab_blog = models.BooleanField(default=True)
     show_in_my_blog = models.BooleanField(default=True)
     body_html = models.TextField(null=True, blank=True, editable=False)
+    is_highlighted = models.BooleanField(default=False)
 
 
     def save(self, *args, **kwargs):
@@ -304,6 +306,10 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def created(self):
+        return self.posted
 
     @models.permalink
     def get_absolute_url(self):

@@ -158,13 +158,15 @@ TWITTER_CONSUMER_SECRET = ''
 GOOGLE_API_KEY = ''
 
 # default meta information
-DEFAULT_TITLE = "Garyfallidis Lab"
-DEFAULT_DESCRIPTION = """Garyfallidis Lab Description"""
+DEFAULT_TITLE = "Garyfallidis Research Group"
+DEFAULT_DESCRIPTION = """Garyfallidis Research Group : Intelligent NeuroImaging, Medical Analytics,
+                            Software Engineering, Scientific Visualization, Machine Learning,
+                            Mathematics of Imaging"""
 
 DEFAULT_LOGO_URL = "http://dipy.herokuapp.com/static/images/dipy-thumb.jpg"
 
-DEFAULT_KEYWORDS = ['DTI', 'diffusion tensor imaging', 'MRI', 'white matter', 'tractography', 'software',
-                    'Garyfallidis', 'Lab', 'dipy', 'research', 'group']
+DEFAULT_KEYWORDS = ['DTI', 'diffusion tensor imaging', 'MRI', 'white matter', 'tractography',
+                    'garyfallidis research group', 'dipy']
 
 # django-meta settings
 META_SITE_PROTOCOL = 'https'

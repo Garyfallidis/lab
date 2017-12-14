@@ -25,3 +25,8 @@ def youtube_embed_url(value):
 def markdown_to_html(value):
     processed_str = markdown.markdown(value, extensions=['codehilite'])
     return processed_str
+
+# Get model type name
+@register.filter(name='get_class')
+def get_class(value):
+  return value.__class__.__name__
