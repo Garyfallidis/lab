@@ -21,6 +21,7 @@
 
 <div class="extra-space bg-none section" id="content">
   <div class="row">
+    <div class="two-thirds">
     {% for publication in all_publications %}
       <div class="panel">
         <p class="title"><a href="{{ publication.url }}">{{publication.title}}</a></p>
@@ -53,7 +54,34 @@
             </div>
         </div>
       </div>
+      {% empty %}
+      <h3> No articles found</h3>
     {% endfor %}
+    </div>
+    <div class="one-third" style=" padding: 1.5rem!important; background: #f7f6f5;">
+      <form role="search" method="GET" class="search-form">
+        <h4>Search Publications</h4>
+          <input type="search" class="search-field" placeholder="Title, Authors, Keywords …" value="" name="search-words" title="Search">
+          <input type="submit" class="button" name="search" value="Search">
+          <a class="button" href="{% url 'publications' %}">Reset </a>
+      </form>
+      <!--<hr>
+      <form role="order" method="GET">
+      <div class="form-item">
+      <h4>Order by</h4>
+        <div class="form-item-input">
+          <select name="select-item-one" id="select-item-one">
+              <option value="years">Years</option>
+              <option value="authors">Authors</option>
+              <option value="title">Title</option>
+              <option value="journal-type">Publication Type</option>
+          </select>
+        </div>
+      </div>
+      <input type="submit" class="button" name="order-by" value="Sort">
+      </form>
+      <hr>-->
+    </div>
   </div>
 </div>
 
