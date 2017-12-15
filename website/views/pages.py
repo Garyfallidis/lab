@@ -2,7 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
+import operator
+from functools import reduce
 from .tools import *
 from website.models import *
 
@@ -89,7 +92,25 @@ def research(request):
 
 
 def publications(request):
-    context = {'all_publications': Publication.objects.all(),
+    all_publications = Publication.objects.all()
+    if request.method == 'GET':
+        print(request.GET)
+        if 'search' in request.GET:
+            search_words_list = request.GET['search-words']
+            search_words_list = search_words_list.split()
+            all_publications = []
+            if search_words_list:
+                all_publications = Publication.objects.filter(reduce(operator.and_,(Q(title__icontains=q) for q in search_words_list)) |
+                                                              reduce(operator.and_,(Q(abstract__icontains=q) for q in search_words_list)) |
+                                                              reduce(operator.and_,(Q(bibtex__icontains=q) for q in search_words_list)) |
+                                                              reduce(operator.and_,(Q(author__icontains=q) for q in search_words_list))
+                                                              )
+        if 'order-by' in request.GET:
+            print('order-by: ')
+            print(request.GET['select-item-one'])
+            # Todo: implement order-by
+
+    context = {'all_publications': all_publications,
                'meta': get_meta_tags_dict(title="DIPY - Publications"),
                }
     return render(request, 'website/publications.html', context)
