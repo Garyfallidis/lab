@@ -72,7 +72,7 @@ def get_news_posts(limit=None):
     returns a list of News objects
     """
     all_blog_posts = BlogPost.objects.filter(show_in_lab_blog=True)
-    all_events = EventPost.objects.exclude(end_date__gt=timezone.now()).order_by('-created')
+    all_events = EventPost.objects.exclude(end_date__lt=timezone.now()).order_by('-created')
     news_list = sorted(chain(all_blog_posts, all_events), key=lambda news: news.created, reverse=True)
     return news_list if limit is None else news_list[0:limit]
 
