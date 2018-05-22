@@ -14,11 +14,19 @@
         <div class="two-thirds">
             <h2 class="title">Our Current Positions</h2>
             <div class="panel">
+                {% if all_careers %}
+                {{ all_careers.body_internal_html | safe }}
+                {% else %}
                 <p>New positions are coming soon !</p>
+                {% endif %}
             </div>
             <h2 class="title">Faculty Positions</h2>
             <div class="panel">
+                {% if all_careers %}
+                {{ all_careers.body_external_html | safe }}
+                {% else %}
                 <p><strong><a href="https://indiana.peopleadmin.com/postings/4613%3E:">Assistant/Associate/Full Professor Positions in Intelligent Systems Engineering:</a> For Best Consideration Apply By January 1, 2018</strong></p>
+                {% endif %}
             </div>
         </div>
     </div>

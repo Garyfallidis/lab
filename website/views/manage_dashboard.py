@@ -7,8 +7,9 @@ from django.shortcuts import render, redirect
 
 from .tools import github_permission_required
 from website.forms import AddEditEventPostForm, AddEditBlogPostForm, AddEditPublicationForm, AddEditCourseForm,\
-    TeamForm, AddEditResearchForm, AddEditJournalForm
-from website.models import EventPost, BlogPost, Publication, Course, Profile, User, Research, JournalImage
+    TeamForm, AddEditResearchForm, AddEditJournalForm, CareerForm
+from website.models import EventPost, BlogPost, Publication, Course, Profile, User, Research, JournalImage,\
+    CareerModel
 
 
 @login_required
@@ -182,10 +183,30 @@ def dashboard_research(request):
             context['form'] = submitted_form
             return render(request, 'website/dashboard_research.html', context)
 
-
     form = AddEditResearchForm(initial={'position': Research.objects.count()})
     context['form'] = form
     return render(request, 'website/dashboard_research.html', context)
+
+@login_required
+@github_permission_required
+def dashboard_careers(request):
+    career_obj, _ = CareerModel.objects.get_or_create(name="default")
+
+    js_script = """<script>var simplemde = new SimpleMDE({ element: $("#id_body_internal")[0], forceSync:true });
+                    var simplemde = new SimpleMDE({ element: $("#id_body_external")[0], forceSync:true }); 
+    </script>"""
+    context = {'js_script': js_script}
+    if request.method == 'POST':
+        submitted_career_form = CareerForm(request.POST, request.FILES, instance=career_obj)
+        if submitted_career_form.is_valid():
+            submitted_career_form.save()
+            return redirect(reverse('dashboard_careers'))
+        else:
+            context['career_form'] = submitted_career_form
+            return render(request, 'website/dashboard_career.html', context)
+
+    context['career_form'] = CareerForm(instance=career_obj)
+    return render(request, 'website/dashboard_career.html', context)
 
 
 @login_required

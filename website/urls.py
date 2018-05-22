@@ -73,6 +73,9 @@ urlpatterns = [
     # Events Management
     url(r'^dashboard/events/$', views.dashboard_events, name='dashboard_events'),
 
+    # Career Management
+    url(r'^dashboard/careers/$', views.dashboard_careers, name='dashboard_careers'),
+
     # Carousel Management
     url(r'^dashboard/carousel/$', views.dashboard_carousel,
         name='dashboard_carousel'),

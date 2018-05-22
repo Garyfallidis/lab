@@ -87,6 +87,14 @@ class EditProfileForm(ModelForm):
                   'description': 'Detailed Position & Research Interests'}
 
 
+class CareerForm(ModelForm):
+    class Meta:
+        model = CareerModel
+        fields = ['body_internal', 'body_external', 'attachments']
+        labels = {'body_internal': 'Current Positions',
+                  'body_external': 'Faculty Positions'}
+
+
 class TeamForm(Form):
     def __init__(self, *args, **kwargs):
         team = kwargs.pop('team')
