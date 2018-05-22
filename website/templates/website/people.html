@@ -9,66 +9,179 @@
 {% endblock %}
 
 {% block content_body %}
-<aside class="section-nav show-for-large" id="section-nav">
+
+{% if director_profiles %}
+<div class="collapsed collapsed bg-none section" id="director">
     <div class="row">
-        <nav itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" data-parent-url="/people/">
-            <ul>
-                {% for key, value in all_profile_dict.items %}
-                {% if value %}
-                <li class=""><a href="{% url 'people' %}#{{key}}" itemprop="url" class=""><span
-                        itemprop="name">{{key}}</span></a></li>
-                {% endif %}
-                {% endfor %}
-            </ul>
-        </nav>
-    </div>
-</aside>
-<!-- Content -->
-{% for section_name, profile_list in all_profile_dict.items %}
-<div class="bg-none section" id="">
-    <div class="row">
-        <div class="layout">
-            {% if profile_list %}
+        <div class="layout"><h1 class="section-title">Director</h1>
             <div class="panel">
-                <h1 class="title" id="{{section_name}}"> {{section_name}}</h1>
-                <hr>
-                {% for profile in profile_list %}
-                <a href="{% url 'people_profile' username=profile.user.username %}">
-                    <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
-                        <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img
-                                alt="" itemprop="image"
-                                src="{{ profile.avatar_url }}">
-                        </figure>
-                        <div class="content" style="width: 75%;">
-                            {% if profile.user.get_full_name|length > 0 %}
-                            <h1 class="no-margin title"><span itemprop="name">{{ profile.user.get_full_name }}</span>
-                            </h1>
-                            {% else %}
-                            <h1 class="no-margin title"><span itemprop="name">{{ profile.user.username }}</span></h1>
-                            {% endif %}
-                            <p class="sub-title" itemprop="jobTitle">{{ profile.job_title }}</p>
-                            <dl class="meta inline">
-                                {% if profile.contact_number %}
-                                <dt>Phone:</dt>
-                                <dd itemprop="telephone">{{ profile.contact_number }}</dd>
-                                {% endif %}
-                                {% if profile.user.email %}
-                                <dt>Email:</dt>
-                                <dd itemprop="email"><a rel="nofollow" href="mailto:profile.user.email" class="email">
-                                    {{ profile.user.email }}</a>
-                                </dd>
-                                {% endif %}
-                            </dl>
-                        </div>
-                    </article>
-                </a>
-                {% endfor %}
+            {% for profile in director_profiles %}
+            <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt=""
+                                                                                                                 itemprop="image"
+                                                                                                                 src="{{ profile.avatar_url }}">
+                </figure>
+                <div class="content"><h1 class="no-margin title"><a href="{% url 'people_profile' username=profile.user.username %}" itemprop="url">
+                    <span itemprop="name">
+                        {% if profile.user.get_full_name|length > 0 %}
+                        {{ profile.user.get_full_name }}
+                        {% else %}
+                        {{ profile.user.username }}
+                        {% endif %}
+                    </span></a></h1>
+                    <p class="sub-title" itemprop="jobTitle">{{ profile.job_title }}</p>
+                    <dl class="meta inline">
+                        {% if profile.contact_number %}
+                        <dt>Phone:</dt>
+                        <dd itemprop="telephone">{{ profile.contact_number }}</dd>
+                        {% endif %}
+                        {% if profile.user.email %}
+                        <dt>Email:</dt>
+                        <dd itemprop="email"><a rel="nofollow" href="mailto:profile.user.email" class="email">{{ profile.user.email }}</a>
+                        </dd>
+                        {% endif %}
+                        {% if profile.contact_url %}
+                        <dt>Website:</dt>
+                        <dd><a href="{{ profile.contact_url }}" itemprop="sameAs url"
+                               class="external">{{ profile.contact_url }}</a></dd>
+                        {% endif %}
+                    </dl>
+                </div>
+            </article>
+            {% endfor %}
             </div>
-        </div>
-        {% endif %}
-    </div>
+        </div><!-- /.layout --></div>
 </div>
-{% endfor %}
+{% endif %}
+{% if team_profiles %}
+<div class="collapsed collapsed bg-none section" id="team">
+    <div class="row">
+        <div class="layout"><h1 class="section-title">Current Team</h1>
+            <div class="panel">
+            {% for profile in team_profiles %}
+            <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt=""
+                                                                                                                 itemprop="image"
+                                                                                                                 src="{{ profile.avatar_url }}">
+                </figure>
+                <div class="content"><h1 class="no-margin title"><a href="{% url 'people_profile' username=profile.user.username %}" itemprop="url">
+                    <span itemprop="name">
+                        {% if profile.user.get_full_name|length > 0 %}
+                        {{ profile.user.get_full_name }}
+                        {% else %}
+                        {{ profile.user.username }}
+                        {% endif %}
+                    </span></a></h1>
+                    <p class="sub-title" itemprop="jobTitle">{{ profile.job_title }}</p>
+                    <dl class="meta inline">
+                        {% if profile.contact_number %}
+                        <dt>Phone:</dt>
+                        <dd itemprop="telephone">{{ profile.contact_number }}</dd>
+                        {% endif %}
+                        {% if profile.user.email %}
+                        <dt>Email:</dt>
+                        <dd itemprop="email"><a rel="nofollow" href="mailto:profile.user.email" class="email">{{ profile.user.email }}</a>
+                        </dd>
+                        {% endif %}
+                        {% if profile.contact_url %}
+                        <dt>Website:</dt>
+                        <dd><a href="{{ profile.contact_url }}" itemprop="sameAs url"
+                               class="external">{{ profile.contact_url }}</a></dd>
+                        {% endif %}
+                    </dl>
+                </div>
+            </article>
+            {% endfor %}
+            </div>
+        </div><!-- /.layout --></div>
+</div>
+{% endif %}
+{% if collaborator_profiles %}
+<div class="collapsed collapsed bg-none section" id="collaborators">
+    <div class="row">
+        <div class="layout"><h1 class="section-title">Collaborators</h1>
+            <div class="panel">
+            {% for profile in collaborator_profiles %}
+            <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt=""
+                                                                                                                 itemprop="image"
+                                                                                                                 src="{{ profile.avatar_url }}">
+                </figure>
+                <div class="content"><h1 class="no-margin title"><a href="{% url 'people_profile' username=profile.user.username %}" itemprop="url">
+                    <span itemprop="name">
+                        {% if profile.user.get_full_name|length > 0 %}
+                        {{ profile.user.get_full_name }}
+                        {% else %}
+                        {{ profile.user.username }}
+                        {% endif %}
+                    </span></a></h1>
+                    <p class="sub-title" itemprop="jobTitle">{{ profile.job_title }}</p>
+                    <dl class="meta inline">
+                        {% if profile.contact_number %}
+                        <dt>Phone:</dt>
+                        <dd itemprop="telephone">{{ profile.contact_number }}</dd>
+                        {% endif %}
+                        {% if profile.user.email %}
+                        <dt>Email:</dt>
+                        <dd itemprop="email"><a rel="nofollow" href="mailto:profile.user.email" class="email">{{ profile.user.email }}</a>
+                        </dd>
+                        {% endif %}
+                        {% if profile.contact_url %}
+                        <dt>Website:</dt>
+                        <dd><a href="{{ profile.contact_url }}" itemprop="sameAs url"
+                               class="external">{{ profile.contact_url }}</a></dd>
+                        {% endif %}
+                    </dl>
+                </div>
+            </article>
+            {% endfor %}
+            </div>
+        </div><!-- /.layout --></div>
+</div>
+{% endif %}
+{% if alumni_profiles %}
+<div class="collapsed collapsed bg-none section" id="alumni">
+    <div class="row">
+        <div class="layout"><h1 class="section-title">Alumni</h1>
+            <div class="panel">
+            {% for profile in alumni_profiles %}
+            <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt=""
+                                                                                                                 itemprop="image"
+                                                                                                                 src="{{ profile.avatar_url }}">
+                </figure>
+                <div class="content"><h1 class="no-margin title"><a href="{% url 'people_profile' username=profile.user.username %}" itemprop="url">
+                    <span itemprop="name">
+                        {% if profile.user.get_full_name|length > 0 %}
+                        {{ profile.user.get_full_name }}
+                        {% else %}
+                        {{ profile.user.username }}
+                        {% endif %}
+                    </span></a></h1>
+                    <p class="sub-title" itemprop="jobTitle">{{ profile.job_title }}</p>
+                    <dl class="meta inline">
+                        {% if profile.contact_number %}
+                        <dt>Phone:</dt>
+                        <dd itemprop="telephone">{{ profile.contact_number }}</dd>
+                        {% endif %}
+                        {% if profile.user.email %}
+                        <dt>Email:</dt>
+                        <dd itemprop="email"><a rel="nofollow" href="mailto:profile.user.email" class="email">{{ profile.user.email }}</a>
+                        </dd>
+                        {% endif %}
+                        {% if profile.contact_url %}
+                        <dt>Website:</dt>
+                        <dd><a href="{{ profile.contact_url }}" itemprop="sameAs url"
+                               class="external">{{ profile.contact_url }}</a></dd>
+                        {% endif %}
+                    </dl>
+                </div>
+            </article>
+            {% endfor %}
+            </div>
+        </div><!-- /.layout --></div>
+</div>
+{% endif %}
 {% endblock %}
 
 <!-- see example here : https://www.iupuc.edu/admissions/contact-admissions/index.html -->

@@ -35,9 +35,9 @@
                         <p>{{course.description}}</p>
                     </div>
                     {% if course.syllabus %}
-                        <a href="{{course.syllabus}}" class="show-hide left-separator"><span itemprop="name">Download syllabus</span></a>
+                        <a href="{{course.syllabus.url}}" class="show-hide left-separator"><span itemprop="name">Download syllabus</span></a>
                     {% else %}
-                        <a href="" class="show-hide left-separator"><span itemprop="name">Download syllabus</span></a>
+                        <a href="#" class="show-hide left-separator"><span itemprop="name">Download syllabus</span></a>
                     {% endif %}
                 </div>
 

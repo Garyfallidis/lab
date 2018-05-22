@@ -220,6 +220,7 @@ class Profile(models.Model):
         (3, '3.Collaborators'),
         (4, '4.Visitors'),
         (5, '5.Old Members'),
+        (6, '6.Director'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=100, blank=True, null=True,)
@@ -379,3 +380,36 @@ class JournalImage(models.Model):
 
     def __str__(self):
         return self.cover.url
+
+
+class CareerModel(models.Model):
+    """
+    Model to store blog posts
+    """
+    name = models.CharField(max_length=100, default="default")
+    body_internal = models.TextField()
+    body_external = models.TextField()
+    attachments = models.FileField(upload_to='careers_images/', null=True, blank=True, )
+    body_internal_html = models.TextField(null=True, blank=True, editable=False)
+    body_external_html = models.TextField(null=True, blank=True, editable=False)
+
+
+    def save(self, *args, **kwargs):
+        html_internal_content = markdown.markdown(self.body_internal,
+                                         extensions=['markdown.extensions.codehilite', 'markdown.extensions.toc'])
+        html_external_content = markdown.markdown(self.body_internal,
+                                         extensions=['markdown.extensions.codehilite', 'markdown.extensions.toc'])
+
+        # bleach is used to filter html tags like <script> for security
+        self.body_internal_html = bleach.clean(html_internal_content, allowed_html_tags,
+                                               allowed_attrs)
+
+        # bleach is used to filter html tags like <script> for security
+        self.body_external_html = bleach.clean(html_external_content, allowed_html_tags,
+                                               allowed_attrs)
+
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(CareerModel, self).save(*args, **kwargs)

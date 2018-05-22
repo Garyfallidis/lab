@@ -78,7 +78,9 @@ def event_post(request, slug):
 
 
 def careers_page(request):
-    context = {}
+    print(CareerModel.objects.all())
+    all_careers = CareerModel.objects.first()
+    context = {'all_careers': all_careers}
 
     return render(request, 'website/careers.html', context)
 
@@ -124,10 +126,14 @@ def teaching(request):
 
 
 def people(request):
-    sorted_status_choice = sorted(Profile.STATUS_CHOICE, key=lambda tup: tup[0])
-    all_profile_dict = {choice[1]: Profile.objects.filter(status=choice[0]).order_by('rank')
-                        for choice in sorted_status_choice}
-    context = {'all_profile_dict': all_profile_dict,
+    director_profiles = Profile.objects.filter(status=Profile.STATUS_CHOICE[5][0]).order_by('rank')
+    team_profiles = Profile.objects.filter(status=Profile.STATUS_CHOICE[0][0]).order_by('rank')
+    collaborator_profiles = Profile.objects.filter(status=Profile.STATUS_CHOICE[2][0]).order_by('rank')
+    alumni_profiles = Profile.objects.filter(status=Profile.STATUS_CHOICE[4][0]).order_by('rank')
+    context = {'director_profiles': director_profiles,
+               'team_profiles': team_profiles,
+               'collaborator_profiles': collaborator_profiles,
+               'alumni_profiles': alumni_profiles,
                'meta': get_meta_tags_dict(),
                }
     return render(request, 'website/people.html', context)
