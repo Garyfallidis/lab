@@ -193,7 +193,7 @@ def dashboard_careers(request):
     career_obj, _ = CareerModel.objects.get_or_create(name="default")
 
     js_script = """<script>var simplemde = new SimpleMDE({ element: $("#id_body_internal")[0], forceSync:true });
-                    var simplemde = new SimpleMDE({ element: $("#id_body_external")[0], forceSync:true }); 
+                    var simplemde_2 = new SimpleMDE({ element: $("#id_body_external")[0], forceSync:true }); 
     </script>"""
     context = {'js_script': js_script}
     if request.method == 'POST':

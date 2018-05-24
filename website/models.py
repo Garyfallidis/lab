@@ -397,7 +397,7 @@ class CareerModel(models.Model):
     def save(self, *args, **kwargs):
         html_internal_content = markdown.markdown(self.body_internal,
                                          extensions=['markdown.extensions.codehilite', 'markdown.extensions.toc'])
-        html_external_content = markdown.markdown(self.body_internal,
+        html_external_content = markdown.markdown(self.body_external,
                                          extensions=['markdown.extensions.codehilite', 'markdown.extensions.toc'])
 
         # bleach is used to filter html tags like <script> for security
