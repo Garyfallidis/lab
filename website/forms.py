@@ -50,8 +50,8 @@ class AddEditPublicationForm(ModelForm):
 class AddEditCourseForm(ModelForm):
     class Meta:
         model = Course
-        fields = ['title', 'acronym', 'level', 'semester', 'prerequisite', 'description',
-                  'syllabus']
+        fields = ['title', 'acronym', 'level', 'semester', 'prerequisite',
+                  'description', 'syllabus']
 
 
 class AddEditCarouselImageForm(ModelForm):

@@ -26,8 +26,6 @@ def generate_fixtures():
         for i, pub_obj in enumerate(author.publications):
 
             current_pub = pub_obj.fill()
-            import pdb
-            pdb.set_trace()
             if not hasattr(current_pub, 'bib'):
                 continue
 
