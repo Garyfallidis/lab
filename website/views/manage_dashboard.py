@@ -6,10 +6,13 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 
 from .tools import github_permission_required
-from website.forms import AddEditEventPostForm, AddEditBlogPostForm, AddEditPublicationForm, AddEditCourseForm,\
-    TeamForm, AddEditResearchForm, AddEditJournalForm, CareerForm
-from website.models import EventPost, BlogPost, Publication, Course, Profile, User, Research, JournalImage,\
-    CareerModel
+from website.forms import (AddEditEventPostForm, AddEditBlogPostForm,
+                           AddEditPublicationForm, AddEditCourseForm,
+                           TeamForm, AddEditResearchForm, AddEditJournalForm,
+                           CareerForm)
+
+from website.models import (EventPost, BlogPost, Publication, Course, Profile,
+                            User, Research, JournalImage, CareerModel)
 
 
 @login_required
@@ -46,7 +49,6 @@ def dashboard_events(request):
             messages.error(request, submitted_form.errors)
             context['form'] = submitted_form
             return render(request, 'website/dashboard_events.html', context)
-
 
     form = AddEditEventPostForm()
     context['form'] = form
@@ -161,8 +163,6 @@ def dashboard_courses(request):
             messages.error(request, submitted_form.errors)
             context['form'] = submitted_form
             return render(request, 'website/dashboard_courses.html', context)
-
-
     form = AddEditCourseForm()
     context['form'] = form
     return render(request, 'website/dashboard_courses.html', context)

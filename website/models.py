@@ -165,7 +165,7 @@ class Course(models.Model):
     level = models.CharField(max_length=200)
     prerequisite = models.CharField(max_length=200)
     semester = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     syllabus = models.FileField(blank=True, null=True, upload_to="course_uploads/")
 
     created = models.DateTimeField(editable=False, auto_now_add=True)
