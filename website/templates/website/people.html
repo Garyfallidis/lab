@@ -146,10 +146,6 @@
             <div class="panel">
             {% for profile in alumni_profiles %}
             <article class="profile feed-item" itemscope="itemscope" itemtype="http://schema.org/Person">
-                <figure class="media circle" itemscope="itemscope" itemtype="http://schema.org/ImageObject"><img alt=""
-                                                                                                                 itemprop="image"
-                                                                                                                 src="{{ profile.avatar_url }}">
-                </figure>
                 <div class="content"><h1 class="no-margin title"><a href="{% url 'people_profile' username=profile.user.username %}" itemprop="url">
                     <span itemprop="name">
                         {% if profile.user.get_full_name|length > 0 %}
@@ -158,22 +154,6 @@
                         {{ profile.user.username }}
                         {% endif %}
                     </span></a></h1>
-                    <p class="sub-title" itemprop="jobTitle">{{ profile.job_title }}</p>
-                    <dl class="meta inline">
-                        {% if profile.contact_number %}
-                        <dt>Phone:</dt>
-                        <dd itemprop="telephone">{{ profile.contact_number }}</dd>
-                        {% endif %}
-                        {% if profile.user.email %}
-                        <dt>Email:</dt>
-                        <dd itemprop="email"><a rel="nofollow" href="mailto:profile.user.email" class="email">{{ profile.user.email }}</a>
-                        </dd>
-                        {% endif %}
-                        {% if profile.contact_url %}
-                        <dt>Website:</dt>
-                        <dd><a href="{{ profile.contact_url }}" itemprop="sameAs url"
-                               class="external">{{ profile.contact_url }}</a></dd>
-                        {% endif %}
                     </dl>
                 </div>
             </article>
