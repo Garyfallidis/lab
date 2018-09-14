@@ -81,9 +81,9 @@ class UserForm(ModelForm):
 class EditProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['job_title', 'avatar_img', 'contact_number', 'contact_url', 'description',
-                  'profile_page_markdown']
-        labels = {'profile_page_markdown': 'About me',
+        fields = ['job_title', 'avatar_img', 'contact_number', 'contact_url',
+                  'description', 'profile_page_markdown']
+        labels = {'profile_page_markdown': 'About',
                   'description': 'Detailed Position & Research Interests'}
 
 
