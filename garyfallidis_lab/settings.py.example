@@ -163,14 +163,14 @@ DEFAULT_DESCRIPTION = """Garyfallidis Research Group : Intelligent NeuroImaging,
                             Software Engineering, Scientific Visualization, Machine Learning,
                             Mathematics of Imaging"""
 
-DEFAULT_LOGO_URL = "http://dipy.herokuapp.com/static/images/dipy-thumb.jpg"
+DEFAULT_LOGO_URL = "https://grg.sice.indiana.edu/static/images/lab_banner.png"
 
 DEFAULT_KEYWORDS = ['DTI', 'diffusion tensor imaging', 'MRI', 'white matter', 'tractography',
                     'garyfallidis research group', 'dipy']
 
 # django-meta settings
 META_SITE_PROTOCOL = 'https'
-META_SITE_DOMAIN = 'dipy.herokuapp.com'
+META_SITE_DOMAIN = 'grg.sice.indiana.edu'
 
 # Repos settings
 REPOSITORY_NAME = "lab"
