@@ -105,8 +105,9 @@ def has_commit_permission(access_token, repository_name):
     """
     if access_token == '':
         return False
+    headers = {'Authorization': 'token {0}'.format(access_token)}
     response = requests.get('https://api.github.com{}repos'.format(settings.REPOSITORY_URL),
-                            params={'access_token': access_token})
+                            headers=headers)
     response_json = response.json()
     for repo in response_json:
         if repo["name"] == repository_name:
