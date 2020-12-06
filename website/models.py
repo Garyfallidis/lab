@@ -1,5 +1,7 @@
-import os
+
+import bleach
 import datetime
+import markdown
 
 from django.db import models
 from django.conf import settings
@@ -11,8 +13,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.core.validators import RegexValidator
 
-import markdown
-import bleach
+# from website.views.tools import has_commit_permission
 
 # markdown allowed tags that are not filtered by bleach
 
@@ -268,7 +269,10 @@ class Profile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created:
+    social = instance.social_auth.get(provider='github')
+    access_token = social.extra_data['access_token']
+    has_permission = has_commit_permission(access_token, settings.REPOSITORY_NAME)
+    if created and has_permission:
         Profile.objects.create(user=instance,
                                profile_page_markdown="")
         instance.profile.save()
@@ -413,3 +417,51 @@ class CareerModel(models.Model):
 
         # Call the "real" save() method.
         super(CareerModel, self).save(*args, **kwargs)
+
+
+class Software(models.Model):
+    """
+    Model for storing Lab Software
+    """
+    title = models.CharField(max_length=100)
+    position = models.PositiveSmallIntegerField(default=0)
+    show_in_page = models.BooleanField(default=True)
+    website_url = models.URLField(blank=True, null=True)
+    github_url = models.URLField(blank=True, null=True)
+    twitter_url = models.URLField(blank=True, null=True)
+    linkedin_url = models.URLField(blank=True, null=True)
+    background_img = models.ImageField(upload_to='software_images/', blank=True, null=True)
+    default_static_background_img_name = models.CharField(max_length=200, blank=True, null=True)
+
+    description_page_markdown = models.TextField(null=True, blank=True)
+    description_page_html = models.TextField(null=True, blank=True, editable=False)
+
+    def tag(self):
+        """Returns website tag for internal cross reference."""
+        return "_".join(self.title.lower().split())
+
+    def background_url(self):
+        """
+        Returns the URL of the image associated with this Object.
+        If an image hasn't been uploaded yet, it returns a stock image
+
+        :returns: str -- the image url
+
+        """
+        if self.background_img and hasattr(self.background_img, 'url'):
+            return self.background_img.url
+        else:
+            return "{0}{1}/{2}".format(settings.STATIC_URL, 'images', self.default_static_background_img_name)
+
+    def save(self, *args, **kwargs):
+        html_content = markdown.markdown(self.description_page_markdown, extensions=['codehilite'])
+        # bleach is used to filter html tags like <script> for security
+        self.description_page_html = bleach.clean(html_content, allowed_html_tags, allowed_attrs)
+        # clear the cache
+        cache.clear()
+
+        # Call the "real" save() method.
+        super(Software, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title

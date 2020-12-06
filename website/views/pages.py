@@ -125,6 +125,13 @@ def teaching(request):
     return render(request, 'website/teaching.html', context)
 
 
+def software(request):
+    context = {'all_software': Software.objects.all(),
+               'meta': get_meta_tags_dict(title="DIPY - Software"),
+               }
+    return render(request, 'website/software.html', context)
+
+
 def people(request):
     director_profiles = Profile.objects.filter(status=Profile.STATUS_CHOICE[5][0]).order_by('rank')
     team_profiles = Profile.objects.filter(status=Profile.STATUS_CHOICE[0][0]).order_by('rank')

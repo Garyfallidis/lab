@@ -22,6 +22,9 @@ urlpatterns = [
     # Teaching Page
     url(r'^teaching/$', views.teaching, name='teaching'),
 
+    # Software Page
+    url(r'^software/$', views.software, name='software'),
+
     # Publications Page
     url(r'^publications/$', views.publications, name='publications'),
 
@@ -91,6 +94,9 @@ urlpatterns = [
 
     # Team Management
     url(r'^dashboard/team/$', views.dashboard_team, name='dashboard_team'),
+
+    # Software Management
+    url(r'^dashboard/software/$', views.dashboard_software, name='dashboard_software'),
 
     # logout url
     url(r'^dashboard/logout/$', logout,

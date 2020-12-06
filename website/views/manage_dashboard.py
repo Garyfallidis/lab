@@ -9,9 +9,9 @@ from .tools import github_permission_required
 from website.forms import (AddEditEventPostForm, AddEditBlogPostForm,
                            AddEditPublicationForm, AddEditCourseForm,
                            TeamForm, AddEditResearchForm, AddEditJournalForm,
-                           CareerForm)
+                           CareerForm, AddEditSoftwareForm)
 
-from website.models import (EventPost, BlogPost, Publication, Course, Profile,
+from website.models import (EventPost, BlogPost, Publication, Course, Profile, Software,
                             User, Research, JournalImage, CareerModel)
 
 
@@ -29,7 +29,6 @@ def dashboard_blog(request):
             messages.error(request, submitted_form.errors)
             context['form'] = submitted_form
             return render(request, 'website/dashboard_blog.html', context)
-
 
     form = AddEditBlogPostForm()
     context['form'] = form
@@ -187,13 +186,34 @@ def dashboard_research(request):
     context['form'] = form
     return render(request, 'website/dashboard_research.html', context)
 
+
+@login_required
+@github_permission_required
+def dashboard_software(request):
+    all_software = Software.objects.all()
+    context = {'all_software': all_software}
+    if request.method == 'POST':
+        submitted_form = AddEditSoftwareForm(request.POST, request.FILES)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect(reverse('dashboard_software'))
+        else:
+            messages.error(request, submitted_form.errors)
+            context['form'] = submitted_form
+            return render(request, 'website/dashboard_software.html', context)
+
+    form = AddEditSoftwareForm()
+    context['form'] = form
+    return render(request, 'website/dashboard_software.html', context)
+
+
 @login_required
 @github_permission_required
 def dashboard_careers(request):
     career_obj, _ = CareerModel.objects.get_or_create(name="default")
 
     js_script = """<script>var simplemde = new SimpleMDE({ element: $("#id_body_internal")[0], forceSync:true });
-                    var simplemde_2 = new SimpleMDE({ element: $("#id_body_external")[0], forceSync:true }); 
+                    var simplemde_2 = new SimpleMDE({ element: $("#id_body_external")[0], forceSync:true });
     </script>"""
     context = {'js_script': js_script}
     if request.method == 'POST':
@@ -260,6 +280,10 @@ def get_current_model_and_form(model_name):
         container['model'] = JournalImage
         container['form'] = AddEditJournalForm
         container['reverse'] = 'dashboard_publications'
+    if model_name.lower() == 'software':
+        container['model'] = Software
+        container['form'] = AddEditSoftwareForm
+        container['reverse'] = 'dashboard_software'
 
     return container
 

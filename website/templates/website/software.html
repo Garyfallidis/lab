@@ -1,0 +1,63 @@
+{% extends "website/base_template.html" %}
+{% load staticfiles %}
+
+
+{% block banner %}
+
+<section id="banner" class="section bg-gray text-overlay">
+  <!-- <div class="bg-image-cover" style="background: url('{% static "images/teaching-982162_1920.jpg" %}');"></div> -->
+  <div class="row pad">
+      <div class=" two-thirds">
+          <h2>Software</h2>
+      </div>
+  </div>
+
+</section>
+
+{% endblock %}
+
+{% block content_body %}
+
+<div class="extra-space bg-none section" id="home">
+    <div class="row">
+        <div class="grid halves">
+
+            {% for software in all_software %}
+
+            <div class="grid-item">
+                {% if software.background_url %}
+                <div style="max-height: 100px;">
+                    <img class="center" width=40% style="padding-bottom: 50px; display: block;
+                                                         margin-left: auto;margin-right: auto;"
+                         src={{software.background_url}} alt={{software.title}}> </img>
+                </div>
+                {% endif %}
+                <div class="panel">
+                    <h2 class="title">{{software.title}}</h2>
+                    <div class="text">
+                        {% if software.website_url%}
+                        <p><strong>Website/Documentation : </strong><a href="{{software.website_url}}">{{software.website_url}}</a></p>
+                        {% endif %}
+                        {% if software.github_url %}
+                        <p><strong>Github : </strong> <a href="{{software.github_url}}">{{software.github_url}}</a> </p>
+                        {% endif %}
+                        {% if software.twitter_url %}
+                        <p><strong>Twitter : </strong><a href="{{software.twitter_url}}">{{software.twitter_url}}</a></p>
+                        {% endif %}
+                        {% if software.linkedin_url %}
+                        <p><strong>Linkedin : </strong><a href="{{software.linkedin_url}}">{{software.linkedin_url}}</a></p>
+                        {% endif %}
+                    </div>
+
+                    <div>{{ software.description_page_html|safe }}</div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+{% endblock %}

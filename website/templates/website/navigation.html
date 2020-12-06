@@ -8,7 +8,7 @@
         <li><a href="{% url 'research' %}" itemprop="url"><span itemprop="name">Research</span></a></li>
         <li><a href="{% url 'teaching' %}" itemprop="url"><span itemprop="name">Teaching</span></a></li>
         <li><a href="{% url 'publications' %}" itemprop="name"><span itemprop="name">Publications</span></a></li>
-        <li><a href="https://dipy.org" itemprop="url"><span itemprop="name">Software</span></a></li>
+        <li><a href="{% url 'software' %}" itemprop="url"><span itemprop="name">Software</span></a></li>
         <li><a href="{% url 'news_page' %}" itemprop="url"><span itemprop="name">News & Events</span></a></li>
         <li><a href="{% url 'careers_page' %}" itemprop="url"><span itemprop="name">Careers</span></a></li>
         {% if user.is_authenticated %}
