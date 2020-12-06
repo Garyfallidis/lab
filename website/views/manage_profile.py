@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
 
-from .tools import github_permission_required
+from website.tools import github_permission_required
 from website.forms import EditProfileForm, UserForm
 from website.models import Profile
 
@@ -13,7 +13,7 @@ from website.models import Profile
 def edit_profile(request):
     try:
         Profile.objects.get(user=request.user)
-    except:
+    except Exception:
         raise Http404("Profile does not exist. Contact Admin")
 
     js_script = """<script>var simplemde = new SimpleMDE({ element: $("#id_profile_page_markdown")[0], forceSync:true }); </script>"""

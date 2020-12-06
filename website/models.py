@@ -13,7 +13,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.core.validators import RegexValidator
 
-# from website.views.tools import has_commit_permission
+from .tools import has_commit_permission
 
 # markdown allowed tags that are not filtered by bleach
 

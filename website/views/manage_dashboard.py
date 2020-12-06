@@ -5,14 +5,15 @@ from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import render, redirect
 
-from .tools import github_permission_required
+from website.tools import github_permission_required
 from website.forms import (AddEditEventPostForm, AddEditBlogPostForm,
                            AddEditPublicationForm, AddEditCourseForm,
                            TeamForm, AddEditResearchForm, AddEditJournalForm,
                            CareerForm, AddEditSoftwareForm)
 
-from website.models import (EventPost, BlogPost, Publication, Course, Profile, Software,
-                            User, Research, JournalImage, CareerModel)
+from website.models import (EventPost, BlogPost, Publication, Course, Profile,
+                            Software, User, Research, JournalImage,
+                            CareerModel)
 
 
 @login_required

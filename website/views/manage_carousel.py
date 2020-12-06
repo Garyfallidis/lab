@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
 
-from .tools import github_permission_required
+from website.tools import github_permission_required
 from website.forms import AddEditCarouselImageForm
 from website.models import CarouselImage
 
