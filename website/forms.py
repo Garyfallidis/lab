@@ -66,6 +66,14 @@ class AddEditResearchForm(ModelForm):
         fields = ['title', 'position', 'show_in_page', 'background_img', 'description_page_markdown']
 
 
+class AddEditSoftwareForm(ModelForm):
+    class Meta:
+        model = Software
+        fields = ['title', 'position', 'show_in_page', 'background_img',
+                  'description_page_markdown', 'website_url', 'github_url',
+                  'twitter_url', 'linkedin_url']
+
+
 class AddEditJournalForm(ModelForm):
     class Meta:
         model = JournalImage

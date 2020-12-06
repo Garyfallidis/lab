@@ -1,0 +1,71 @@
+{% extends "website/dashboard_template.html" %}
+{% load staticfiles %}
+{% load customfilters %}
+
+{% block extra_css %}
+<!-- Include simplemde markdown editor css-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+
+{% block dashboard_content_body %}
+
+<div class="panel">
+    <a href="#" class="show-hide"><h2 class="title">Add Software</h2></a>
+    <div class="form-container" style="display: none;">
+        {% if form%}
+        <form enctype="multipart/form-data" action="." method="post">
+            {% csrf_token %}
+            <fieldset class="fieldset">
+                <legend>Software</legend>
+                {% for field in form %}
+
+                <div class="form-item">
+
+                    <div class="form-item-label">
+                        {{ field.label_tag }}
+                    </div>
+
+                    <div class="form-item-input">
+                        {{ field }}
+                    </div>
+
+                </div>
+                {% endfor %}
+                <p><input class="button" type="submit" value="Submit"></p>
+            </fieldset>
+        </form>
+        {% endif %}
+    </div>
+</div>
+<div class="panel">
+    <h2 class="title">Edit Software</h2>
+	{% if all_software %}
+		{% for software in all_software %}
+            <hr>
+	        <h5>{{software.title}}</h5>
+            <p><i>Position</i>: {{software.position}}</p>
+            <p><i>Description</i>: {{ software.description_page_markdown|truncatechars:200|markdown_to_html|safe }}</p>
+	<div class="grid halves">
+		<div class="grid-item">
+			<a href="{% url 'edit_page' model_name='software' model_id=software.id %}" class="left-separator ">Edit</a>
+			<a href="{% url 'delete_page' model_name='software' model_id=software.id %}" class="left-separator DeleteLink" value="Software">Delete</a>
+		</div>
+	</div>
+
+	{% endfor %}
+	{% endif %}
+</div>
+
+
+{% endblock %}
+
+{% block extra_js_bottom %}
+
+<!-- Include and call simplemde markdown editor js-->
+<script type="text/javascript" src="{% static 'js/simplemde.min.js' %}"></script>
+<!-- Script to show confirmation box before deleting -->
+<script>
+    var simplemde = new SimpleMDE({ element: $("#id_profile_page_markdown")[0] });
+</script>
+
+{% endblock %}
